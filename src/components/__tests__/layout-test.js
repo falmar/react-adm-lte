@@ -41,7 +41,14 @@ describe('Layout component', () => {
   })
 
   it('should add/remove classes on body tag', () => {
-    const wrapper = mount(<Layout skin='skin' boxed topNavigation fixed sidebarCollapse />)
+    const wrapper = mount(<Layout
+      skin='skin'
+      boxed
+      topNavigation
+      fixed
+      sidebarCollapse
+      sidebarMini
+      />)
 
     const list = window.document.body.classList
 
@@ -61,6 +68,10 @@ describe('Layout component', () => {
       list.contains('sidebar-collapse')
     ).toBeTruthy()
 
+    expect(
+      list.contains('sidebar-mini')
+    ).toBeTruthy()
+
     wrapper.unmount()
 
     expect(
@@ -77,6 +88,10 @@ describe('Layout component', () => {
 
     expect(
       list.contains('sidebar-collapse')
+    ).toBeFalsy()
+
+    expect(
+      list.contains('sidebar-mini')
     ).toBeFalsy()
   })
 })

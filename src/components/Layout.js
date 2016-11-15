@@ -49,7 +49,8 @@ class Layout extends Component {
       'layout-top-nav': props.topNavigation,
       'layout-boxed': props.boxed,
       'fixed': props.fixed,
-      'sidebar-collapse': props.sidebarCollapse
+      'sidebar-collapse': props.sidebarCollapse,
+      'sidebar-mini': props.sidebarMini
     }
   }
 
@@ -68,6 +69,7 @@ Layout.propTypes = {
   boxed: PropTypes.bool,
   fixed: PropTypes.bool,
   sidebarCollapse: PropTypes.bool,
+  sidebarMini: PropTypes.bool,
   children: PropTypes.node
 }
 
