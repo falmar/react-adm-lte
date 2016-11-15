@@ -40,7 +40,7 @@ describe('Layout component', () => {
     ).toBeFalsy()
   })
 
-  it('should add/remove classes on body tag', () => {
+  it('should add classes on body tag (mount)', () => {
     const wrapper = mount(<Layout
       skin='skin'
       boxed
@@ -73,25 +73,61 @@ describe('Layout component', () => {
     ).toBeTruthy()
 
     wrapper.unmount()
+  })
+
+  it('should add/remove classes on body tag (update)', () => {
+    const wrapper = mount(<Layout
+      skin='skin'
+      fixed
+      />)
+
+    const list = window.document.body.classList
 
     expect(
-      list.contains('layout-boxed')
-    ).toBeFalsy()
+        list.contains('layout-boxed')
+      ).toBeFalsy()
 
     expect(
-      list.contains('layout-top-nav')
+        list.contains('fixed')
+      ).toBeTruthy()
+
+    wrapper.setProps({fixed: false, boxed: true})
+
+    expect(
+        list.contains('layout-boxed')
+      ).toBeTruthy()
+
+    expect(
+        list.contains('fixed')
+      ).toBeFalsy()
+
+    wrapper.unmount()
+  })
+
+  it('should remove classes on body tag (unmount)', () => {
+    const wrapper = mount(<Layout
+      skin='skin'
+      fixed
+      />)
+
+    const list = window.document.body.classList
+
+    expect(
+        list.contains('skin')
+      ).toBeTruthy()
+
+    expect(
+        list.contains('fixed')
+      ).toBeTruthy()
+
+    wrapper.unmount()
+
+    expect(
+      list.contains('skin')
     ).toBeFalsy()
 
     expect(
       list.contains('fixed')
-    ).toBeFalsy()
-
-    expect(
-      list.contains('sidebar-collapse')
-    ).toBeFalsy()
-
-    expect(
-      list.contains('sidebar-mini')
     ).toBeFalsy()
   })
 })
