@@ -27,8 +27,11 @@ class Dropdown extends Component {
     })
   }
 
-  focus () {
+  focus (event) {
     clearTimeout(this.menu.getAttribute('timeoutId'))
+    if (this.props.onFocus instanceof Function) {
+      this.props.onFocus(event)
+    }
   }
 
   blur (event) {
@@ -84,6 +87,7 @@ Dropdown.propTypes = {
   ]),
   items: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
   onBlur: PropTypes.func.isRequired
 }
 
@@ -102,10 +106,7 @@ const commonProps = {
 
 class Notifications extends Component {
   getItems () {
-    return [
-      <li><a href=''>blue</a></li>,
-      <li><a href=''>red</a></li>
-    ]
+    return []
   }
 
   getClassNames () {
@@ -123,6 +124,7 @@ class Notifications extends Component {
       items={this.getItems()}
       label={this.props.label}
       onToggle={this.props.onToggle}
+      onBlur={this.props.onBlur}
       />
   }
 }
@@ -133,10 +135,7 @@ export {Notifications}
 
 class Messages extends Component {
   getItems () {
-    return [
-      <li><a href=''>blue</a></li>,
-      <li><a href=''>red</a></li>
-    ]
+    return []
   }
 
   getClassNames () {
@@ -165,10 +164,7 @@ export {Messages}
 
 class Tasks extends Component {
   getItems () {
-    return [
-      <li><a href=''>blue</a></li>,
-      <li><a href=''>red</a></li>
-    ]
+    return []
   }
 
   getClassNames () {

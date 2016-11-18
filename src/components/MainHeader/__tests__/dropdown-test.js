@@ -109,7 +109,7 @@ describe('Menu.Dropdown', () => {
   it('should call toggle function on click', () => {
     const onToggle = sinon.spy()
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <Dropdown
         cn={commonClasses}
         items={commonItems}
@@ -121,6 +121,26 @@ describe('Menu.Dropdown', () => {
 
     expect(
       onToggle.callCount
+    ).toEqual(1)
+  })
+
+  it('should call focus method on focus (menu)', () => {
+    const onFocus = sinon.spy()
+
+    const wrapper = mount(
+      <Dropdown
+        cn={commonClasses}
+        items={commonItems}
+        onToggle={commonCB}
+        onBlur={commonCB}
+        onFocus={onFocus}
+         />
+     )
+
+    wrapper.find('.dropdown-menu').simulate('focus')
+
+    expect(
+    onFocus.called
     ).toBeTruthy()
   })
 
@@ -146,6 +166,8 @@ describe('Menu.Dropdown', () => {
             onBlur.called
           ).toBeTruthy()
         )
+
+        wrapper.unmount()
       })
     })
   })
@@ -168,6 +190,8 @@ describe('Menu.Dropdown', () => {
     expect(
       onBlur.called
     ).toBeTruthy()
+
+    wrapper.unmount()
   })
 
   it('should call blur function on keydown (esc)', () => {
@@ -188,5 +212,7 @@ describe('Menu.Dropdown', () => {
     expect(
       onBlur.called
     ).toBeTruthy()
+
+    wrapper.unmount()
   })
 })
