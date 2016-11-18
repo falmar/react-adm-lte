@@ -4,28 +4,79 @@
 
 jest.unmock('./../Dropdown')
 jest.unmock('sinon')
+jest.unmock('jsdom')
+
+var jsdom = require('jsdom').jsdom
+
+global.document = jsdom('<!doctype html><html><body></body></html>')
+global.window = document.defaultView
+Object.keys(document.defaultView).forEach((property) => {
+  if (typeof global[property] === 'undefined') {
+    global[property] = document.defaultView[property]
+  }
+})
+
+global.navigator = {
+  userAgent: 'node.js'
+}
 
 import React from 'react'
-import {shallow} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 import sinon from 'sinon'
 
 import {Dropdown} from './../Dropdown'
 
 describe('Menu.Dropdown', () => {
   const commonItems = [<li key={1}>SingleItem</li>]
-  const commonClasses = {
-    base: 'dropdown',
-    icon: 'icon',
-    label: 'label'
-  }
-  const commonOnToggle = () => {}
+  const commonClasses = [
+    'dropdown',
+    'icon',
+    'label'
+  ]
+  const commonCB = () => {}
+
+  it('should not be open (mount)', () => {
+    const wrapper = shallow(
+      <Dropdown
+        cn={commonClasses}
+        items={commonItems}
+        onToggle={commonCB}
+        onBlur={commonCB} />
+    )
+
+    expect(
+      wrapper.hasClass('open')
+    ).toBeFalsy()
+  })
+
+  it('should be open prop provided', () => {
+    const wrapper = shallow(
+      <Dropdown
+        open
+        cn={commonClasses}
+        items={commonItems}
+        onToggle={commonCB}
+        onBlur={commonCB} />
+    )
+
+    expect(
+      wrapper.hasClass('open')
+    ).toBeTruthy()
+
+    wrapper.setProps({open: false})
+
+    expect(
+      wrapper.hasClass('open')
+    ).toBeFalsy()
+  })
 
   it('should add classnames', () => {
     const wrapper = shallow(
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonOnToggle} />
+        onToggle={commonCB}
+        onBlur={commonCB} />
     )
 
     expect(
@@ -41,46 +92,61 @@ describe('Menu.Dropdown', () => {
     )
   })
 
-  it('should add toggle function', () => {
-    const wrapper = shallow(
-      <Dropdown
-        cn={commonClasses}
-        items={commonItems}
-        onToggle={commonOnToggle} />
-    )
-
-    expect(
-      wrapper.find('.dropdown-toggle').prop('onClick')
-    ).toEqual(commonOnToggle)
-  })
-
-  it('should call toggle function on click', () => {
-    const onToggle = sinon.spy()
-
-    const wrapper = shallow(
-      <Dropdown
-        cn={commonClasses}
-        items={commonItems}
-        onToggle={onToggle} />
-    )
-
-    wrapper.find('.dropdown-toggle').simulate('click')
-
-    expect(
-      onToggle.calledOnce
-    ).toBeTruthy()
-  })
-
   it('should pass down children', () => {
     const wrapper = shallow(
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonOnToggle} />
+        onToggle={commonCB}
+        onBlur={commonCB} />
     )
 
     expect(
       wrapper.find('.dropdown-menu').contains(commonItems)
     ).toBeTruthy()
+  })
+
+  it('should call toggle function on click', () => {
+    const onToggle = sinon.spy()
+
+    const wrapper = mount(
+      <Dropdown
+        cn={commonClasses}
+        items={commonItems}
+        onToggle={onToggle}
+        onBlur={commonCB} />
+    )
+
+    wrapper.find('.dropdown-toggle').simulate('click')
+
+    expect(
+      onToggle.callCount
+    ).toBeTruthy()
+  })
+
+  it('should call blur function on blur', () => {
+    const onBlur = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={commonCB}
+          onBlur={onBlur} />
+      </div>
+    )
+
+    wrapper.find('.dropdown-menu').simulate('blur')
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          expect(
+            onBlur.called
+          ).toBeTruthy()
+        )
+      })
+    })
   })
 })

@@ -5,28 +5,86 @@
 import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
-const Dropdown = ({onToggle, cn, label, items}) => {
-  return (
-    <li className={cn.base}>
-      <a href='#' className='dropdown-toggle' onClick={onToggle}>
-        <i className={cn.icon} />
-        <span className={cn.label}>{label}</span>
-      </a>
-      <ul className='dropdown-menu'>
-        {items}
-      </ul>
-    </li>
-  )
+class Dropdown extends Component {
+  constructor (props) {
+    super(props)
+
+    this.click = this.click.bind(this)
+    this.focus = this.focus.bind(this)
+    this.blur = this.blur.bind(this)
+    this.keydown = this.keydown.bind(this)
+  }
+
+  componentWillUnmount () {
+    this.props.onBlur()
+    clearTimeout(this.menu.getAttribute('timeoutId'))
+  }
+
+  click (event) {
+    this.props.onToggle(event)
+    setTimeout(() => {
+      this.menu.focus()
+    })
+  }
+
+  focus () {
+    clearTimeout(this.menu.getAttribute('timeoutId'))
+  }
+
+  blur (event) {
+    this.menu.setAttribute('timeoutId', setTimeout(() => {
+      this.props.onBlur(event)
+    }))
+  }
+
+  keydown (event) {
+    if (event.which === 27) {
+      event.preventDefault()
+      this.props.onBlur()
+    }
+  }
+
+  render () {
+    const {cn, label, items, open} = this.props
+
+    return (
+      <li className={classnames('dropdown', cn[0], {open})}>
+        <a
+          ref={dom => { this.anchor = dom }}
+          href='#'
+          className='dropdown-toggle'
+          onClick={this.click}
+          onFocus={this.focus}
+          onBlur={this.blur}>
+
+          <i className={classnames('fa', cn[1])} />
+          <span className={classnames('label', cn[2])}>{label}</span>
+        </a>
+        <ul
+          style={{outline: 'none'}}
+          tabIndex={-1}
+          ref={dom => { this.menu = dom }}
+          className='dropdown-menu'
+          onFocusCapture={this.focus}
+          onBlurCapture={this.blur}
+          onKeyDown={this.keydown}>
+          {items}
+        </ul>
+      </li>
+    )
+  }
 }
 
 Dropdown.propTypes = {
-  cn: PropTypes.object.isRequired,
+  open: PropTypes.bool,
+  cn: PropTypes.array.isRequired,
   label: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
   items: PropTypes.node.isRequired,
-  onToggle: PropTypes.func.isRequired
+  onToggle: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired
 }
 
 export {Dropdown}
@@ -38,32 +96,29 @@ const commonProps = {
   ]),
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired
-}
-
-const commonClassNames = (classes, open) => {
-  return {
-    base: classnames('dropdown', classes[0], {open}),
-    icon: classnames('fa', classes[1]),
-    label: classnames('label', classes[2])
-  }
+  onToggle: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired
 }
 
 class Notifications extends Component {
   getItems () {
-    return <li>blue</li>
+    return [
+      <li><a href=''>blue</a></li>,
+      <li><a href=''>red</a></li>
+    ]
   }
 
   getClassNames () {
-    return commonClassNames([
+    return [
       'notifications-menu',
       'fa-bell-o',
       'label-warning'
-    ], this.props.open)
+    ]
   }
 
   render () {
     return <Dropdown
+      open={this.props.open}
       cn={this.getClassNames()}
       items={this.getItems()}
       label={this.props.label}
@@ -78,23 +133,28 @@ export {Notifications}
 
 class Messages extends Component {
   getItems () {
-    return <li className='header'>blue</li>
+    return [
+      <li><a href=''>blue</a></li>,
+      <li><a href=''>red</a></li>
+    ]
   }
 
   getClassNames () {
-    return commonClassNames([
+    return [
       'messages-menu',
       'fa-envelope-o',
       'label-success'
-    ], this.props.open)
+    ]
   }
 
   render () {
     return <Dropdown
+      open={this.props.open}
       cn={this.getClassNames()}
       items={this.getItems()}
       label={this.props.label}
       onToggle={this.props.onToggle}
+      onBlur={this.props.onBlur}
       />
   }
 }
@@ -105,19 +165,23 @@ export {Messages}
 
 class Tasks extends Component {
   getItems () {
-    return <li>blue</li>
+    return [
+      <li><a href=''>blue</a></li>,
+      <li><a href=''>red</a></li>
+    ]
   }
 
   getClassNames () {
-    return commonClassNames([
+    return [
       'tasks-menu',
       'fa-flag-o',
       'label-danger'
-    ], this.props.open)
+    ]
   }
 
   render () {
     return <Dropdown
+      open={this.props.open}
       cn={this.getClassNames()}
       items={this.getItems()}
       label={this.props.label}
