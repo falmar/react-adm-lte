@@ -149,4 +149,44 @@ describe('Menu.Dropdown', () => {
       })
     })
   })
+
+  it('should call blur function on unmount', () => {
+    const onBlur = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={commonCB}
+          onBlur={onBlur} />
+      </div>
+    )
+
+    wrapper.unmount()
+
+    expect(
+      onBlur.called
+    ).toBeTruthy()
+  })
+
+  it('should call blur function on keydown (esc)', () => {
+    const onBlur = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={commonCB}
+          onBlur={onBlur} />
+      </div>
+    )
+
+    wrapper.find('.dropdown-menu').simulate('keyDown', {keyCode: 27})
+
+    expect(
+      onBlur.called
+    ).toBeTruthy()
+  })
 })

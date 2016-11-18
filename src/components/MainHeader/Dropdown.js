@@ -38,7 +38,7 @@ class Dropdown extends Component {
   }
 
   keydown (event) {
-    if (event.which === 27) {
+    if (event.keyCode === 27) {
       event.preventDefault()
       this.props.onBlur()
     }
