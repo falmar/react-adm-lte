@@ -9,26 +9,33 @@ class Dropdown extends Component {
   constructor (props) {
     super(props)
 
-    this.click = this.click.bind(this)
+    this.toggle = this.toggle.bind(this)
     this.focus = this.focus.bind(this)
     this.blur = this.blur.bind(this)
     this.keydown = this.keydown.bind(this)
   }
 
   componentWillUnmount () {
-    this.props.onBlur()
     clearTimeout(this.menu.getAttribute('timeoutId'))
+
+    if (this.props.open) {
+      this.props.onToggle()
+    }
   }
 
-  click (event) {
+  toggle (event) {
     this.props.onToggle(event)
-    setTimeout(() => {
-      this.menu.focus()
-    })
+
+    if (!this.props.open) {
+      setTimeout(() => {
+        this.menu.focus()
+      })
+    }
   }
 
   focus (event) {
     clearTimeout(this.menu.getAttribute('timeoutId'))
+
     if (this.props.onFocus instanceof Function) {
       this.props.onFocus(event)
     }
@@ -36,14 +43,17 @@ class Dropdown extends Component {
 
   blur (event) {
     this.menu.setAttribute('timeoutId', setTimeout(() => {
-      this.props.onBlur(event)
+      this.props.onToggle(event)
     }))
   }
 
   keydown (event) {
     if (event.keyCode === 27) {
       event.preventDefault()
-      this.props.onBlur()
+
+      if (this.props.open) {
+        this.props.onToggle()
+      }
     }
   }
 
@@ -56,7 +66,7 @@ class Dropdown extends Component {
           ref={dom => { this.anchor = dom }}
           href='#'
           className='dropdown-toggle'
-          onClick={this.click}
+          onClick={this.toggle}
           onFocus={this.focus}
           onBlur={this.blur}>
 
@@ -87,8 +97,7 @@ Dropdown.propTypes = {
   ]),
   items: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func.isRequired
+  onFocus: PropTypes.func
 }
 
 export {Dropdown}
@@ -100,38 +109,8 @@ const commonProps = {
   ]),
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-  onBlur: PropTypes.func.isRequired
+  onToggle: PropTypes.func.isRequired
 }
-
-class Notifications extends Component {
-  getItems () {
-    return []
-  }
-
-  getClassNames () {
-    return [
-      'notifications-menu',
-      'fa-bell-o',
-      'label-warning'
-    ]
-  }
-
-  render () {
-    return <Dropdown
-      open={this.props.open}
-      cn={this.getClassNames()}
-      items={this.getItems()}
-      label={this.props.label}
-      onToggle={this.props.onToggle}
-      onBlur={this.props.onBlur}
-      />
-  }
-}
-
-Notifications.propTypes = commonProps
-
-export {Notifications}
 
 class Messages extends Component {
   getItems () {
@@ -153,7 +132,6 @@ class Messages extends Component {
       items={this.getItems()}
       label={this.props.label}
       onToggle={this.props.onToggle}
-      onBlur={this.props.onBlur}
       />
   }
 }
@@ -161,6 +139,34 @@ class Messages extends Component {
 Messages.propTypes = commonProps
 
 export {Messages}
+
+class Notifications extends Component {
+  getItems () {
+    return []
+  }
+
+  getClassNames () {
+    return [
+      'notifications-menu',
+      'fa-bell-o',
+      'label-warning'
+    ]
+  }
+
+  render () {
+    return <Dropdown
+      open={this.props.open}
+      cn={this.getClassNames()}
+      items={this.getItems()}
+      label={this.props.label}
+      onToggle={this.props.onToggle}
+      />
+  }
+}
+
+Notifications.propTypes = commonProps
+
+export {Notifications}
 
 class Tasks extends Component {
   getItems () {

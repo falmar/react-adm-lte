@@ -40,8 +40,7 @@ describe('Menu.Dropdown', () => {
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonCB}
-        onBlur={commonCB} />
+        onToggle={commonCB} />
     )
 
     expect(
@@ -55,8 +54,7 @@ describe('Menu.Dropdown', () => {
         open
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonCB}
-        onBlur={commonCB} />
+        onToggle={commonCB} />
     )
 
     expect(
@@ -75,8 +73,7 @@ describe('Menu.Dropdown', () => {
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonCB}
-        onBlur={commonCB} />
+        onToggle={commonCB} />
     )
 
     expect(
@@ -97,8 +94,7 @@ describe('Menu.Dropdown', () => {
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={commonCB}
-        onBlur={commonCB} />
+        onToggle={commonCB} />
     )
 
     expect(
@@ -113,8 +109,7 @@ describe('Menu.Dropdown', () => {
       <Dropdown
         cn={commonClasses}
         items={commonItems}
-        onToggle={onToggle}
-        onBlur={commonCB} />
+        onToggle={onToggle} />
     )
 
     wrapper.find('.dropdown-toggle').simulate('click')
@@ -132,7 +127,6 @@ describe('Menu.Dropdown', () => {
         cn={commonClasses}
         items={commonItems}
         onToggle={commonCB}
-        onBlur={commonCB}
         onFocus={onFocus}
          />
      )
@@ -144,16 +138,15 @@ describe('Menu.Dropdown', () => {
     ).toBeTruthy()
   })
 
-  it('should call blur function on blur', () => {
-    const onBlur = sinon.spy()
+  it('should call toggle function on blur', () => {
+    const onToggle = sinon.spy()
 
     const wrapper = mount(
       <div>
         <Dropdown
           cn={commonClasses}
           items={commonItems}
-          onToggle={commonCB}
-          onBlur={onBlur} />
+          onToggle={onToggle} />
       </div>
     )
 
@@ -163,7 +156,7 @@ describe('Menu.Dropdown', () => {
       setTimeout(() => {
         resolve(
           expect(
-            onBlur.called
+            onToggle.called
           ).toBeTruthy()
         )
 
@@ -172,45 +165,83 @@ describe('Menu.Dropdown', () => {
     })
   })
 
-  it('should call blur function on unmount', () => {
-    const onBlur = sinon.spy()
+  it('should not call blur function on unmount if closed', () => {
+    const onToggle = sinon.spy()
 
     const wrapper = mount(
       <div>
         <Dropdown
           cn={commonClasses}
           items={commonItems}
-          onToggle={commonCB}
-          onBlur={onBlur} />
+          onToggle={onToggle} />
       </div>
     )
 
     wrapper.unmount()
 
     expect(
-      onBlur.called
-    ).toBeTruthy()
-
-    wrapper.unmount()
+      onToggle.called
+    ).toBeFalsy()
   })
 
-  it('should call blur function on keydown (esc)', () => {
-    const onBlur = sinon.spy()
+  it('should call blur function on unmount if open', () => {
+    const onToggle = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          open
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={onToggle} />
+      </div>
+    )
+
+    wrapper.unmount()
+
+    expect(
+      onToggle.called
+    ).toBeTruthy()
+  })
+
+  it('should not call toggle function on keydown (esc)', () => {
+    const onToggle = sinon.spy()
 
     const wrapper = mount(
       <div>
         <Dropdown
           cn={commonClasses}
           items={commonItems}
-          onToggle={commonCB}
-          onBlur={onBlur} />
+          onToggle={onToggle} />
       </div>
     )
 
     wrapper.find('.dropdown-menu').simulate('keyDown', {keyCode: 27})
 
     expect(
-      onBlur.called
+      onToggle.called
+    ).toBeFalsy()
+
+    wrapper.unmount()
+  })
+
+  it('should not call toggle function on keydown (esc) if open', () => {
+    const onToggle = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          open
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={onToggle} />
+      </div>
+    )
+
+    wrapper.find('.dropdown-menu').simulate('keyDown', {keyCode: 27})
+
+    expect(
+      onToggle.called
     ).toBeTruthy()
 
     wrapper.unmount()
