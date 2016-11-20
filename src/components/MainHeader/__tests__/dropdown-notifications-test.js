@@ -132,6 +132,23 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
     ).toEqual('http://example.com')
   })
 
+  it('should add icon if iconClass is an string', () => {
+    const wrapper = mount(
+      <Notification
+        {...commonProps}
+        iconClass='fa fa-pencil'
+         />
+    )
+
+    expect(
+      wrapper.find('i').length
+    ).toEqual(1)
+
+    expect(
+      wrapper.find('i').hasClass('fa') && wrapper.find('i').hasClass('fa-pencil')
+    ).toBeTruthy()
+  })
+
   it('should add title', () => {
     const wrapper = mount(
       <Notification {...commonProps}
