@@ -3,7 +3,6 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Layout')
-jest.unmock('jsdom')
 
 var jsdom = require('jsdom').jsdom
 

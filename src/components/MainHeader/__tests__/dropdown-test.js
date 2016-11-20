@@ -3,8 +3,6 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Dropdown')
-jest.unmock('sinon')
-jest.unmock('jsdom')
 
 var jsdom = require('jsdom').jsdom
 

@@ -46,7 +46,9 @@
     "unmockedModulePathPatterns": [
       "react",
       "react-dom",
-      "enzyme"
+      "enzyme",
+      "sinon",
+      "jsdom"
     ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true

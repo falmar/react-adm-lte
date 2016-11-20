@@ -3,7 +3,6 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Dropdown')
-jest.unmock('sinon')
 
 import React from 'react'
 import {shallow} from 'enzyme'
