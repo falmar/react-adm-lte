@@ -16,9 +16,8 @@ describe('Menu.Dropdown.Tasks', () => {
   it('should add classes', () => {
     const wrapper = shallow(
       <Tasks
-        onBlur={commonCB}
         onToggle={commonCB}
-        data={[]}/>
+        data={[]} />
     )
 
     const classes = [

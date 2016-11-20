@@ -16,9 +16,8 @@ describe('Menu.Dropdown.Messages', () => {
   it('should add classes', () => {
     const wrapper = shallow(
       <Messages
-        onBlur={commonCB}
         onToggle={commonCB}
-        data={[]}/>
+        data={[]} />
     )
 
     const classes = [
