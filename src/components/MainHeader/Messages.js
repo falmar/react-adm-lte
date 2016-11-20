@@ -3,22 +3,40 @@
 // License that can be found in the LICENSE file.
 
 import React, {Component, PropTypes} from 'react'
+import {Link} from 'react-router'
 
 import {Dropdown, commonProps} from './Dropdown'
 
-const Message = ({url, title, time, message, onClick}) => {
-  return <li onClick={onClick}>
-    <a href='#'>
-      <div className='pull-left'>
-        <img src={url} className='img-circle' alt='User Image' />
-      </div>
-      <h4>
-        {title}
-        <small><i className='fa fa-clock-o' /> {time}</small>
-      </h4>
-      <p>{message}</p>
-    </a>
-  </li>
+const myLink = ({href, children}) => {
+  if (href.indexOf('http') === -1) {
+    return <Link to={href}>{children}</Link>
+  }
+
+  return <a href={href}>{children}</a>
+}
+
+myLink.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.node
+}
+
+const Message = ({href, imageUrl, title, time, message, onClick}) => {
+  const url = (typeof href === 'string' && href.length > 0) ? href : '#'
+
+  return (
+    <li onClick={onClick}>
+      <myLink href={url}>
+        <div className='pull-left'>
+          <img src={imageUrl} className='img-circle' alt='User Image' />
+        </div>
+        <h4>
+          {title}
+          <small><i className='fa fa-clock-o' /> {time}</small>
+        </h4>
+        <p>{message}</p>
+      </myLink>
+    </li>
+  )
 }
 
 Message.propTypes = {
@@ -26,10 +44,11 @@ Message.propTypes = {
     PropTypes.string,
     PropTypes.number
   ]),
-  url: PropTypes.string,
+  imageUrl: PropTypes.string,
   title: PropTypes.string,
   time: PropTypes.string,
   message: PropTypes.string,
+  href: PropTypes.string,
   onClick: PropTypes.func
 }
 

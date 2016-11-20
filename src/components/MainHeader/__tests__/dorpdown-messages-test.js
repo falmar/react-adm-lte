@@ -102,7 +102,7 @@ describe('Menu.Dropdown.Messages', () => {
 
 describe('Menu.Dropdown.Messages.Message', () => {
   const commonProps = {
-    url: 'path/to/img',
+    imageUrl: 'path/to/img',
     title: 'New Message',
     time: '5 min',
     message: 'Random message',
@@ -121,7 +121,31 @@ describe('Menu.Dropdown.Messages.Message', () => {
 
     expect(
       wrapper.find('img').prop('src')
-    ).toEqual(commonProps.url)
+    ).toEqual(commonProps.imageUrl)
+  })
+
+  it('should have link with href (#) on empty href', () => {
+    const wrapper = shallow(
+      <Message {...commonProps}
+         />
+    )
+
+    expect(
+      wrapper.find('myLink').prop('href')
+    ).toEqual('#')
+  })
+
+  it('should have link with href set on props', () => {
+    const wrapper = shallow(
+      <Message
+        {...commonProps}
+        href='http://example.com'
+         />
+    )
+
+    expect(
+      wrapper.find('myLink').prop('href')
+    ).toEqual('http://example.com')
   })
 
   it('should add title', () => {
