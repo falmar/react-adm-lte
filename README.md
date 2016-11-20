@@ -6,16 +6,19 @@
 React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 
+### TODO List
+
 **Components**
 
 - [x] Layout
 - [ ] Navbar
   - [x] Logo
   - [x] Sidebar Toggle
-  - [x] Menu
-    - [ ] Messages
-    - [ ] Notifications
-    - [ ] Tasks
+  - [ ] Menu
+    - [x] Messages
+    - [x] Notifications
+    - [x] Tasks
+    - [ ] Simplify 3 above components with a container
 - [ ] Sidebar
 - [ ] Control sidebar
 - [ ] ...more...
