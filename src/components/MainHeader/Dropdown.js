@@ -109,6 +109,7 @@ const commonProps = {
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   header: stringOrNumber,
   footer: stringOrNumber
 }

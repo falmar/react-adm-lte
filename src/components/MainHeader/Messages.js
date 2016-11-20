@@ -81,9 +81,6 @@ class Messages extends Component {
   }
 }
 
-Messages.propTypes = {
-  ...commonProps,
-  onClick: PropTypes.func
-}
+Messages.propTypes = commonProps
 
 export default Messages
