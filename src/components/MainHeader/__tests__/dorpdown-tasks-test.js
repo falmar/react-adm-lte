@@ -8,7 +8,7 @@ jest.unmock('sinon')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import {Tasks} from './../Dropdown'
+import Tasks from './../Tasks'
 
 describe('Menu.Dropdown.Tasks', () => {
   const commonCB = () => {}
