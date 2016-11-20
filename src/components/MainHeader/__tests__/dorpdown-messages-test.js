@@ -131,7 +131,7 @@ describe('Menu.Dropdown.Messages.Message', () => {
     )
 
     expect(
-      wrapper.find('myLink').prop('href')
+      wrapper.find('MyLink').prop('href')
     ).toEqual('#')
   })
 
@@ -144,7 +144,7 @@ describe('Menu.Dropdown.Messages.Message', () => {
     )
 
     expect(
-      wrapper.find('myLink').prop('href')
+      wrapper.find('MyLink').prop('href')
     ).toEqual('http://example.com')
   })
 

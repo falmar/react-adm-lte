@@ -7,7 +7,7 @@ import {Link} from 'react-router'
 
 import {Dropdown, commonProps} from './Dropdown'
 
-const myLink = ({href, children}) => {
+const MyLink = ({href, children}) => {
   if (href.indexOf('http') === -1) {
     return <Link to={href}>{children}</Link>
   }
@@ -15,7 +15,7 @@ const myLink = ({href, children}) => {
   return <a href={href}>{children}</a>
 }
 
-myLink.propTypes = {
+MyLink.propTypes = {
   href: PropTypes.string,
   children: PropTypes.node
 }
@@ -25,7 +25,7 @@ const Message = ({href, imageUrl, title, time, message, onClick}) => {
 
   return (
     <li onClick={onClick}>
-      <myLink href={url}>
+      <MyLink href={url}>
         <div className='pull-left'>
           <img src={imageUrl} className='img-circle' alt='User Image' />
         </div>
@@ -34,7 +34,7 @@ const Message = ({href, imageUrl, title, time, message, onClick}) => {
           <small><i className='fa fa-clock-o' /> {time}</small>
         </h4>
         <p>{message}</p>
-      </myLink>
+      </MyLink>
     </li>
   )
 }
