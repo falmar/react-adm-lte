@@ -88,13 +88,15 @@ class Dropdown extends Component {
   }
 }
 
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
+
 Dropdown.propTypes = {
   open: PropTypes.bool,
   cn: PropTypes.array.isRequired,
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  label: stringOrNumber,
   items: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
   onFocus: PropTypes.func
@@ -103,13 +105,12 @@ Dropdown.propTypes = {
 export {Dropdown}
 
 const commonProps = {
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  label: stringOrNumber,
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired
+  onToggle: PropTypes.func.isRequired,
+  header: stringOrNumber,
+  footer: stringOrNumber
 }
 
 export {commonProps}
