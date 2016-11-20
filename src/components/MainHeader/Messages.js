@@ -3,29 +3,14 @@
 // License that can be found in the LICENSE file.
 
 import React, {Component, PropTypes} from 'react'
-import {Link} from 'react-router'
+import MyLink from './../../utils/MyLink'
 
 import {Dropdown, commonProps} from './Dropdown'
 
-const MyLink = ({href, children}) => {
-  if (href.indexOf('http') === -1) {
-    return <Link to={href}>{children}</Link>
-  }
-
-  return <a href={href}>{children}</a>
-}
-
-MyLink.propTypes = {
-  href: PropTypes.string,
-  children: PropTypes.node
-}
-
 const Message = ({href, imageUrl, title, time, message, onClick}) => {
-  const url = (typeof href === 'string' && href.length > 0) ? href : '#'
-
   return (
     <li onClick={onClick}>
-      <MyLink href={url}>
+      <MyLink href={href}>
         <div className='pull-left'>
           <img src={imageUrl} className='img-circle' alt='User Image' />
         </div>

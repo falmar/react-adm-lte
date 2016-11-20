@@ -3,6 +3,7 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Messages')
+jest.unmock('./../../../utils/MyLink')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
@@ -125,18 +126,18 @@ describe('Menu.Dropdown.Messages.Message', () => {
   })
 
   it('should have link with href (#) on empty href', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Message {...commonProps}
          />
     )
 
     expect(
-      wrapper.find('MyLink').prop('href')
+      wrapper.find('MyLink').find('Link').prop('to')
     ).toEqual('#')
   })
 
   it('should have link with href set on props', () => {
-    const wrapper = shallow(
+    const wrapper = mount(
       <Message
         {...commonProps}
         href='http://example.com'
@@ -144,7 +145,7 @@ describe('Menu.Dropdown.Messages.Message', () => {
     )
 
     expect(
-      wrapper.find('MyLink').prop('href')
+      wrapper.find('MyLink').find('a').prop('href')
     ).toEqual('http://example.com')
   })
 
