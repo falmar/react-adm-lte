@@ -5,6 +5,18 @@
 import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
+const commonProps = {
+  label: stringOrNumber,
+  data: PropTypes.array.isRequired,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber
+}
+
+export {commonProps}
+
 class Dropdown extends Component {
   constructor (props) {
     super(props)
@@ -103,15 +115,3 @@ Dropdown.propTypes = {
 }
 
 export {Dropdown}
-
-const commonProps = {
-  label: stringOrNumber,
-  data: PropTypes.array.isRequired,
-  open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-  header: stringOrNumber,
-  footer: stringOrNumber
-}
-
-export {commonProps}
