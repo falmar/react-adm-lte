@@ -5,6 +5,11 @@
 import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
+
 const commonProps = {
   label: stringOrNumber,
   data: PropTypes.array.isRequired,
@@ -99,11 +104,6 @@ class Dropdown extends Component {
     )
   }
 }
-
-const stringOrNumber = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number
-])
 
 Dropdown.propTypes = {
   open: PropTypes.bool,

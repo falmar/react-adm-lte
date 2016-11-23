@@ -1,0 +1,27 @@
+// Copyright 2016 David Lavieri.  All rights reserved.
+// Use of this source code is governed by a MIT License
+// License that can be found in the LICENSE file.
+
+import React, {PropTypes} from 'react'
+
+import MyLink from './../../utils/MyLink'
+
+const User = ({imageUrl, href, label}) => {
+  return (
+    <li className='dropdown user user-menu'>
+      <MyLink href={href}>
+        <img src={imageUrl} className='user-image' alt='User Image' />
+        <span className='hidden-xs'>{label}</span>
+      </MyLink>
+      <ul className='dropdown-menu' />
+    </li>
+  )
+}
+
+User.propTypes = {
+  href: PropTypes.string,
+  imageUrl: PropTypes.string,
+  label: PropTypes.string
+}
+
+export {User}
