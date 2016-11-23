@@ -14,11 +14,13 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 - [ ] Navbar
   - [x] Logo
   - [x] Sidebar Toggle
+  - [x] Control Sidebar Toggle
   - [ ] Menu
     - [x] Messages
     - [x] Notifications
     - [x] Tasks
-    - [ ] Simplify 3 above components with a container
+    - [ ] Custom Menu
+    - [ ] User menu
 - [ ] Sidebar
 - [ ] Control sidebar
 - [ ] ...more...
