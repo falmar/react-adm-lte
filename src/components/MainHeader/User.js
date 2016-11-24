@@ -25,3 +25,23 @@ User.propTypes = {
 }
 
 export {User}
+
+const UserHeader = ({url, title, description}) => {
+  return (
+    <li className='user-header'>
+      <img src={url} className='img-circle' alt='User Image' />
+      <p>
+        {title}
+        <small>{description}</small>
+      </p>
+    </li>
+  )
+}
+
+UserHeader.propTypes = {
+  url: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string
+}
+
+export {UserHeader}

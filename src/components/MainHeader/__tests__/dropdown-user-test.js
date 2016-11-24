@@ -7,9 +7,9 @@ jest.unmock('./../User')
 import React from 'react'
 import {shallow, mount} from 'enzyme'
 
-import {User} from './../User'
+import {User, UserHeader} from './../User'
 
-describe('Dropdown.User.Basic', () => {
+describe('Dropdown.User.Base', () => {
   it('should add a tag or Link (react-router) depending on href', () => {
     // href present with external link should be react-router's Link
     let wrapper = mount(<User href='http://example.com' />)
@@ -82,5 +82,59 @@ describe('Dropdown.User.Basic', () => {
     expect(
       ul.hasClass('dropdown-menu')
     ).toBeTruthy()
+  })
+})
+
+describe('Dropdown.User.Header', () => {
+  it('should have class name li tag', () => {
+    expect(
+      shallow(<UserHeader />).hasClass('user-header')
+    ).toBeTruthy()
+  })
+
+  it('should have img tag with its url', () => {
+    const wrapper = shallow(<UserHeader url='path/to/img' />)
+
+    const img = wrapper.find('img')
+
+    expect(
+      img.length
+    ).toEqual(1)
+
+    expect(
+      img.hasClass('img-circle')
+    ).toBeTruthy()
+
+    expect(
+      img.prop('src')
+    ).toEqual('path/to/img')
+  })
+
+  it('should have its title', () => {
+    const wrapper = shallow(<UserHeader title='Web Developer' />)
+
+    const p = wrapper.find('p')
+
+    expect(
+      p.length
+    ).toEqual(1)
+
+    expect(
+      p.text()
+    ).toContain('Web Developer')
+  })
+
+  it('should have its (description)', () => {
+    const wrapper = shallow(<UserHeader description='Member since 2015' />)
+
+    const small = wrapper.find('small')
+
+    expect(
+      small.length
+    ).toEqual(1)
+
+    expect(
+      small.text()
+    ).toContain('Member since 2015')
   })
 })
