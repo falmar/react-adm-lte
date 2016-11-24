@@ -21,6 +21,10 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
     - [x] Tasks
     - [ ] Custom Menu
     - [ ] User menu
+      - [x] Base
+      - [ ] Header
+      - [ ] Body
+      - [ ] Footer
 - [ ] Sidebar
 - [ ] Control sidebar
 - [ ] ...more...
