@@ -45,3 +45,28 @@ UserHeader.propTypes = {
 }
 
 export {UserHeader}
+
+const UserBody = ({data}) => {
+  return (
+    <li className='user-body' >
+      <div className='row'>
+        {data && data.map((item, index) => {
+          return (
+            <div className='col-xs-4 text-center'>
+              <MyLink
+                key={item.href + index}
+                href={!(item.onClick instanceof Function) ? item.href : '#'}
+                onClick={item.onClick}>{item.label}</MyLink>
+            </div>
+          )
+        })}
+      </div>
+    </li>
+  )
+}
+
+UserBody.propTypes = {
+  data: PropTypes.array.isRequired
+}
+
+export {UserBody}

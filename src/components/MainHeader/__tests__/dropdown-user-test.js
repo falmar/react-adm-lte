@@ -7,7 +7,7 @@ jest.unmock('./../User')
 import React from 'react'
 import {shallow, mount} from 'enzyme'
 
-import {User, UserHeader} from './../User'
+import {User, UserHeader, UserBody} from './../User'
 
 describe('Dropdown.User.Base', () => {
   it('should add a tag or Link (react-router) depending on href', () => {
@@ -136,5 +136,96 @@ describe('Dropdown.User.Header', () => {
     expect(
       small.text()
     ).toContain('Member since 2015')
+  })
+})
+
+describe('Dropdown.User.Body', () => {
+  const linksData = [{
+    href: '/to/somewhere',
+    label: 'Somewhere'
+  }, {
+    href: 'http://example.com',
+    label: 'Example'
+  }, {
+    href: '/',
+    label: 'Home'
+  }]
+
+  it('should have class name li tag', () => {
+    expect(
+      shallow(<UserBody />).hasClass('user-body')
+    ).toBeTruthy()
+  })
+
+  it('should have row container', () => {
+    const wrapper = shallow(<UserBody data={[]} />)
+
+    expect(
+      wrapper.find('.row').length
+    ).toEqual(1)
+  })
+
+  it('should have columns as much as links data ', () => {
+    const wrapper = shallow(<UserBody data={linksData} />)
+
+    expect(
+      wrapper.find('.col-xs-4').length
+    ).toEqual(3)
+  })
+
+  it('should columns with text-center className', () => {
+    const wrapper = shallow(<UserBody data={linksData} />)
+
+    expect(
+      wrapper.find('.col-xs-4').at(0).hasClass('text-center')
+    ).toBeTruthy()
+  })
+
+  it('should have anchor tag (a) or react-router Link depende on url', () => {
+    const wrapper = mount(<UserBody data={linksData} />)
+
+    const columns = wrapper.find('.col-xs-4')
+
+    let link = columns.at(0).find('Link')
+
+    expect(
+      link.length
+    ).toEqual(1)
+
+    expect(
+      link.prop('to')
+    ).toEqual('/to/somewhere')
+
+    expect(
+      link.text()
+    ).toContain('Somewhere')
+
+    link = columns.at(1).find('a')
+
+    expect(
+      link.length
+    ).toEqual(1)
+
+    expect(
+      link.prop('href')
+    ).toEqual('http://example.com')
+
+    expect(
+      link.text()
+    ).toContain('Example')
+
+    link = columns.at(2).find('Link')
+
+    expect(
+      link.length
+    ).toEqual(1)
+
+    expect(
+      link.prop('to')
+    ).toEqual('/')
+
+    expect(
+      link.text()
+    ).toContain('Home')
   })
 })
