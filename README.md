@@ -22,7 +22,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
     - [ ] Custom Menu
     - [ ] User menu
       - [x] Base
-      - [ ] Header
+      - [x] Header
       - [ ] Body
       - [ ] Footer
 - [ ] Sidebar
