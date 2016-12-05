@@ -56,7 +56,8 @@ const UserBody = ({data}) => {
               <MyLink
                 key={item.href + index}
                 href={!(item.onClick instanceof Function) ? item.href : '#'}
-                onClick={item.onClick}>{item.label}</MyLink>
+                onClick={item.onClick}>{item.label}
+              </MyLink>
             </div>
           )
         })}
@@ -70,3 +71,27 @@ UserBody.propTypes = {
 }
 
 export {UserBody}
+
+const UserFooter = ({data}) => {
+  const getContainer = (side, item) => {
+    return <div className={`pull-${side}`}>
+      <MyLink
+        href={!(item.onClick instanceof Function) ? item.href : '#'}
+        onClick={item.onClick}>{item.label}
+      </MyLink>
+    </div>
+  }
+
+  return (
+    <li className='user-footer'>
+      {data && data.left && getContainer('left', data.left)}
+      {data && data.right && getContainer('right', data.right)}
+    </li>
+  )
+}
+
+UserFooter.propTypes = {
+  data: PropTypes.object.isRequired
+}
+
+export {UserFooter}

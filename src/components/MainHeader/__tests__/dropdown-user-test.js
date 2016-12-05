@@ -7,7 +7,7 @@ jest.unmock('./../User')
 import React from 'react'
 import {shallow, mount} from 'enzyme'
 
-import {User, UserHeader, UserBody} from './../User'
+import {User, UserHeader, UserBody, UserFooter} from './../User'
 
 describe('Dropdown.User.Base', () => {
   it('should add a tag or Link (react-router) depending on href', () => {
@@ -173,7 +173,7 @@ describe('Dropdown.User.Body', () => {
     ).toEqual(3)
   })
 
-  it('should columns with text-center className', () => {
+  it('should have columns with text-center className', () => {
     const wrapper = shallow(<UserBody data={linksData} />)
 
     expect(
@@ -181,7 +181,7 @@ describe('Dropdown.User.Body', () => {
     ).toBeTruthy()
   })
 
-  it('should have anchor tag (a) or react-router Link depende on url', () => {
+  it('should have anchor tag (a) or react-router Link depend on url', () => {
     const wrapper = mount(<UserBody data={linksData} />)
 
     const columns = wrapper.find('.col-xs-4')
@@ -227,5 +227,69 @@ describe('Dropdown.User.Body', () => {
     expect(
       link.text()
     ).toContain('Home')
+  })
+})
+
+describe('Dropdown.User.Footer', () => {
+  const linksData = {
+    left: {
+      href: '/to/somewhere',
+      label: 'Somewhere'
+    },
+    right: {
+      href: 'http://example.com',
+      label: 'Example'
+    }}
+
+  it('should have class name li tag', () => {
+    expect(
+      shallow(<UserFooter />).hasClass('user-footer')
+    ).toBeTruthy()
+  })
+
+  it('should have pull right and left', () => {
+    const wrapper = shallow(<UserFooter data={linksData} />)
+
+    expect(
+      wrapper.find('div').at(0).hasClass('pull-left')
+    ).toBeTruthy()
+
+    expect(
+      wrapper.find('div').at(1).hasClass('pull-right')
+    ).toBeTruthy()
+  })
+
+  it('should have anchor tag (a) or react-router Link depend on url', () => {
+    const wrapper = mount(<UserFooter data={linksData} />)
+
+    const container = wrapper.find('div')
+
+    let link = container.at(0).find('Link')
+
+    expect(
+      link.length
+    ).toEqual(1)
+
+    expect(
+      link.prop('to')
+    ).toEqual('/to/somewhere')
+
+    expect(
+      link.text()
+    ).toContain('Somewhere')
+
+    link = container.at(1).find('a')
+
+    expect(
+      link.length
+    ).toEqual(1)
+
+    expect(
+      link.prop('href')
+    ).toEqual('http://example.com')
+
+    expect(
+      link.text()
+    ).toContain('Example')
   })
 })
