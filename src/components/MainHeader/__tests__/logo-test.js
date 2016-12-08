@@ -5,18 +5,18 @@
 jest.unmock('./../Logo')
 
 import React from 'react'
-import {shallow} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 
 import Logo, {LogoText} from './../Logo'
 
 describe('LogoText', () => {
   it('should add class by type', () => {
     expect(
-      shallow(<LogoText isMini/>).hasClass('logo-mini')
+      shallow(<LogoText isMini />).hasClass('logo-mini')
     ).toBeTruthy()
 
     expect(
-      shallow(<LogoText isLarge/>).hasClass('logo-lg')
+      shallow(<LogoText isLarge />).hasClass('logo-lg')
     ).toBeTruthy()
   })
 
@@ -28,7 +28,7 @@ describe('LogoText', () => {
 
   it('should add bold title', () => {
     expect(
-      shallow(<LogoText isMini />).find('b').equals(<b></b>)
+      shallow(<LogoText isMini />).find('b').equals(<b />)
     ).toBeTruthy()
 
     expect(
@@ -45,8 +45,10 @@ describe('Logo', () => {
   })
 
   it('should add href link ', () => {
+    const wrapper = mount(<Logo href='/home-link' />)
+
     expect(
-      shallow(<Logo href='/home-link'/>).prop('to')
+      wrapper.find('Link').prop('to')
     ).toEqual('/home-link')
   })
 })

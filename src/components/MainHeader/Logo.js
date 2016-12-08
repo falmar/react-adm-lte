@@ -3,7 +3,7 @@
 // License that can be found in the LICENSE file.
 
 import React, {PropTypes} from 'react'
-import {Link} from 'react-router'
+import Link from '../../utils/Link'
 import classnames from 'classnames'
 
 const LogoText = ({isMini, isLarge, title, boldTitle}) => {
@@ -24,16 +24,17 @@ LogoText.propTypes = {
   boldTitle: PropTypes.string
 }
 
-const Logo = ({href, children}) => {
+const Logo = ({href, onClick, children}) => {
   return (
-    <Link to={href} className='logo'>
+    <Link href={href} onClick={onClick} className='logo'>
       {children}
     </Link>
   )
 }
 
 Logo.propTypes = {
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   children: PropTypes.node
 }
 
