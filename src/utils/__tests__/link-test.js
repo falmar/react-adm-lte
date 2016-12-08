@@ -47,7 +47,7 @@ describe('Link', () => {
     ).toBeTruthy()
   })
 
-  it('should <a> tag for internal url', () => {
+  it('should have <a> tag for internal url', () => {
     const wrapper = mount(
       <Link
         href='http://example.com' />
@@ -66,7 +66,22 @@ describe('Link', () => {
     ).toEqual('http://example.com')
   })
 
-  it('should react router Link for internal url', () => {
+  it('should have react router Link with numeral for empty href', () => {
+    const wrapper = mount(
+      <Link
+        href='' />
+    )
+
+    expect(
+      wrapper.find('Link').length
+    ).toEqual(1)
+
+    expect(
+      wrapper.find('Link').prop('to')
+    ).toEqual('#')
+  })
+
+  it('should have react router Link for internal url', () => {
     const wrapper = mount(
       <Link
         href='/path/somewhere' />
@@ -81,6 +96,24 @@ describe('Link', () => {
     ).toEqual('/path/somewhere')
   })
 
+  it('should have numeral href when onClick prop provided', () => {
+    const spy = sinon.spy()
+    const wrapper = mount(
+      <Link
+        onClick={spy} />
+    )
+
+    expect(
+      wrapper.find('a').length
+    ).toEqual(1)
+
+    wrapper.simulate('click')
+
+    expect(
+      wrapper.find('a').prop('href')
+    ).toEqual('#')
+  })
+
   it('should trigger onClick function', () => {
     const spy = sinon.spy()
     const wrapper = mount(
@@ -92,10 +125,10 @@ describe('Link', () => {
       wrapper.find('a').length
     ).toEqual(1)
 
-    wrapper.find('a').simulate('click')
+    wrapper.simulate('click')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy.callCount
+    ).toEqual(1)
   })
 })
