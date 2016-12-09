@@ -12,7 +12,7 @@ const MyLink = ({href, children, onClick, className}) => {
     return <a className={className} href='#' onClick={onClick}>{children}</a>
   }
 
-  if (url.indexOf('http') === 0 || onClick instanceof Function) {
+  if (url.indexOf('http') === 0 || url.indexOf('www.') === 0) {
     return <a className={className} href={url}>{children}</a>
   }
 

@@ -3,9 +3,11 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../User')
+jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
+import sinon from 'sinon'
 
 import {User, UserHeader, UserBody, UserFooter} from './../User'
 
@@ -81,6 +83,17 @@ describe('Dropdown.User.Base', () => {
 
     expect(
       ul.hasClass('dropdown-menu')
+    ).toBeTruthy()
+  })
+
+  it('should trigger onClick', () => {
+    const spy = sinon.spy()
+    const wrapper = shallow(<User onClick={spy} />)
+
+    wrapper.find('MyLink').simulate('click')
+
+    expect(
+      spy.called
     ).toBeTruthy()
   })
 })
@@ -228,6 +241,38 @@ describe('Dropdown.User.Body', () => {
       link.text()
     ).toContain('Home')
   })
+
+  it('should trigger onClick', () => {
+    const spy0 = sinon.spy()
+    const spy1 = sinon.spy()
+    const spy2 = sinon.spy()
+    const data = [
+      ...linksData
+    ]
+
+    data[0].onClick = spy0
+    data[1].onClick = spy1
+    data[2].onClick = spy2
+
+    const wrapper = mount(<UserBody data={data} />)
+    const container = wrapper.find('div')
+
+    container.find('MyLink').at(0).simulate('click')
+    container.find('MyLink').at(1).simulate('click')
+    container.find('MyLink').at(2).simulate('click')
+
+    expect(
+      spy0.called
+    ).toBeTruthy()
+
+    expect(
+      spy1.called
+    ).toBeTruthy()
+
+    expect(
+      spy2.called
+    ).toBeTruthy()
+  })
 })
 
 describe('Dropdown.User.Footer', () => {
@@ -261,9 +306,7 @@ describe('Dropdown.User.Footer', () => {
 
   it('should have anchor tag (a) or react-router Link depend on url', () => {
     const wrapper = mount(<UserFooter data={linksData} />)
-
     const container = wrapper.find('div')
-
     let link = container.at(0).find('Link')
 
     expect(
@@ -291,5 +334,33 @@ describe('Dropdown.User.Footer', () => {
     expect(
       link.text()
     ).toContain('Example')
+  })
+
+  it('should trigger onClick', () => {
+    const leftSpy = sinon.spy()
+    const rightSpy = sinon.spy()
+    const data = {
+      ...linksData,
+      ...{
+        left: {
+          onClick: leftSpy
+        },
+        right: {
+          onClick: rightSpy
+        }
+      }
+    }
+    const wrapper = mount(<UserFooter data={data} />)
+    const container = wrapper.find('div')
+    container.at(0).find('MyLink').simulate('click')
+    container.at(1).find('MyLink').simulate('click')
+
+    expect(
+      leftSpy.called
+    ).toBeTruthy()
+
+    expect(
+      rightSpy.called
+    ).toBeTruthy()
   })
 })

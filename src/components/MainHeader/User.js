@@ -4,15 +4,15 @@
 
 import React, {PropTypes} from 'react'
 
-import MyLink from './../../utils/MyLink'
+import Link from './../../utils/Link'
 
-const User = ({imageUrl, href, label}) => {
+const User = ({imageUrl, href, onClick, label}) => {
   return (
     <li className='dropdown user user-menu'>
-      <MyLink href={href}>
+      <Link href={href} onClick={onClick}>
         <img src={imageUrl} className='user-image' alt='User Image' />
         <span className='hidden-xs'>{label}</span>
-      </MyLink>
+      </Link>
       <ul className='dropdown-menu' />
     </li>
   )
@@ -20,6 +20,7 @@ const User = ({imageUrl, href, label}) => {
 
 User.propTypes = {
   href: PropTypes.string,
+  onClick: PropTypes.func,
   imageUrl: PropTypes.string,
   label: PropTypes.string
 }
@@ -53,11 +54,11 @@ const UserBody = ({data}) => {
         {data && data.map((item, index) => {
           return (
             <div className='col-xs-4 text-center'>
-              <MyLink
+              <Link
                 key={item.href + index}
-                href={!(item.onClick instanceof Function) ? item.href : '#'}
+                href={item.href}
                 onClick={item.onClick}>{item.label}
-              </MyLink>
+              </Link>
             </div>
           )
         })}
@@ -75,10 +76,10 @@ export {UserBody}
 const UserFooter = ({data}) => {
   const getContainer = (side, item) => {
     return <div className={`pull-${side}`}>
-      <MyLink
-        href={!(item.onClick instanceof Function) ? item.href : '#'}
+      <Link
+        href={item.href}
         onClick={item.onClick}>{item.label}
-      </MyLink>
+      </Link>
     </div>
   }
 
