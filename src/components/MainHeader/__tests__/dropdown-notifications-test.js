@@ -3,7 +3,7 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Notifications')
-jest.unmock('./../../../utils/MyLink')
+jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
@@ -104,8 +104,7 @@ describe('Menu.Dropdown.Notifications', () => {
 describe('Menu.Dropdown.Notifications.Notification', () => {
   const commonProps = {
     id: 1,
-    title: 'New Notification',
-    onClick: () => {}
+    title: 'New Notification'
   }
 
   it('should have link with href (#) on empty href', () => {
@@ -162,14 +161,14 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
 
   it('should trigger onclick on li message click', () => {
     const spy = sinon.spy()
-    const wrapper = shallow(
+    const wrapper = mount(
       <Notification
         {...commonProps}
         onClick={spy}
          />
     )
 
-    wrapper.find('li').simulate('click')
+    wrapper.find('MyLink').simulate('click')
 
     expect(
       spy.called

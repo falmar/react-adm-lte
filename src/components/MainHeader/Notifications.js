@@ -5,7 +5,8 @@
 import React, {Component, PropTypes} from 'react'
 
 import {Dropdown, commonProps} from './Dropdown'
-import MyLink from './../../utils/MyLink'
+import Link from './../../utils/Link'
+
 const icon = cn => {
   if (typeof cn === 'string' && cn.length > 0) {
     return <i className={cn} />
@@ -16,10 +17,10 @@ const icon = cn => {
 
 const Notification = ({title, iconClass, href, onClick}) => {
   return (
-    <li onClick={onClick}>
-      <MyLink href={href}>
+    <li>
+      <Link href={href} onClick={onClick}>
         {icon(iconClass)} {title}
-      </MyLink>
+      </Link>
     </li>
   )
 }
