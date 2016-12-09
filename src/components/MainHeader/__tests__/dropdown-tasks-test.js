@@ -3,7 +3,7 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Tasks')
-jest.unmock('./../../../utils/MyLink')
+jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
@@ -106,8 +106,7 @@ describe('Menu.Dropdown.Tasks.Task', () => {
     id: 1,
     title: 'New Task',
     progress: 20,
-    progressClass: 'progress-bar-aqua',
-    onClick: () => {}
+    progressClass: 'progress-bar-aqua'
   }
 
   it('should have link with href (#) on empty href', () => {
@@ -188,7 +187,7 @@ describe('Menu.Dropdown.Tasks.Task', () => {
          />
     )
 
-    wrapper.find('li').simulate('click')
+    wrapper.find('MyLink').simulate('click')
 
     expect(
       spy.called

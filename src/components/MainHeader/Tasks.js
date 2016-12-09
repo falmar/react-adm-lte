@@ -6,15 +6,15 @@ import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
 import {Dropdown, commonProps} from './Dropdown'
-import MyLink from './../../utils/MyLink'
+import Link from './../../utils/Link'
 
 const Task = ({title, progress, progressClass, complete, href, onClick}) => {
   const width = `${progress}%`
   const pcn = classnames('progress-bar', progressClass)
 
   return (
-    <li onClick={onClick}>
-      <MyLink href={href}>
+    <li>
+      <Link href={href} onClick={onClick}>
         <h3>
           {title}
           <small className='pull-right'>{progress}%</small>
@@ -30,7 +30,7 @@ const Task = ({title, progress, progressClass, complete, href, onClick}) => {
             <span className='sr-only'>{progress}% {complete}</span>
           </div>
         </div>
-      </MyLink>
+      </Link>
     </li>
   )
 }
