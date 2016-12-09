@@ -3,14 +3,14 @@
 // License that can be found in the LICENSE file.
 
 import React, {Component, PropTypes} from 'react'
-import MyLink from './../../utils/MyLink'
+import Link from './../../utils/Link'
 
 import {Dropdown, commonProps} from './Dropdown'
 
 const Message = ({href, imageUrl, title, time, message, onClick}) => {
   return (
-    <li onClick={onClick}>
-      <MyLink href={href}>
+    <li >
+      <Link href={href} onClick={onClick}>
         <div className='pull-left'>
           <img src={imageUrl} className='img-circle' alt='User Image' />
         </div>
@@ -19,7 +19,7 @@ const Message = ({href, imageUrl, title, time, message, onClick}) => {
           <small><i className='fa fa-clock-o' /> {time}</small>
         </h4>
         <p>{message}</p>
-      </MyLink>
+      </Link>
     </li>
   )
 }

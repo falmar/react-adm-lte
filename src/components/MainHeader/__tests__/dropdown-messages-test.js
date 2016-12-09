@@ -3,7 +3,7 @@
 // License that can be found in the LICENSE file.
 
 jest.unmock('./../Messages')
-jest.unmock('./../../../utils/MyLink')
+jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
@@ -106,8 +106,7 @@ describe('Menu.Dropdown.Messages.Message', () => {
     imageUrl: 'path/to/img',
     title: 'New Message',
     time: '5 min',
-    message: 'Random message',
-    onClick: () => {}
+    message: 'Random message'
   }
 
   it('should add img and url', () => {
@@ -191,7 +190,7 @@ describe('Menu.Dropdown.Messages.Message', () => {
          />
     )
 
-    wrapper.find('li').simulate('click')
+    wrapper.find('MyLink').simulate('click')
 
     expect(
       spy.called
