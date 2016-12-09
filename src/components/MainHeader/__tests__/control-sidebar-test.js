@@ -41,9 +41,13 @@ describe('ControlSidebarToggle', () => {
 
   it('should call onToggle function on click', () => {
     const spy = sinon.spy()
-    const wrapper = shallow(<ControlSidebarToggle onToggle={spy} />)
+    const wrapper = mount(<ControlSidebarToggle onToggle={spy} />)
 
-    wrapper.find('li').simulate('click')
+    expect(
+      wrapper.find('MyLink').length
+    ).toEqual(1)
+
+    wrapper.find('MyLink').simulate('click')
 
     expect(
       spy.called

@@ -4,14 +4,14 @@
 
 import React, {PropTypes} from 'react'
 
-import MyLink from './../../utils/MyLink'
+import Link from './../../utils/Link'
 
 const ControlSidebarToggle = ({href, onToggle}) => {
   return (
-    <li onClick={onToggle}>
-      <MyLink href={href}>
+    <li>
+      <Link href={href} onClick={onToggle}>
         <i className='fa fa-gears' />
-      </MyLink>
+      </Link>
     </li>
   )
 }
