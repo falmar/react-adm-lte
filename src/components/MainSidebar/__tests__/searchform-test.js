@@ -1,0 +1,155 @@
+// Copyright 2016 David Lavieri.  All rights reserved.
+// Use of this source code is governed by a MIT License
+// License that can be found in the LICENSE file.
+
+jest.unmock('./../SearchForm')
+
+import React from 'react'
+import {shallow} from 'enzyme'
+import sinon from 'sinon'
+
+import SearchFormContainer, {SearchForm} from './../SearchForm'
+
+describe('MainSidebar.SearchForm', () => {
+  it('should have classnames', () => {
+    const wrapper = shallow(<SearchForm />)
+
+    expect(
+      wrapper.hasClass('sidebar-form')
+    ).toBeTruthy()
+
+    expect(
+      wrapper.prop('action')
+    ).toEqual('#')
+
+    expect(
+      wrapper.prop('method')
+    ).toEqual('get')
+  })
+
+  it('should trigger onSubmit', () => {
+    const spy = sinon.spy()
+    const wrapper = shallow(<SearchForm onSubmit={spy} />)
+
+    wrapper.simulate('submit')
+
+    expect(
+      spy.called
+    ).toBeTruthy()
+  })
+
+  it('should trigger onChange', () => {
+    const spy = sinon.spy()
+    const wrapper = shallow(<SearchForm onChange={spy} />)
+
+    wrapper.find('input').simulate('change')
+
+    expect(
+      spy.called
+    ).toBeTruthy()
+  })
+
+  it('should have input-group', () => {
+    const wrapper = shallow(
+      <SearchForm
+        placeholder='Search...'
+        value='Random Value!' />
+    )
+
+    expect(
+      wrapper.find('.input-group').length
+    ).toEqual(1)
+
+    const input = wrapper.find('input')
+
+    expect(
+      input.length
+    ).toEqual(1)
+
+    expect(
+      input.hasClass('form-control')
+    )
+
+    expect(
+      input.prop('value')
+    ).toEqual('Random Value!')
+
+    expect(
+      input.prop('placeholder')
+    ).toEqual('Search...')
+
+    expect(
+      input.prop('type')
+    ).toEqual('text')
+  })
+
+  it('should have form btn', () => {
+    const wrapper = shallow(<SearchForm />)
+
+    expect(
+      wrapper.find('span').hasClass('input-group-btn')
+    ).toBeTruthy()
+
+    const button = wrapper.find('button')
+
+    expect(
+      button.hasClass('btn btn-flat')
+    ).toBeTruthy()
+
+    expect(
+      button.prop('type')
+    ).toEqual('submit')
+
+    expect(
+      wrapper.find('i').hasClass('fa')
+    ).toBeTruthy()
+
+    expect(
+      wrapper.find('i').hasClass('fa-search')
+    ).toBeTruthy()
+  })
+})
+
+describe('MainSidebar.SearchFormContainer', () => {
+  it('should call onSubmit with input value', () => {
+    const submit = sinon.spy()
+    const prevent = sinon.spy()
+    const wrapper = shallow(
+      <SearchFormContainer
+        onSubmit={submit} />
+    )
+
+    wrapper.setState({query: 'some-value'})
+    wrapper.instance().onSubmit({preventDefault: prevent})
+
+    expect(
+      prevent.called
+    ).toBeTruthy()
+
+    expect(
+      submit.called
+    ).toBeTruthy()
+
+    expect(
+      submit.calledWith('some-value')
+    ).toBeTruthy()
+  })
+
+  it('should update form state input onChange', () => {
+    const submit = sinon.spy()
+    const wrapper = shallow(
+      <SearchFormContainer
+        onSubmit={submit} />
+    )
+
+    expect(
+      wrapper.state('query')
+    ).toEqual('')
+
+    wrapper.instance().onChange({currentTarget: {value: 'some-value'}})
+
+    expect(
+      wrapper.state('query')
+    ).toEqual('some-value')
+  })
+})
