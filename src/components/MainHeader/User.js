@@ -2,28 +2,48 @@
 // Use of this source code is governed by a MIT License
 // License that can be found in the LICENSE file.
 
-import React, {PropTypes} from 'react'
+import React, {Component, PropTypes} from 'react'
 
+import {Dropdown} from './Dropdown'
 import Link from './../../utils/Link'
 
-const Base = ({imageUrl, href, onClick, label}) => {
-  return (
-    <li className='dropdown user user-menu'>
-      <Link href={href} onClick={onClick}>
-        <img src={imageUrl} className='user-image' alt='User Image' />
-        <span className='hidden-xs'>{label}</span>
-      </Link>
-      <ul className='dropdown-menu' />
-    </li>
-  )
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
+
+const commonProps = {
+  label: PropTypes.string,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber,
+  imageUrl: PropTypes.string
 }
 
-Base.propTypes = {
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  imageUrl: PropTypes.string,
-  label: PropTypes.string
+class Base extends Component {
+  getHeader () {
+    const {imageUrl, label} = this.props
+
+    return [
+      <img src={imageUrl} className='user-image' alt='User Image' />,
+      <span className='hidden-xs'>{label}</span>
+    ]
+  }
+
+  render () {
+    return <Dropdown
+      open={this.props.open}
+      cn={'tasks-menu'}
+      content={this.children}
+      header={this.getHeader()}
+      onToggle={this.props.onToggle}
+      />
+  }
 }
+
+Base.propTypes = commonProps
 
 const Header = ({url, title, description}) => {
   return (

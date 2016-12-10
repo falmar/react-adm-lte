@@ -3,9 +3,15 @@
 // License that can be found in the LICENSE file.
 
 import React, {Component, PropTypes} from 'react'
+import classnames from 'classnames'
 
-import {Dropdown, commonProps} from './Dropdown'
+import {Dropdown} from './Dropdown'
 import Link from './../../utils/Link'
+
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
 
 const icon = cn => {
   if (typeof cn === 'string' && cn.length > 0) {
@@ -26,10 +32,7 @@ const Notification = ({title, iconClass, href, onClick}) => {
 }
 
 Notification.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  id: stringOrNumber,
   title: PropTypes.string,
   iconClass: PropTypes.string,
   href: PropTypes.string,
@@ -77,17 +80,35 @@ class Notifications extends Component {
     ]
   }
 
+  getHeader () {
+    const cn = this.getClassNames()
+    const {label} = this.props
+
+    return [
+      <i className={classnames('fa', cn[1])} />,
+      <span className={classnames('label', cn[2])}>{label}</span>
+    ]
+  }
+
   render () {
     return <Dropdown
       open={this.props.open}
-      cn={this.getClassNames()}
-      items={this.getItems()}
-      label={this.props.label}
+      cn={this.getClassNames()[0]}
+      content={this.getItems()}
+      header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
   }
 }
 
-Notifications.propTypes = commonProps
+Notifications.propTypes = {
+  label: stringOrNumber,
+  data: PropTypes.array.isRequired,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber
+}
 
 export default Notifications

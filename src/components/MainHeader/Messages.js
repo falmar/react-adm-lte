@@ -4,8 +4,14 @@
 
 import React, {Component, PropTypes} from 'react'
 import Link from './../../utils/Link'
+import classnames from 'classnames'
 
-import {Dropdown, commonProps} from './Dropdown'
+import {Dropdown} from './Dropdown'
+
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
 
 const Message = ({href, imageUrl, title, time, message, onClick}) => {
   return (
@@ -25,10 +31,7 @@ const Message = ({href, imageUrl, title, time, message, onClick}) => {
 }
 
 Message.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  id: stringOrNumber,
   imageUrl: PropTypes.string,
   title: PropTypes.string,
   time: PropTypes.string,
@@ -75,17 +78,35 @@ class Messages extends Component {
     ]
   }
 
+  getHeader () {
+    const cn = this.getClassNames()
+    const {label} = this.props
+
+    return [
+      <i className={classnames('fa', cn[1])} />,
+      <span className={classnames('label', cn[2])}>{label}</span>
+    ]
+  }
+
   render () {
     return <Dropdown
       open={this.props.open}
-      cn={this.getClassNames()}
-      items={this.getItems()}
-      label={this.props.label}
+      cn={this.getClassNames()[0]}
+      content={this.getItems()}
+      header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
   }
 }
 
-Messages.propTypes = commonProps
+Messages.propTypes = {
+  label: stringOrNumber,
+  data: PropTypes.array.isRequired,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber
+}
 
 export default Messages

@@ -12,38 +12,13 @@ import sinon from 'sinon'
 import User from './../User'
 
 describe('Dropdown.User.Base', () => {
-  it('should add a tag or Link (react-router) depending on href', () => {
-    // href present with external link should be react-router's Link
-    let wrapper = mount(<User.Base href='http://example.com' />)
-
-    let Link = wrapper.find('a')
-
-    expect(
-      Link.length
-    ).toEqual(1)
-
-    expect(
-      Link.prop('href')
-    ).toEqual('http://example.com')
-
-    wrapper.unmount()
-
-    // href not present should be a tag with href=/user
-    wrapper = mount(<User.Base href='/user' />)
-
-    Link = wrapper.find('Link')
-
-    expect(
-      Link.length
-    ).toEqual(1)
-
-    expect(
-      Link.prop('to')
-    ).toEqual('/user')
-  })
+  const commonOnToggle = () => {}
 
   it('should have img tag and its url', () => {
-    const wrapper = shallow(<User.Base imageUrl='/img/user2-160x160.jpg' />)
+    const wrapper = mount(<User.Base
+      imageUrl='/img/user2-160x160.jpg'
+      onToggle={commonOnToggle}
+      />)
 
     const img = wrapper.find('img')
 
@@ -61,7 +36,10 @@ describe('Dropdown.User.Base', () => {
   })
 
   it('should have label', () => {
-    const wrapper = shallow(<User.Base label='Alexander Pierce' />)
+    const wrapper = mount(<User.Base
+      label='Alexander Pierce'
+      onToggle={commonOnToggle}
+      />)
 
     expect(
       wrapper.find('span').text()
@@ -69,31 +47,6 @@ describe('Dropdown.User.Base', () => {
 
     expect(
       wrapper.find('span').hasClass('hidden-xs')
-    ).toBeTruthy()
-  })
-
-  it('should ul tag dropdown-menu', () => {
-    const wrapper = shallow(<User.Base />)
-
-    const ul = wrapper.find('ul')
-
-    expect(
-      ul.length
-    ).toEqual(1)
-
-    expect(
-      ul.hasClass('dropdown-menu')
-    ).toBeTruthy()
-  })
-
-  it('should trigger onClick', () => {
-    const spy = sinon.spy()
-    const wrapper = shallow(<User.Base onClick={spy} />)
-
-    wrapper.find('MyLink').simulate('click')
-
-    expect(
-      spy.called
     ).toBeTruthy()
   })
 })

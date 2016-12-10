@@ -5,8 +5,13 @@
 import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
-import {Dropdown, commonProps} from './Dropdown'
+import {Dropdown} from './Dropdown'
 import Link from './../../utils/Link'
+
+const stringOrNumber = PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.number
+])
 
 const Task = ({title, progress, progressClass, complete, href, onClick}) => {
   const width = `${progress}%`
@@ -35,15 +40,10 @@ const Task = ({title, progress, progressClass, complete, href, onClick}) => {
   )
 }
 
-const stringOrNumeric = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number
-])
-
 Task.propTypes = {
-  id: stringOrNumeric,
+  id: stringOrNumber,
   title: PropTypes.string,
-  progress: stringOrNumeric,
+  progress: stringOrNumber,
   progressClass: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
@@ -92,19 +92,35 @@ class Tasks extends Component {
     ]
   }
 
+  getHeader () {
+    const cn = this.getClassNames()
+    const {label} = this.props
+
+    return [
+      <i className={classnames('fa', cn[1])} />,
+      <span className={classnames('label', cn[2])}>{label}</span>
+    ]
+  }
+
   render () {
     return <Dropdown
       open={this.props.open}
-      cn={this.getClassNames()}
-      items={this.getItems()}
-      label={this.props.label}
+      cn={this.getClassNames()[0]}
+      content={this.getItems()}
+      header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
   }
 }
 
 Tasks.propTypes = {
-  ...commonProps,
+  label: stringOrNumber,
+  data: PropTypes.array.isRequired,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber,
   complete: PropTypes.string
 }
 

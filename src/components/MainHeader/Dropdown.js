@@ -5,27 +5,11 @@
 import React, {Component, PropTypes} from 'react'
 import classnames from 'classnames'
 
-const stringOrNumber = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.number
-])
-
-const commonProps = {
-  label: stringOrNumber,
-  data: PropTypes.array.isRequired,
-  open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-  header: stringOrNumber,
-  footer: stringOrNumber
-}
-
-export {commonProps}
-
 class Dropdown extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {timeoutId: null}
     this.toggle = this.toggle.bind(this)
     this.focus = this.focus.bind(this)
     this.blur = this.blur.bind(this)
@@ -33,7 +17,7 @@ class Dropdown extends Component {
   }
 
   componentWillUnmount () {
-    clearTimeout(this.menu.getAttribute('timeoutId'))
+    clearTimeout(this.state.timeoutId)
 
     if (this.props.open) {
       this.props.onToggle(false)
@@ -52,7 +36,7 @@ class Dropdown extends Component {
   }
 
   focus (event) {
-    clearTimeout(this.menu.getAttribute('timeoutId'))
+    clearTimeout(this.state.timeoutId)
 
     if (this.props.onFocus instanceof Function) {
       this.props.onFocus(event)
@@ -60,9 +44,9 @@ class Dropdown extends Component {
   }
 
   blur (event) {
-    this.menu.setAttribute('timeoutId', setTimeout(() => {
+    this.setState({timeoutId: setTimeout(() => {
       this.props.onToggle(false)
-    }))
+    })})
   }
 
   keydown (event) {
@@ -76,20 +60,17 @@ class Dropdown extends Component {
   }
 
   render () {
-    const {cn, label, items, open} = this.props
+    const {cn, header, content, open} = this.props
 
     return (
-      <li className={classnames('dropdown', cn[0], {open})}>
+      <li className={classnames('dropdown', cn, {open})}>
         <a
-          ref={dom => { this.anchor = dom }}
           href='#'
           className='dropdown-toggle'
           onClick={this.toggle}
           onFocus={this.focus}
           onBlur={this.blur}>
-
-          <i className={classnames('fa', cn[1])} />
-          <span className={classnames('label', cn[2])}>{label}</span>
+          {header}
         </a>
         <ul
           style={{outline: 'none'}}
@@ -99,7 +80,7 @@ class Dropdown extends Component {
           onFocusCapture={this.focus}
           onBlurCapture={this.blur}
           onKeyDown={this.keydown}>
-          {items}
+          {content}
         </ul>
       </li>
     )
@@ -108,9 +89,9 @@ class Dropdown extends Component {
 
 Dropdown.propTypes = {
   open: PropTypes.bool,
-  cn: PropTypes.array.isRequired,
-  label: stringOrNumber,
-  items: PropTypes.node.isRequired,
+  cn: PropTypes.string,
+  header: PropTypes.node.isRequired,
+  content: PropTypes.node.isRequired,
   onToggle: PropTypes.func.isRequired,
   onFocus: PropTypes.func
 }

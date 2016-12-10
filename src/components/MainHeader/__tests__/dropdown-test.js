@@ -25,19 +25,15 @@ import sinon from 'sinon'
 import {Dropdown} from './../Dropdown'
 
 describe('Menu.Dropdown', () => {
-  const commonItems = [<li key={1}>SingleItem</li>]
-  const commonClasses = [
-    'dropdown',
-    'icon',
-    'label'
-  ]
+  const commonContent = [<li key={1}>SingleItem</li>]
+  const commonHeader = [<i className='icon' />, <span>Header</span>]
   const commonCB = () => {}
 
   it('should not be open (mount)', () => {
     const wrapper = shallow(
       <Dropdown
-        cn={commonClasses}
-        items={commonItems}
+        header={commonHeader}
+        content={commonContent}
         onToggle={commonCB} />
     )
 
@@ -50,8 +46,8 @@ describe('Menu.Dropdown', () => {
     const wrapper = shallow(
       <Dropdown
         open
-        cn={commonClasses}
-        items={commonItems}
+        header={commonHeader}
+        content={commonContent}
         onToggle={commonCB} />
     )
 
@@ -69,34 +65,31 @@ describe('Menu.Dropdown', () => {
   it('should add classnames', () => {
     const wrapper = shallow(
       <Dropdown
-        cn={commonClasses}
-        items={commonItems}
+        cn='notifications'
+        header={commonHeader}
+        content={commonContent}
         onToggle={commonCB} />
     )
 
     expect(
-      wrapper.hasClass('dropdown')
+      wrapper.hasClass('notifications')
     ).toBeTruthy()
-
-    expect(
-      wrapper.find('i').hasClass('icon')
-    )
-
-    expect(
-      wrapper.find('span').hasClass('label')
-    )
   })
 
   it('should pass down children', () => {
     const wrapper = shallow(
       <Dropdown
-        cn={commonClasses}
-        items={commonItems}
+        header={commonHeader}
+        content={commonContent}
         onToggle={commonCB} />
     )
 
     expect(
-      wrapper.find('.dropdown-menu').contains(commonItems)
+      wrapper.find('a').at(0).contains(commonHeader)
+    ).toBeTruthy()
+
+    expect(
+      wrapper.find('.dropdown-menu').contains(commonContent)
     ).toBeTruthy()
   })
 
@@ -105,8 +98,8 @@ describe('Menu.Dropdown', () => {
 
     const wrapper = shallow(
       <Dropdown
-        cn={commonClasses}
-        items={commonItems}
+        header={commonHeader}
+        content={commonContent}
         onToggle={onToggle} />
     )
 
@@ -130,8 +123,8 @@ describe('Menu.Dropdown', () => {
 
     const wrapper = mount(
       <Dropdown
-        cn={commonClasses}
-        items={commonItems}
+        header={commonHeader}
+        content={commonContent}
         onToggle={commonCB}
         onFocus={onFocus}
          />
@@ -150,8 +143,8 @@ describe('Menu.Dropdown', () => {
     const wrapper = mount(
       <div>
         <Dropdown
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -177,8 +170,8 @@ describe('Menu.Dropdown', () => {
     const wrapper = mount(
       <div>
         <Dropdown
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -204,8 +197,8 @@ describe('Menu.Dropdown', () => {
     const wrapper = mount(
       <div>
         <Dropdown
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -224,8 +217,8 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           open
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -247,8 +240,8 @@ describe('Menu.Dropdown', () => {
     const wrapper = mount(
       <div>
         <Dropdown
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -269,8 +262,8 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           open
-          cn={commonClasses}
-          items={commonItems}
+          header={commonHeader}
+          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
