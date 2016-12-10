@@ -1,7 +1,7 @@
-# react-admin-lte
+# react-adminlte
 
-![](https://travis-ci.org/falmar/react-admin-lte.svg?branch=master)
-![](https://img.shields.io/codecov/c/github/falmar/react-admin-lte.svg)
+![](https://travis-ci.org/falmar/react-adminlte.svg?branch=master)
+![](https://img.shields.io/codecov/c/github/falmar/react-adminlte.svg)
 
 React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
