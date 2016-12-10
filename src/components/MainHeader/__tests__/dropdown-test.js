@@ -116,6 +116,18 @@ describe('Menu.Dropdown', () => {
     expect(
       onToggle.calledWith(true)
     ).toBeTruthy()
+
+    wrapper.setProps({open: true})
+
+    wrapper.find('.dropdown-toggle').simulate('click')
+
+    expect(
+      onToggle.callCount
+    ).toEqual(2)
+
+    expect(
+      onToggle.calledWith(false)
+    ).toBeTruthy()
   })
 
   it('should call focus method on focus (menu)', () => {
