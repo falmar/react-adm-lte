@@ -28,7 +28,7 @@ describe('SidebarToggle', () => {
   it('should not call click callback', () => {
     const onClick = sinon.spy()
 
-    shallow(<SidebarToggle click={onClick} />)
+    shallow(<SidebarToggle onToggle={onClick} />)
 
     expect(
       onClick.callCount
@@ -38,7 +38,7 @@ describe('SidebarToggle', () => {
   it('should call click callback on click', () => {
     const onClick = sinon.spy()
 
-    const wrapper = shallow(<SidebarToggle click={onClick} />)
+    const wrapper = shallow(<SidebarToggle onToggle={onClick} />)
 
     wrapper.find('.sidebar-toggle').simulate('click')
 

@@ -4,16 +4,16 @@
 
 import React, {PropTypes} from 'react'
 
-const SiderbarToggle = ({click, srOnly}) => {
+const SiderbarToggle = ({onToggle, srOnly}) => {
   return (
-    <a href='#' className='sidebar-toggle' onClick={click}>
+    <a href='#' className='sidebar-toggle' onClick={onToggle}>
       <span className='sr-only'>{srOnly}</span>
     </a>
   )
 }
 
 SiderbarToggle.propTypes = {
-  click: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
   srOnly: PropTypes.string
 }
 

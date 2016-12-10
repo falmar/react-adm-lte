@@ -7,7 +7,7 @@ jest.unmock('./../MainHeader')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import MainHeader from './../MainHeader'
+import {MainHeader} from './../MainHeader'
 
 describe('MainHeader', () => {
   it('should contain main-header class', () => {
