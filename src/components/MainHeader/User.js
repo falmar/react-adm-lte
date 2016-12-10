@@ -35,7 +35,7 @@ class Base extends Component {
   render () {
     return <Dropdown
       open={this.props.open}
-      cn={'tasks-menu'}
+      cn={'user-menu'}
       content={this.children}
       header={this.getHeader()}
       onToggle={this.props.onToggle}
