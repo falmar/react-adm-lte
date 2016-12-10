@@ -10,7 +10,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 **Components**
 
-- [ ] Link <a> tag or react-router's Link depending on url
+- [x] Link <a> tag or react-router's Link depending on url
 - [x] Layout
 - [ ] Navbar
   - [x] Logo
@@ -21,11 +21,11 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
     - [x] Notifications
     - [x] Tasks
     - [ ] Custom Menu
-    - [ ] User menu
+    - [x] User menu
       - [x] Base
       - [x] Header
       - [x] Body
-      - [ ] Footer
+      - [x] Footer
 - [ ] Sidebar
 - [ ] Control sidebar
 - [ ] ...more...
