@@ -9,7 +9,7 @@ const UserPanel = ({imageUrl, title, statusText, statusClass}) => {
   return (
     <div className='user-panel'>
       <div className='pull-left image'>
-        <img src={imageUrl} alt='' />
+        <img src={imageUrl} className='img-circle' alt='User Image' />
       </div>
       <div className='pull-left info'>
         <p>{title}</p>

@@ -8,4 +8,7 @@ import Layout from './components/Layout'
 // Main Header
 import * as MainHeader from './components/MainHeader'
 
-export {Layout, MainHeader}
+// Main Sidebar
+import * as MainSidebar from './components/MainSidebar'
+
+export {Layout, MainHeader, MainSidebar}

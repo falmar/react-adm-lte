@@ -42,6 +42,10 @@ class SearchFormContainer extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillMount () {
+    this.setState({query: this.props.value ? this.props.value : ''})
+  }
+
   onSubmit (event) {
     event.preventDefault()
     this.props.onSubmit(this.state.query)
@@ -54,14 +58,14 @@ class SearchFormContainer extends Component {
   }
 
   render () {
-    const {placeholder, value} = this.props
+    const {placeholder} = this.props
 
     return (
       <SearchForm
         placeholder={placeholder}
         onSubmit={this.onSubmit}
         onChange={this.onChange}
-        value={value} />
+        value={this.state.query} />
     )
   }
 }

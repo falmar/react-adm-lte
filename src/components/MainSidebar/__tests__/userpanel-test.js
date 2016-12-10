@@ -43,6 +43,10 @@ describe('MainSidebar.UserPanel', () => {
     ).toEqual(1)
 
     expect(
+      container.find('img').hasClass('img-circle')
+    ).toBeTruthy()
+
+    expect(
       container.find('img').prop('src')
     ).toEqual('path/to/image')
   })
