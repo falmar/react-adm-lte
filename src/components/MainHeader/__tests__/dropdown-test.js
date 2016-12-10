@@ -110,11 +110,19 @@ describe('Menu.Dropdown', () => {
         onToggle={onToggle} />
     )
 
+    expect(
+      wrapper.instance().props.open
+    ).toEqual(undefined)
+
     wrapper.find('.dropdown-toggle').simulate('click')
 
     expect(
       onToggle.callCount
     ).toEqual(1)
+
+    expect(
+      onToggle.calledWith(true)
+    ).toBeTruthy()
   })
 
   it('should call focus method on focus (menu)', () => {
@@ -163,7 +171,34 @@ describe('Menu.Dropdown', () => {
     })
   })
 
-  it('should not call blur function on unmount if closed', () => {
+  it('should call toggle function on blur argument false', () => {
+    const onToggle = sinon.spy()
+
+    const wrapper = mount(
+      <div>
+        <Dropdown
+          cn={commonClasses}
+          items={commonItems}
+          onToggle={onToggle} />
+      </div>
+    )
+
+    wrapper.find('.dropdown-menu').simulate('blur')
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          expect(
+            onToggle.calledWith(false)
+          ).toBeTruthy()
+        )
+
+        wrapper.unmount()
+      })
+    })
+  })
+
+  it('should not call onToggle function on unmount if closed', () => {
     const onToggle = sinon.spy()
 
     const wrapper = mount(
@@ -182,7 +217,7 @@ describe('Menu.Dropdown', () => {
     ).toBeFalsy()
   })
 
-  it('should call blur function on unmount if open', () => {
+  it('should call onToggle function on unmount if open', () => {
     const onToggle = sinon.spy()
 
     const wrapper = mount(
@@ -199,6 +234,10 @@ describe('Menu.Dropdown', () => {
 
     expect(
       onToggle.called
+    ).toBeTruthy()
+
+    expect(
+      onToggle.calledWith(false)
     ).toBeTruthy()
   })
 
@@ -240,6 +279,10 @@ describe('Menu.Dropdown', () => {
 
     expect(
       onToggle.called
+    ).toBeTruthy()
+
+    expect(
+      onToggle.calledWith(false)
     ).toBeTruthy()
 
     wrapper.unmount()

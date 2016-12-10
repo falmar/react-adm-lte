@@ -36,17 +36,18 @@ class Dropdown extends Component {
     clearTimeout(this.menu.getAttribute('timeoutId'))
 
     if (this.props.open) {
-      this.props.onToggle()
+      this.props.onToggle(false)
     }
   }
 
   toggle (event) {
-    this.props.onToggle(event)
-
     if (!this.props.open) {
+      this.props.onToggle(true)
       setTimeout(() => {
         this.menu.focus()
       })
+    } else {
+      this.props.onToggle(false)
     }
   }
 
@@ -60,7 +61,7 @@ class Dropdown extends Component {
 
   blur (event) {
     this.menu.setAttribute('timeoutId', setTimeout(() => {
-      this.props.onToggle(event)
+      this.props.onToggle(false)
     }))
   }
 
@@ -69,7 +70,7 @@ class Dropdown extends Component {
       event.preventDefault()
 
       if (this.props.open) {
-        this.props.onToggle()
+        this.props.onToggle(false)
       }
     }
   }
