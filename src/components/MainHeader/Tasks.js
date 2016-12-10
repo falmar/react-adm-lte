@@ -54,7 +54,12 @@ export {Task}
 
 class Tasks extends Component {
   getTasks () {
-    const {data, onClick, complete} = this.props
+    const {data, complete} = this.props
+    let {onClick} = this.props
+
+    if (!(onClick instanceof Function)) {
+      onClick = () => {}
+    }
 
     return data.map((item, index) => {
       return <Task

@@ -41,7 +41,12 @@ export {Message}
 
 class Messages extends Component {
   getMessages () {
-    const {data, onClick} = this.props
+    const {data} = this.props
+    let {onClick} = this.props
+
+    if (!(onClick instanceof Function)) {
+      onClick = () => {}
+    }
 
     return data.map((message, index) => {
       return <Message key={message.id + index} {...message} onClick={() => onClick(message.id)} />

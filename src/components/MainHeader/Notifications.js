@@ -40,7 +40,12 @@ export {Notification}
 
 class Notifications extends Component {
   getNotifications () {
-    const {data, onClick} = this.props
+    const {data} = this.props
+    let {onClick} = this.props
+
+    if (!(onClick instanceof Function)) {
+      onClick = () => {}
+    }
 
     return data.map((item, index) => {
       return <Notification
