@@ -12,16 +12,6 @@ const stringOrNumber = PropTypes.oneOfType([
   PropTypes.number
 ])
 
-const commonProps = {
-  label: PropTypes.string,
-  open: PropTypes.bool,
-  onToggle: PropTypes.func.isRequired,
-  onClick: PropTypes.func,
-  header: stringOrNumber,
-  footer: stringOrNumber,
-  imageUrl: PropTypes.string
-}
-
 class Base extends Component {
   getHeader () {
     const {imageUrl, label} = this.props
@@ -36,14 +26,23 @@ class Base extends Component {
     return <Dropdown
       open={this.props.open}
       cn={'user-menu'}
-      content={this.children}
+      content={this.props.children}
       header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
   }
 }
 
-Base.propTypes = commonProps
+Base.propTypes = {
+  label: PropTypes.string,
+  open: PropTypes.bool,
+  onToggle: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  header: stringOrNumber,
+  footer: stringOrNumber,
+  imageUrl: PropTypes.string,
+  children: PropTypes.node
+}
 
 const Header = ({url, title, description}) => {
   return (
@@ -71,9 +70,10 @@ const Body = ({data}) => {
           return (
             <div className='col-xs-4 text-center'>
               <Link
-                key={item.href + index}
+                key={index}
                 href={item.href}
-                onClick={item.onClick}>{item.label}
+                onClick={item.onClick}>
+                {item.label}
               </Link>
             </div>
           )
@@ -92,7 +92,9 @@ const Footer = ({data}) => {
     return <div className={`pull-${side}`}>
       <Link
         href={item.href}
-        onClick={item.onClick}>{item.label}
+        className='btn btn-flat btn-default'
+        onClick={item.onClick}>
+        {item.label}
       </Link>
     </div>
   }
