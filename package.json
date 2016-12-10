@@ -1,5 +1,6 @@
 {
-  "private": true,
+  "name": "react-adminlte",
+  "main": "src/index.js",
   "dependencies": {
     "axios": "^0.15.2",
     "classnames": "^2.2.5",
@@ -54,6 +55,7 @@
     "collectCoverage": true
   },
   "scripts": {
+    "prod": "NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",
     "test-watch": "jest --watch --verbose"
   }

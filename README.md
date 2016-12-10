@@ -12,20 +12,21 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 - [x] Link <a> tag or react-router's Link depending on url
 - [x] Layout
-- [ ] Navbar
+- [ ] MainHeader
   - [x] Logo
-  - [x] Sidebar Toggle
-  - [x] Control Sidebar Toggle
-  - [ ] Menu
-    - [x] Messages
-    - [x] Notifications
-    - [x] Tasks
-    - [ ] Custom Menu
-    - [x] User menu
-      - [x] Base
-      - [x] Header
-      - [x] Body
-      - [x] Footer
+  - [ ] Navbar    
+    - [x] Sidebar Toggle
+    - [x] Control Sidebar Toggle
+    - [ ] Menu
+      - [x] Messages
+      - [x] Notifications
+      - [x] Tasks
+      - [ ] Custom Menu
+      - [x] User menu
+        - [x] Base
+        - [x] Header
+        - [x] Body
+        - [x] Footer
 - [ ] Sidebar
 - [ ] Control sidebar
 - [ ] ...more...
