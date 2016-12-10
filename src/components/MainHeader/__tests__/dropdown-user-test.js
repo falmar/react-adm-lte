@@ -9,12 +9,12 @@ import React from 'react'
 import {shallow, mount} from 'enzyme'
 import sinon from 'sinon'
 
-import {User, UserHeader, UserBody, UserFooter} from './../User'
+import User from './../User'
 
 describe('Dropdown.User.Base', () => {
   it('should add a tag or Link (react-router) depending on href', () => {
     // href present with external link should be react-router's Link
-    let wrapper = mount(<User href='http://example.com' />)
+    let wrapper = mount(<User.Base href='http://example.com' />)
 
     let Link = wrapper.find('a')
 
@@ -29,7 +29,7 @@ describe('Dropdown.User.Base', () => {
     wrapper.unmount()
 
     // href not present should be a tag with href=/user
-    wrapper = mount(<User href='/user' />)
+    wrapper = mount(<User.Base href='/user' />)
 
     Link = wrapper.find('Link')
 
@@ -43,7 +43,7 @@ describe('Dropdown.User.Base', () => {
   })
 
   it('should have img tag and its url', () => {
-    const wrapper = shallow(<User imageUrl='/img/user2-160x160.jpg' />)
+    const wrapper = shallow(<User.Base imageUrl='/img/user2-160x160.jpg' />)
 
     const img = wrapper.find('img')
 
@@ -61,7 +61,7 @@ describe('Dropdown.User.Base', () => {
   })
 
   it('should have label', () => {
-    const wrapper = shallow(<User label='Alexander Pierce' />)
+    const wrapper = shallow(<User.Base label='Alexander Pierce' />)
 
     expect(
       wrapper.find('span').text()
@@ -73,7 +73,7 @@ describe('Dropdown.User.Base', () => {
   })
 
   it('should ul tag dropdown-menu', () => {
-    const wrapper = shallow(<User />)
+    const wrapper = shallow(<User.Base />)
 
     const ul = wrapper.find('ul')
 
@@ -88,7 +88,7 @@ describe('Dropdown.User.Base', () => {
 
   it('should trigger onClick', () => {
     const spy = sinon.spy()
-    const wrapper = shallow(<User onClick={spy} />)
+    const wrapper = shallow(<User.Base onClick={spy} />)
 
     wrapper.find('MyLink').simulate('click')
 
@@ -101,12 +101,12 @@ describe('Dropdown.User.Base', () => {
 describe('Dropdown.User.Header', () => {
   it('should have class name li tag', () => {
     expect(
-      shallow(<UserHeader />).hasClass('user-header')
+      shallow(<User.Header />).hasClass('user-header')
     ).toBeTruthy()
   })
 
   it('should have img tag with its url', () => {
-    const wrapper = shallow(<UserHeader url='path/to/img' />)
+    const wrapper = shallow(<User.Header url='path/to/img' />)
 
     const img = wrapper.find('img')
 
@@ -124,7 +124,7 @@ describe('Dropdown.User.Header', () => {
   })
 
   it('should have its title', () => {
-    const wrapper = shallow(<UserHeader title='Web Developer' />)
+    const wrapper = shallow(<User.Header title='Web Developer' />)
 
     const p = wrapper.find('p')
 
@@ -138,7 +138,7 @@ describe('Dropdown.User.Header', () => {
   })
 
   it('should have its (description)', () => {
-    const wrapper = shallow(<UserHeader description='Member since 2015' />)
+    const wrapper = shallow(<User.Header description='Member since 2015' />)
 
     const small = wrapper.find('small')
 
@@ -166,12 +166,12 @@ describe('Dropdown.User.Body', () => {
 
   it('should have class name li tag', () => {
     expect(
-      shallow(<UserBody />).hasClass('user-body')
+      shallow(<User.Body />).hasClass('user-body')
     ).toBeTruthy()
   })
 
   it('should have row container', () => {
-    const wrapper = shallow(<UserBody data={[]} />)
+    const wrapper = shallow(<User.Body data={[]} />)
 
     expect(
       wrapper.find('.row').length
@@ -179,7 +179,7 @@ describe('Dropdown.User.Body', () => {
   })
 
   it('should have columns as much as links data ', () => {
-    const wrapper = shallow(<UserBody data={linksData} />)
+    const wrapper = shallow(<User.Body data={linksData} />)
 
     expect(
       wrapper.find('.col-xs-4').length
@@ -187,7 +187,7 @@ describe('Dropdown.User.Body', () => {
   })
 
   it('should have columns with text-center className', () => {
-    const wrapper = shallow(<UserBody data={linksData} />)
+    const wrapper = shallow(<User.Body data={linksData} />)
 
     expect(
       wrapper.find('.col-xs-4').at(0).hasClass('text-center')
@@ -195,7 +195,7 @@ describe('Dropdown.User.Body', () => {
   })
 
   it('should have anchor tag (a) or react-router Link depend on url', () => {
-    const wrapper = mount(<UserBody data={linksData} />)
+    const wrapper = mount(<User.Body data={linksData} />)
 
     const columns = wrapper.find('.col-xs-4')
 
@@ -254,7 +254,7 @@ describe('Dropdown.User.Body', () => {
     data[1].onClick = spy1
     data[2].onClick = spy2
 
-    const wrapper = mount(<UserBody data={data} />)
+    const wrapper = mount(<User.Body data={data} />)
     const container = wrapper.find('div')
 
     container.find('MyLink').at(0).simulate('click')
@@ -288,12 +288,12 @@ describe('Dropdown.User.Footer', () => {
 
   it('should have class name li tag', () => {
     expect(
-      shallow(<UserFooter />).hasClass('user-footer')
+      shallow(<User.Footer />).hasClass('user-footer')
     ).toBeTruthy()
   })
 
   it('should have pull right and left', () => {
-    const wrapper = shallow(<UserFooter data={linksData} />)
+    const wrapper = shallow(<User.Footer data={linksData} />)
 
     expect(
       wrapper.find('div').at(0).hasClass('pull-left')
@@ -305,7 +305,7 @@ describe('Dropdown.User.Footer', () => {
   })
 
   it('should have anchor tag (a) or react-router Link depend on url', () => {
-    const wrapper = mount(<UserFooter data={linksData} />)
+    const wrapper = mount(<User.Footer data={linksData} />)
     const container = wrapper.find('div')
     let link = container.at(0).find('Link')
 
@@ -350,7 +350,7 @@ describe('Dropdown.User.Footer', () => {
         }
       }
     }
-    const wrapper = mount(<UserFooter data={data} />)
+    const wrapper = mount(<User.Footer data={data} />)
     const container = wrapper.find('div')
     container.at(0).find('MyLink').simulate('click')
     container.at(1).find('MyLink').simulate('click')

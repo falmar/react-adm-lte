@@ -6,7 +6,7 @@ import React, {PropTypes} from 'react'
 
 import Link from './../../utils/Link'
 
-const User = ({imageUrl, href, onClick, label}) => {
+const Base = ({imageUrl, href, onClick, label}) => {
   return (
     <li className='dropdown user user-menu'>
       <Link href={href} onClick={onClick}>
@@ -18,16 +18,14 @@ const User = ({imageUrl, href, onClick, label}) => {
   )
 }
 
-User.propTypes = {
+Base.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   imageUrl: PropTypes.string,
   label: PropTypes.string
 }
 
-export {User}
-
-const UserHeader = ({url, title, description}) => {
+const Header = ({url, title, description}) => {
   return (
     <li className='user-header'>
       <img src={url} className='img-circle' alt='User Image' />
@@ -39,15 +37,13 @@ const UserHeader = ({url, title, description}) => {
   )
 }
 
-UserHeader.propTypes = {
+Header.propTypes = {
   url: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string
 }
 
-export {UserHeader}
-
-const UserBody = ({data}) => {
+const Body = ({data}) => {
   return (
     <li className='user-body' >
       <div className='row'>
@@ -67,13 +63,11 @@ const UserBody = ({data}) => {
   )
 }
 
-UserBody.propTypes = {
+Body.propTypes = {
   data: PropTypes.array.isRequired
 }
 
-export {UserBody}
-
-const UserFooter = ({data}) => {
+const Footer = ({data}) => {
   const getContainer = (side, item) => {
     return <div className={`pull-${side}`}>
       <Link
@@ -91,8 +85,15 @@ const UserFooter = ({data}) => {
   )
 }
 
-UserFooter.propTypes = {
+Footer.propTypes = {
   data: PropTypes.object.isRequired
 }
 
-export {UserFooter}
+const User = {
+  Base,
+  Header,
+  Body,
+  Footer
+}
+
+export default User
