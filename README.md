@@ -28,5 +28,9 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
         - [x] Body
         - [x] Footer
 - [ ] Sidebar
+  - [x] UserPanel
+  - [x] SearchForm
+  - [ ] Menu
 - [ ] Control sidebar
 - [ ] ...more...
+- Make Navbar menu closable on content items click or end of interaction
