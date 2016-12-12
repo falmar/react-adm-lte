@@ -42,30 +42,40 @@ Notification.propTypes = {
 export {Notification}
 
 class Notifications extends Component {
-  getNotifications () {
-    const {data} = this.props
-    let {onClick} = this.props
+  constructor (props) {
+    super(props)
 
-    if (!(onClick instanceof Function)) {
-      onClick = () => {}
+    this.getContent = this.getContent.bind(this)
+  }
+
+  getNotifications (close) {
+    const {data, onClick, closeOnClick} = this.props
+    const click = (id) => {
+      if (close instanceof Function && closeOnClick) {
+        close()
+      }
+
+      if (onClick instanceof Function) {
+        onClick(id)
+      }
     }
 
     return data.map((item, index) => {
       return <Notification
         key={item.id + index}
         {...item}
-        onClick={() => onClick(item.id)} />
+        onClick={() => click(item.id)} />
     })
   }
 
-  getItems () {
+  getContent (close) {
     const {header, footer} = this.props
 
     return [
       <li className='header'>{header}</li>,
       <li>
         <ul className='menu'>
-          {this.getNotifications()}
+          {this.getNotifications(close)}
         </ul>
       </li>,
       <li className='footer'><a href='#'>{footer}</a></li>
@@ -82,11 +92,11 @@ class Notifications extends Component {
 
   getHeader () {
     const cn = this.getClassNames()
-    const {label} = this.props
+    const {count} = this.props
 
     return [
       <i className={classnames('fa', cn[1])} />,
-      <span className={classnames('label', cn[2])}>{label}</span>
+      <span className={classnames('label', cn[2])}>{count}</span>
     ]
   }
 
@@ -94,7 +104,7 @@ class Notifications extends Component {
     return <Dropdown
       open={this.props.open}
       cn={this.getClassNames()[0]}
-      content={this.getItems()}
+      content={this.getContent}
       header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
@@ -102,13 +112,18 @@ class Notifications extends Component {
 }
 
 Notifications.propTypes = {
-  label: stringOrNumber,
+  count: stringOrNumber,
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   header: stringOrNumber,
-  footer: stringOrNumber
+  footer: stringOrNumber,
+  closeOnClick: PropTypes.bool
+}
+
+Notifications.defaultProps = {
+  data: []
 }
 
 export default Notifications

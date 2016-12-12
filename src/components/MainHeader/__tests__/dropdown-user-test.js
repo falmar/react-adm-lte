@@ -18,9 +18,11 @@ describe('Dropdown.User.Base', () => {
     const wrapper = mount(<User.Base
       imageUrl='/img/user2-160x160.jpg'
       onToggle={commonOnToggle}
+      body={[]}
+      footer={{}}
       />)
 
-    const img = wrapper.find('img')
+    const img = wrapper.find('img').at(0)
 
     expect(
       img.length
@@ -39,6 +41,8 @@ describe('Dropdown.User.Base', () => {
     const wrapper = mount(<User.Base
       label='Alexander Pierce'
       onToggle={commonOnToggle}
+      body={[]}
+      footer={{}}
       />)
 
     expect(
@@ -199,6 +203,7 @@ describe('Dropdown.User.Body', () => {
     const spy0 = sinon.spy()
     const spy1 = sinon.spy()
     const spy2 = sinon.spy()
+    const close = sinon.spy()
     const data = [
       ...linksData
     ]
@@ -206,8 +211,11 @@ describe('Dropdown.User.Body', () => {
     data[0].onClick = spy0
     data[1].onClick = spy1
     data[2].onClick = spy2
+    data[0].href = ''
+    data[1].href = ''
+    data[2].href = ''
 
-    const wrapper = mount(<User.Body data={data} />)
+    const wrapper = mount(<User.Body data={data} close={close} closeOnClick />)
     const container = wrapper.find('div')
 
     container.find('MyLink').at(0).simulate('click')
@@ -225,6 +233,32 @@ describe('Dropdown.User.Body', () => {
     expect(
       spy2.called
     ).toBeTruthy()
+
+    expect(
+      close.callCount
+    ).toEqual(3)
+  })
+
+  it('should not call close function', () => {
+    const close = sinon.spy()
+    const data = [
+      ...linksData
+    ]
+
+    data[0].onClick = () => {}
+    data[2].onClick = () => {}
+    data[0].href = ''
+    data[2].href = ''
+
+    const wrapper = mount(<User.Body data={data} close={close} closeOnClick />)
+    const container = wrapper.find('div')
+
+    container.find('MyLink').at(0).simulate('click')
+    container.find('MyLink').at(2).simulate('click')
+
+    expect(
+      close.callCount
+    ).toEqual(2)
   })
 })
 
@@ -292,6 +326,7 @@ describe('Dropdown.User.Footer', () => {
   it('should trigger onClick', () => {
     const leftSpy = sinon.spy()
     const rightSpy = sinon.spy()
+    const close = sinon.spy()
     const data = {
       ...linksData,
       ...{
@@ -303,8 +338,9 @@ describe('Dropdown.User.Footer', () => {
         }
       }
     }
-    const wrapper = mount(<User.Footer data={data} />)
+    const wrapper = mount(<User.Footer data={data} close={close} closeOnClick />)
     const container = wrapper.find('div')
+
     container.at(0).find('MyLink').simulate('click')
     container.at(1).find('MyLink').simulate('click')
 
@@ -315,5 +351,33 @@ describe('Dropdown.User.Footer', () => {
     expect(
       rightSpy.called
     ).toBeTruthy()
+
+    expect(
+      close.callCount
+    ).toEqual(2)
+  })
+
+  it('should not call close', () => {
+    const close = sinon.spy()
+    const data = {
+      ...linksData,
+      ...{
+        left: {
+          onClick: () => {}
+        },
+        right: {
+          onClick: () => {}
+        }
+      }
+    }
+    const wrapper = mount(<User.Footer data={data} close={close} />)
+    const container = wrapper.find('div')
+
+    container.at(0).find('MyLink').simulate('click')
+    container.at(1).find('MyLink').simulate('click')
+
+    expect(
+      close.called
+    ).toBeFalsy()
   })
 })

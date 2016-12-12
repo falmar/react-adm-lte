@@ -43,27 +43,37 @@ Message.propTypes = {
 export {Message}
 
 class Messages extends Component {
-  getMessages () {
-    const {data} = this.props
-    let {onClick} = this.props
+  constructor (props) {
+    super(props)
 
-    if (!(onClick instanceof Function)) {
-      onClick = () => {}
+    this.getContent = this.getContent.bind(this)
+  }
+
+  getMessages (close) {
+    const {data, onClick, closeOnClick} = this.props
+    const click = (id) => {
+      if (close instanceof Function && closeOnClick) {
+        close()
+      }
+
+      if (onClick instanceof Function) {
+        onClick(id)
+      }
     }
 
-    return data.map((message, index) => {
-      return <Message key={message.id + index} {...message} onClick={() => onClick(message.id)} />
+    return data && data.map((message, index) => {
+      return <Message key={message.id + index} {...message} onClick={() => click(message.id)} />
     })
   }
 
-  getItems () {
+  getContent (close) {
     const {header, footer} = this.props
 
     return [
       <li className='header'>{header}</li>,
       <li>
         <ul className='menu'>
-          {this.getMessages()}
+          {this.getMessages(close)}
         </ul>
       </li>,
       <li className='footer'><a href='#'>{footer}</a></li>
@@ -80,11 +90,11 @@ class Messages extends Component {
 
   getHeader () {
     const cn = this.getClassNames()
-    const {label} = this.props
+    const {count} = this.props
 
     return [
       <i className={classnames('fa', cn[1])} />,
-      <span className={classnames('label', cn[2])}>{label}</span>
+      <span className={classnames('label', cn[2])}>{count}</span>
     ]
   }
 
@@ -92,7 +102,7 @@ class Messages extends Component {
     return <Dropdown
       open={this.props.open}
       cn={this.getClassNames()[0]}
-      content={this.getItems()}
+      content={this.getContent}
       header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
@@ -100,13 +110,18 @@ class Messages extends Component {
 }
 
 Messages.propTypes = {
-  label: stringOrNumber,
+  count: stringOrNumber,
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   header: stringOrNumber,
-  footer: stringOrNumber
+  footer: stringOrNumber,
+  closeOnClick: PropTypes.bool
+}
+
+Messages.defaultProps = {
+  data: []
 }
 
 export default Messages

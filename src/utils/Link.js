@@ -8,7 +8,7 @@ import {Link} from 'react-router'
 const MyLink = ({href, children, onClick, className}) => {
   let url = (typeof href === 'string' && href.length > 0) ? href : '#'
 
-  if (onClick instanceof Function) {
+  if (onClick instanceof Function && url === '#') {
     return <a className={className} href='#' onClick={onClick}>{children}</a>
   }
 

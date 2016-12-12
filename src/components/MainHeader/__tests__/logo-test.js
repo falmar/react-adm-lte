@@ -55,7 +55,7 @@ describe('Logo', () => {
 
   it('should trigger onClick', () => {
     const spy = sinon.spy()
-    const wrapper = mount(<Logo href='/home-link' onClick={spy} />)
+    const wrapper = mount(<Logo href='#' onClick={spy} />)
 
     wrapper.find('MyLink').simulate('click')
 

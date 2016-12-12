@@ -25,7 +25,7 @@ import sinon from 'sinon'
 import {Dropdown} from './../Dropdown'
 
 describe('Menu.Dropdown', () => {
-  const commonContent = [<li key={1}>SingleItem</li>]
+  const commonContent = () => <li key={1}>SingleItem</li>
   const commonHeader = [<i className='icon' />, <span>Header</span>]
   const commonCB = () => {}
 
@@ -89,7 +89,7 @@ describe('Menu.Dropdown', () => {
     ).toBeTruthy()
 
     expect(
-      wrapper.find('.dropdown-menu').contains(commonContent)
+      wrapper.find('.dropdown-menu').contains(commonContent())
     ).toBeTruthy()
   })
 
@@ -124,6 +124,16 @@ describe('Menu.Dropdown', () => {
     expect(
       onToggle.callCount
     ).toEqual(2)
+
+    expect(
+      onToggle.calledWith(false)
+    ).toBeTruthy()
+
+    wrapper.instance().close()
+
+    expect(
+      onToggle.callCount
+    ).toEqual(3)
 
     expect(
       onToggle.calledWith(false)

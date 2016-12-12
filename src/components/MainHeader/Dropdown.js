@@ -14,6 +14,7 @@ class Dropdown extends Component {
     this.focus = this.focus.bind(this)
     this.blur = this.blur.bind(this)
     this.keydown = this.keydown.bind(this)
+    this.close = this.close.bind(this)
   }
 
   componentWillUnmount () {
@@ -38,9 +39,7 @@ class Dropdown extends Component {
   focus (event) {
     clearTimeout(this.state.timeoutId)
 
-    if (this.props.onFocus instanceof Function) {
-      this.props.onFocus(event)
-    }
+    this.props.onFocus(event)
   }
 
   blur (event) {
@@ -57,6 +56,10 @@ class Dropdown extends Component {
         this.props.onToggle(false)
       }
     }
+  }
+
+  close () {
+    this.props.onToggle(false)
   }
 
   render () {
@@ -80,7 +83,7 @@ class Dropdown extends Component {
           onFocusCapture={this.focus}
           onBlurCapture={this.blur}
           onKeyDown={this.keydown}>
-          {content}
+          {content(this.close)}
         </ul>
       </li>
     )
@@ -91,9 +94,15 @@ Dropdown.propTypes = {
   open: PropTypes.bool,
   cn: PropTypes.string,
   header: PropTypes.node.isRequired,
-  content: PropTypes.node.isRequired,
+  content: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onFocus: PropTypes.func
+}
+
+Dropdown.defaultProps = {
+  content: () => {},
+  onToggle: () => {},
+  onFocus: () => {}
 }
 
 export {Dropdown}

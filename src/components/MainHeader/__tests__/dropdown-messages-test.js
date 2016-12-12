@@ -39,7 +39,7 @@ describe('Menu.Dropdown.Messages', () => {
         data={[]} />
     )
 
-    const items = wrapper.instance().getItems()
+    const items = wrapper.instance().getContent()
 
     expect(
       items.length
@@ -67,7 +67,7 @@ describe('Menu.Dropdown.Messages', () => {
         footer='View all messages' />
     )
 
-    const items = wrapper.instance().getItems()
+    const items = wrapper.instance().getContent()
 
     expect(
       items.length

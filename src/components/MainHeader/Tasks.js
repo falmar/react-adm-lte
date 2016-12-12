@@ -53,12 +53,22 @@ Task.propTypes = {
 export {Task}
 
 class Tasks extends Component {
-  getTasks () {
-    const {data, complete} = this.props
-    let {onClick} = this.props
+  constructor (props) {
+    super(props)
 
-    if (!(onClick instanceof Function)) {
-      onClick = () => {}
+    this.getContent = this.getContent.bind(this)
+  }
+
+  getTasks (close) {
+    const {data, complete, onClick, closeOnClick} = this.props
+    const click = (id) => {
+      if (close instanceof Function && closeOnClick) {
+        close()
+      }
+
+      if (onClick instanceof Function) {
+        onClick(id)
+      }
     }
 
     return data.map((item, index) => {
@@ -66,18 +76,18 @@ class Tasks extends Component {
         key={item.id + index}
         {...item}
         complete={complete}
-        onClick={() => onClick(item.id)} />
+        onClick={() => click(item.id)} />
     })
   }
 
-  getItems () {
+  getContent (close) {
     const {header, footer} = this.props
 
     return [
       <li className='header'>{header}</li>,
       <li>
         <ul className='menu'>
-          {this.getTasks()}
+          {this.getTasks(close)}
         </ul>
       </li>,
       <li className='footer'><a href='#'>{footer}</a></li>
@@ -94,11 +104,11 @@ class Tasks extends Component {
 
   getHeader () {
     const cn = this.getClassNames()
-    const {label} = this.props
+    const {count} = this.props
 
     return [
       <i className={classnames('fa', cn[1])} />,
-      <span className={classnames('label', cn[2])}>{label}</span>
+      <span className={classnames('label', cn[2])}>{count}</span>
     ]
   }
 
@@ -106,7 +116,7 @@ class Tasks extends Component {
     return <Dropdown
       open={this.props.open}
       cn={this.getClassNames()[0]}
-      content={this.getItems()}
+      content={this.getContent}
       header={this.getHeader()}
       onToggle={this.props.onToggle}
       />
@@ -114,14 +124,20 @@ class Tasks extends Component {
 }
 
 Tasks.propTypes = {
-  label: stringOrNumber,
+  count: stringOrNumber,
   data: PropTypes.array.isRequired,
   open: PropTypes.bool,
   onToggle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   header: stringOrNumber,
   footer: stringOrNumber,
-  complete: PropTypes.string
+  complete: PropTypes.string,
+  closeOnClick: PropTypes.bool
+}
+
+Task.defaultProps = {
+  data: [],
+  complete: 'Completed'
 }
 
 export default Tasks
