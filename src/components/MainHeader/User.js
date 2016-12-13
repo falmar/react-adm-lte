@@ -25,13 +25,13 @@ Header.propTypes = {
   description: PropTypes.string
 }
 
-const Body = ({data, close, closeOnClick}) => {
+const Body = ({data, close}) => {
   return (
     <li className='user-body' >
       <div className='row'>
         {data && data.map((item, index) => {
           const click = () => {
-            if (close instanceof Function && closeOnClick) {
+            if (close instanceof Function) {
               close()
             }
 
@@ -58,18 +58,13 @@ const Body = ({data, close, closeOnClick}) => {
 
 Body.propTypes = {
   data: PropTypes.array.isRequired,
-  close: PropTypes.func,
-  closeOnClick: PropTypes.bool
+  close: PropTypes.func
 }
 
-Body.defaultProps = {
-  close: () => {}
-}
-
-const Footer = ({data, close, closeOnClick}) => {
+const Footer = ({data, close}) => {
   const getContainer = (side, item) => {
     const click = () => {
-      if (close instanceof Function && closeOnClick) {
+      if (close instanceof Function) {
         close()
       }
 
@@ -98,21 +93,10 @@ const Footer = ({data, close, closeOnClick}) => {
 
 Footer.propTypes = {
   data: PropTypes.object.isRequired,
-  close: PropTypes.func,
-  closeOnClick: PropTypes.bool
-}
-
-Footer.defaultProps = {
-  close: () => {}
+  close: PropTypes.func
 }
 
 class Base extends Component {
-  constructor (props) {
-    super(props)
-
-    this.getContent = this.getContent.bind(this)
-  }
-
   getHeader () {
     const {imageUrl, label} = this.props
 
@@ -122,24 +106,23 @@ class Base extends Component {
     ]
   }
 
-  getContent (close) {
-    const {header, body, footer, closeOnClick} = this.props
-
-    return [
-      <Header key='header' {...{...header, close, closeOnClick}} />,
-      <Body key='body' {...{data: body, close, closeOnClick}} />,
-      <Footer key='footer' {...{data: footer, close, closeOnClick}} />
-    ]
-  }
-
   render () {
-    return <Dropdown
-      open={this.props.open}
-      cn={'user-menu'}
-      content={this.getContent}
-      header={this.getHeader()}
-      onToggle={this.props.onToggle}
-      />
+    const {open, onToggle, header, body, footer} = this.props
+    const close = () => onToggle(false)
+
+    return (
+      <Dropdown
+        open={open}
+        cn={'user-menu'}
+        content={this.getContent}
+        header={this.getHeader()}
+        onToggle={onToggle}
+        >
+        <Header key='header' {...{...header, close}} />
+        <Body key='body' {...{data: body, close}} />
+        <Footer key='footer' {...{data: footer, close}} />
+      </Dropdown>
+    )
   }
 }
 
@@ -151,9 +134,7 @@ Base.propTypes = {
   header: PropTypes.object,
   body: PropTypes.array,
   footer: PropTypes.object,
-  imageUrl: PropTypes.string,
-  children: PropTypes.node,
-  closeOnClick: PropTypes.bool
+  imageUrl: PropTypes.string
 }
 
 const User = {

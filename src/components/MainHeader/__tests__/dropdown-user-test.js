@@ -238,28 +238,6 @@ describe('Dropdown.User.Body', () => {
       close.callCount
     ).toEqual(3)
   })
-
-  it('should not call close function', () => {
-    const close = sinon.spy()
-    const data = [
-      ...linksData
-    ]
-
-    data[0].onClick = () => {}
-    data[2].onClick = () => {}
-    data[0].href = ''
-    data[2].href = ''
-
-    const wrapper = mount(<User.Body data={data} close={close} closeOnClick />)
-    const container = wrapper.find('div')
-
-    container.find('MyLink').at(0).simulate('click')
-    container.find('MyLink').at(2).simulate('click')
-
-    expect(
-      close.callCount
-    ).toEqual(2)
-  })
 })
 
 describe('Dropdown.User.Footer', () => {
@@ -355,29 +333,5 @@ describe('Dropdown.User.Footer', () => {
     expect(
       close.callCount
     ).toEqual(2)
-  })
-
-  it('should not call close', () => {
-    const close = sinon.spy()
-    const data = {
-      ...linksData,
-      ...{
-        left: {
-          onClick: () => {}
-        },
-        right: {
-          onClick: () => {}
-        }
-      }
-    }
-    const wrapper = mount(<User.Footer data={data} close={close} />)
-    const container = wrapper.find('div')
-
-    container.at(0).find('MyLink').simulate('click')
-    container.at(1).find('MyLink').simulate('click')
-
-    expect(
-      close.called
-    ).toBeFalsy()
   })
 })
