@@ -53,17 +53,11 @@ Task.propTypes = {
 export {Task}
 
 class Tasks extends Component {
-  constructor (props) {
-    super(props)
-
-    this.getContent = this.getContent.bind(this)
-  }
-
   getTasks (close) {
-    const {data, complete, onClick, closeOnClick} = this.props
+    const {data, complete, onClick, onToggle} = this.props
     const click = (id) => {
-      if (close instanceof Function && closeOnClick) {
-        close()
+      if (onToggle instanceof Function) {
+        onToggle()
       }
 
       if (onClick instanceof Function) {
@@ -78,20 +72,6 @@ class Tasks extends Component {
         complete={complete}
         onClick={() => click(item.id)} />
     })
-  }
-
-  getContent (close) {
-    const {header, footer} = this.props
-
-    return [
-      <li className='header'>{header}</li>,
-      <li>
-        <ul className='menu'>
-          {this.getTasks(close)}
-        </ul>
-      </li>,
-      <li className='footer'><a href='#'>{footer}</a></li>
-    ]
   }
 
   getClassNames () {
@@ -113,13 +93,25 @@ class Tasks extends Component {
   }
 
   render () {
-    return <Dropdown
-      open={this.props.open}
-      cn={this.getClassNames()[0]}
-      content={this.getContent}
-      header={this.getHeader()}
-      onToggle={this.props.onToggle}
-      />
+    const {open, onToggle, header, footer} = this.props
+
+    return (
+      <Dropdown
+        open={open}
+        cn={this.getClassNames()[0]}
+        content={this.getContent}
+        header={this.getHeader()}
+        onToggle={onToggle}
+        >
+        <li className='header'>{header}</li>
+        <li>
+          <ul className='menu'>
+            {this.getTasks(close)}
+          </ul>
+        </li>
+        <li className='footer'><a href='#'>{footer}</a></li>
+      </Dropdown>
+    )
   }
 }
 
@@ -131,12 +123,10 @@ Tasks.propTypes = {
   onClick: PropTypes.func,
   header: stringOrNumber,
   footer: stringOrNumber,
-  complete: PropTypes.string,
-  closeOnClick: PropTypes.bool
+  complete: PropTypes.string
 }
 
 Task.defaultProps = {
-  data: [],
   complete: 'Completed'
 }
 

@@ -39,22 +39,22 @@ describe('Menu.Dropdown.Notifications', () => {
         data={[]} />
     )
 
-    const items = wrapper.instance().getContent()
+    const items = wrapper.children()
 
     expect(
       items.length
     ).toEqual(3)
 
     expect(
-      shallow(items[0]).hasClass('header')
+      items.at(0).hasClass('header')
     ).toBeTruthy()
 
     expect(
-      shallow(items[1]).find('ul').hasClass('menu')
+      items.at(1).find('ul').hasClass('menu')
     ).toBeTruthy()
 
     expect(
-      shallow(items[2]).hasClass('footer')
+      items.at(2).hasClass('footer')
     ).toBeTruthy()
   })
 
@@ -67,18 +67,18 @@ describe('Menu.Dropdown.Notifications', () => {
         footer='View all notifications' />
     )
 
-    const items = wrapper.instance().getContent()
+    const items = wrapper.children()
 
     expect(
       items.length
     ).toEqual(3)
 
     expect(
-      shallow(items[0]).find('.header').text('You have 1 Notification')
+      items.at(0).find('.header').text('You have 1 Notification')
     ).toBeTruthy()
 
     expect(
-      shallow(items[2]).find('.footer').contains(<a href='#'>View all notifications</a>)
+      items.at(2).find('.footer').contains(<a href='#'>View all notifications</a>)
     ).toBeTruthy()
   })
 

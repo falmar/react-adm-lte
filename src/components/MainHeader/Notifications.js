@@ -42,17 +42,11 @@ Notification.propTypes = {
 export {Notification}
 
 class Notifications extends Component {
-  constructor (props) {
-    super(props)
-
-    this.getContent = this.getContent.bind(this)
-  }
-
-  getNotifications (close) {
-    const {data, onClick, closeOnClick} = this.props
+  getNotifications () {
+    const {data, onClick, onToggle} = this.props
     const click = (id) => {
-      if (close instanceof Function && closeOnClick) {
-        close()
+      if (onToggle instanceof Function) {
+        onToggle()
       }
 
       if (onClick instanceof Function) {
@@ -66,20 +60,6 @@ class Notifications extends Component {
         {...item}
         onClick={() => click(item.id)} />
     })
-  }
-
-  getContent (close) {
-    const {header, footer} = this.props
-
-    return [
-      <li className='header'>{header}</li>,
-      <li>
-        <ul className='menu'>
-          {this.getNotifications(close)}
-        </ul>
-      </li>,
-      <li className='footer'><a href='#'>{footer}</a></li>
-    ]
   }
 
   getClassNames () {
@@ -101,13 +81,25 @@ class Notifications extends Component {
   }
 
   render () {
-    return <Dropdown
-      open={this.props.open}
-      cn={this.getClassNames()[0]}
-      content={this.getContent}
-      header={this.getHeader()}
-      onToggle={this.props.onToggle}
-      />
+    const {open, onToggle, header, footer} = this.props
+
+    return (
+      <Dropdown
+        open={open}
+        cn={this.getClassNames()[0]}
+        content={this.getContent}
+        header={this.getHeader()}
+        onToggle={onToggle}
+        >
+        <li className='header'>{header}</li>
+        <li>
+          <ul className='menu'>
+            {this.getNotifications(close)}
+          </ul>
+        </li>
+        <li className='footer'><a href='#'>{footer}</a></li>
+      </Dropdown>
+    )
   }
 }
 
@@ -118,12 +110,7 @@ Notifications.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   header: stringOrNumber,
-  footer: stringOrNumber,
-  closeOnClick: PropTypes.bool
-}
-
-Notifications.defaultProps = {
-  data: []
+  footer: stringOrNumber
 }
 
 export default Notifications
