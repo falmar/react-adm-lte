@@ -43,17 +43,11 @@ Message.propTypes = {
 export {Message}
 
 class Messages extends Component {
-  constructor (props) {
-    super(props)
-
-    this.getContent = this.getContent.bind(this)
-  }
-
-  getMessages (close) {
-    const {data, onClick, closeOnClick} = this.props
+  getMessages () {
+    const {data, onClick, onToggle} = this.props
     const click = (id) => {
-      if (close instanceof Function && closeOnClick) {
-        close()
+      if (onToggle instanceof Function) {
+        onToggle(false)
       }
 
       if (onClick instanceof Function) {
@@ -62,22 +56,8 @@ class Messages extends Component {
     }
 
     return data && data.map((message, index) => {
-      return <Message key={message.id + index} {...message} onClick={() => click(message.id)} />
+      return <Message key={message.id + index} {...message} onClick={() => click(message)} />
     })
-  }
-
-  getContent (close) {
-    const {header, footer} = this.props
-
-    return [
-      <li className='header'>{header}</li>,
-      <li>
-        <ul className='menu'>
-          {this.getMessages(close)}
-        </ul>
-      </li>,
-      <li className='footer'><a href='#'>{footer}</a></li>
-    ]
   }
 
   getClassNames () {
@@ -99,13 +79,22 @@ class Messages extends Component {
   }
 
   render () {
+    const {open, onToggle, header, footer} = this.props
+
     return <Dropdown
-      open={this.props.open}
+      open={open}
       cn={this.getClassNames()[0]}
-      content={this.getContent}
       header={this.getHeader()}
-      onToggle={this.props.onToggle}
-      />
+      onToggle={onToggle}
+      >
+      <li className='header'>{header}</li>
+      <li>
+        <ul className='menu'>
+          {this.getMessages()}
+        </ul>
+      </li>
+      <li className='footer'><a href='#'>{footer}</a></li>
+    </Dropdown>
   }
 }
 
@@ -116,12 +105,7 @@ Messages.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   header: stringOrNumber,
-  footer: stringOrNumber,
-  closeOnClick: PropTypes.bool
-}
-
-Messages.defaultProps = {
-  data: []
+  footer: stringOrNumber
 }
 
 export default Messages
