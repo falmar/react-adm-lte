@@ -25,16 +25,14 @@ import sinon from 'sinon'
 import {Dropdown} from './../Dropdown'
 
 describe('Menu.Dropdown', () => {
-  const commonContent = () => <li key={1}>SingleItem</li>
+  const commonContent = <li key={1}>SingleItem</li>
   const commonHeader = [<i className='icon' />, <span>Header</span>]
-  const commonCB = () => {}
 
   it('should not be open (mount)', () => {
     const wrapper = shallow(
       <Dropdown
         header={commonHeader}
-        content={commonContent}
-        onToggle={commonCB} />
+        />
     )
 
     expect(
@@ -42,13 +40,12 @@ describe('Menu.Dropdown', () => {
     ).toBeFalsy()
   })
 
-  it('should be open prop provided', () => {
+  it('should be open when prop is provided', () => {
     const wrapper = shallow(
       <Dropdown
         open
         header={commonHeader}
-        content={commonContent}
-        onToggle={commonCB} />
+        />
     )
 
     expect(
@@ -67,8 +64,7 @@ describe('Menu.Dropdown', () => {
       <Dropdown
         cn='notifications'
         header={commonHeader}
-        content={commonContent}
-        onToggle={commonCB} />
+        />
     )
 
     expect(
@@ -79,9 +75,9 @@ describe('Menu.Dropdown', () => {
   it('should pass down children', () => {
     const wrapper = shallow(
       <Dropdown
-        header={commonHeader}
-        content={commonContent}
-        onToggle={commonCB} />
+        header={commonHeader}>
+        {commonContent}
+      </Dropdown>
     )
 
     expect(
@@ -89,7 +85,7 @@ describe('Menu.Dropdown', () => {
     ).toBeTruthy()
 
     expect(
-      wrapper.find('.dropdown-menu').contains(commonContent())
+      wrapper.find('.dropdown-menu').contains(commonContent)
     ).toBeTruthy()
   })
 
@@ -99,7 +95,6 @@ describe('Menu.Dropdown', () => {
     const wrapper = shallow(
       <Dropdown
         header={commonHeader}
-        content={commonContent}
         onToggle={onToggle} />
     )
 
@@ -146,8 +141,6 @@ describe('Menu.Dropdown', () => {
     const wrapper = mount(
       <Dropdown
         header={commonHeader}
-        content={commonContent}
-        onToggle={commonCB}
         onFocus={onFocus}
          />
      )
@@ -155,7 +148,7 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-menu').simulate('focus')
 
     expect(
-    onFocus.called
+      onFocus.called
     ).toBeTruthy()
   })
 
@@ -166,7 +159,6 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -175,13 +167,13 @@ describe('Menu.Dropdown', () => {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(
-          expect(
-            onToggle.called
-          ).toBeTruthy()
-        )
+        expect(
+          onToggle.called
+        ).toBeTruthy()
 
         wrapper.unmount()
+
+        resolve(true)
       })
     })
   })
@@ -193,7 +185,6 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -202,13 +193,13 @@ describe('Menu.Dropdown', () => {
 
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(
-          expect(
-            onToggle.calledWith(false)
-          ).toBeTruthy()
-        )
+        expect(
+          onToggle.calledWith(false)
+        ).toBeTruthy()
 
         wrapper.unmount()
+
+        resolve(true)
       })
     })
   })
@@ -220,7 +211,6 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -240,7 +230,6 @@ describe('Menu.Dropdown', () => {
         <Dropdown
           open
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -263,7 +252,6 @@ describe('Menu.Dropdown', () => {
       <div>
         <Dropdown
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )
@@ -285,7 +273,6 @@ describe('Menu.Dropdown', () => {
         <Dropdown
           open
           header={commonHeader}
-          content={commonContent}
           onToggle={onToggle} />
       </div>
     )

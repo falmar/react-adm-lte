@@ -63,7 +63,7 @@ class Dropdown extends Component {
   }
 
   render () {
-    const {cn, header, content, open} = this.props
+    const {cn, header, children, open} = this.props
 
     return (
       <li className={classnames('dropdown', cn, {open})}>
@@ -83,7 +83,7 @@ class Dropdown extends Component {
           onFocusCapture={this.focus}
           onBlurCapture={this.blur}
           onKeyDown={this.keydown}>
-          {content(this.close)}
+          {children}
         </ul>
       </li>
     )
@@ -94,13 +94,12 @@ Dropdown.propTypes = {
   open: PropTypes.bool,
   cn: PropTypes.string,
   header: PropTypes.node.isRequired,
-  content: PropTypes.func.isRequired,
+  children: PropTypes.node,
   onToggle: PropTypes.func.isRequired,
   onFocus: PropTypes.func
 }
 
 Dropdown.defaultProps = {
-  content: () => {},
   onToggle: () => {},
   onFocus: () => {}
 }
