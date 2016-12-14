@@ -116,7 +116,7 @@ describe('Menu.Dropdown.Tasks.Task', () => {
     )
 
     expect(
-      wrapper.find('MyLink').find('Link').prop('to')
+      wrapper.find('MyLink').find('a').prop('href')
     ).toEqual('#')
   })
 

@@ -156,15 +156,15 @@ describe('Dropdown.User.Body', () => {
 
     const columns = wrapper.find('.col-xs-4')
 
-    let link = columns.at(0).find('Link')
+    let link = columns.at(0).find('a')
 
     expect(
       link.length
     ).toEqual(1)
 
     expect(
-      link.prop('to')
-    ).toEqual('/to/somewhere')
+      link.prop('href')
+    ).toEqual('#')
 
     expect(
       link.text()
@@ -184,15 +184,15 @@ describe('Dropdown.User.Body', () => {
       link.text()
     ).toContain('Example')
 
-    link = columns.at(2).find('Link')
+    link = columns.at(2).find('a')
 
     expect(
       link.length
     ).toEqual(1)
 
     expect(
-      link.prop('to')
-    ).toEqual('/')
+      link.prop('href')
+    ).toEqual('#')
 
     expect(
       link.text()
@@ -272,15 +272,15 @@ describe('Dropdown.User.Footer', () => {
   it('should have anchor tag (a) or react-router Link depend on url', () => {
     const wrapper = mount(<User.Footer data={linksData} />)
     const container = wrapper.find('div')
-    let link = container.at(0).find('Link')
+    let link = container.at(0).find('a')
 
     expect(
       link.length
     ).toEqual(1)
 
     expect(
-      link.prop('to')
-    ).toEqual('/to/somewhere')
+      link.prop('href')
+    ).toEqual('#')
 
     expect(
       link.text()

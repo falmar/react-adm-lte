@@ -3,20 +3,28 @@
 // License that can be found in the LICENSE file.
 
 import React, {PropTypes} from 'react'
-import {Link} from 'react-router'
 
 const MyLink = ({href, children, onClick, className}) => {
   let url = (typeof href === 'string' && href.length > 0) ? href : '#'
-
-  if (onClick instanceof Function && url === '#') {
-    return <a className={className} href='#' onClick={onClick}>{children}</a>
-  }
+  let click = () => {}
 
   if (url.indexOf('http') === 0 || url.indexOf('www.') === 0) {
     return <a className={className} href={url}>{children}</a>
   }
 
-  return <Link className={className} to={url}>{children}</Link>
+  if (url.indexOf('#') === 0) {
+    click = (event) => {
+      if (url === '#') {
+        event.preventDefault()
+      }
+
+      if (onClick instanceof Function) {
+        onClick(event)
+      }
+    }
+  }
+
+  return <a className={className} href='#' onClick={click}>{children}</a>
 }
 
 MyLink.propTypes = {

@@ -114,7 +114,7 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
     )
 
     expect(
-      wrapper.find('MyLink').find('Link').prop('to')
+      wrapper.find('MyLink').find('a').prop('href')
     ).toEqual('#')
   })
 
@@ -155,7 +155,7 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
     )
 
     expect(
-      wrapper.find('Link').text()
+      wrapper.find('a').text()
     ).toContain('New Notification')
   })
 

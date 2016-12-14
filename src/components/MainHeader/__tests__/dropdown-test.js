@@ -92,7 +92,7 @@ describe('Menu.Dropdown', () => {
   it('should call toggle function on click', () => {
     const onToggle = sinon.spy()
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Dropdown
         header={commonHeader}
         onToggle={onToggle} />
@@ -133,6 +133,22 @@ describe('Menu.Dropdown', () => {
     expect(
       onToggle.calledWith(false)
     ).toBeTruthy()
+  })
+
+  it('should call toggle preventDefault function on click', () => {
+    const preventDefault = sinon.spy()
+
+    const wrapper = mount(
+      <Dropdown
+        header={commonHeader}
+        onToggle={() => {}} />
+      )
+
+    wrapper.find('.dropdown-toggle').simulate('click', {preventDefault})
+
+    expect(
+        preventDefault.called
+      ).toBeTruthy()
   })
 
   it('should call focus method on focus (menu)', () => {

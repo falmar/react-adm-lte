@@ -11,22 +11,6 @@ import sinon from 'sinon'
 import Link from './../Link'
 
 describe('Link', () => {
-  it('should have className react.router Link', () => {
-    const wrapper = mount(<Link className='btn btn-default' />)
-
-    expect(
-      wrapper.find('Link').length
-    ).toEqual(1)
-
-    expect(
-      wrapper.find('a').hasClass('btn')
-    ).toBeTruthy()
-
-    expect(
-      wrapper.find('a').hasClass('btn-default')
-    ).toBeTruthy()
-  })
-
   it('should have className <a> tag', () => {
     const wrapper = mount(
       <Link
@@ -47,7 +31,7 @@ describe('Link', () => {
     ).toBeTruthy()
   })
 
-  it('should have <a> tag for internal url', () => {
+  it('should have <a> tag for external url', () => {
     const wrapper = mount(
       <Link
         href='http://example.com' />
@@ -66,34 +50,71 @@ describe('Link', () => {
     ).toEqual('http://example.com')
   })
 
-  it('should have react router Link with numeral for empty href', () => {
+  it('should have <a> tag with numeral for empty href', () => {
     const wrapper = mount(
       <Link
         href='' />
     )
 
     expect(
-      wrapper.find('Link').length
+      wrapper.find('a').length
     ).toEqual(1)
 
     expect(
-      wrapper.find('Link').prop('to')
+      wrapper.find('a').prop('href')
     ).toEqual('#')
   })
 
-  it('should have react router Link for internal url', () => {
+  it('should have <a> tag with numeral for internal url', () => {
     const wrapper = mount(
       <Link
         href='/path/somewhere' />
     )
 
     expect(
-      wrapper.find('Link').length
+      wrapper.find('a').length
     ).toEqual(1)
 
     expect(
-      wrapper.find('Link').prop('to')
-    ).toEqual('/path/somewhere')
+      wrapper.find('a').prop('href')
+    ).toEqual('#')
+  })
+
+  it('should preventDefault when href is numeral ', () => {
+    const preventDefault = sinon.spy()
+    const wrapper = mount(
+      <Link
+        onClick={() => {}} />
+    )
+
+    expect(
+      wrapper.find('a').length
+    ).toEqual(1)
+
+    wrapper.simulate('click', {preventDefault})
+
+    expect(
+      preventDefault.called
+    ).toBeTruthy()
+  })
+
+  it('should not preventDefault when href is not numeral ', () => {
+    const preventDefault = sinon.spy()
+    const wrapper = mount(
+      <Link
+        href='http://example.com'
+        onClick={() => {}} />
+    )
+
+    expect(
+      wrapper.find('a').length
+    ).toEqual(1)
+
+    wrapper.simulate('click', {preventDefault})
+
+    expect(
+      preventDefault.called
+    ).toBeFalsy()
   })
 
   it('should have numeral href when onClick prop provided', () => {

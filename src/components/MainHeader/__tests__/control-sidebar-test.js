@@ -11,16 +11,16 @@ import sinon from 'sinon'
 import ControlSidebarToggle from './../ControlSidebarToggle'
 
 describe('ControlSidebarToggle', () => {
-  it('should add Link (react-router) if it is not an external link', () => {
-    expect(
-      mount(<ControlSidebarToggle />).find('Link').length
-    ).toEqual(1)
-  })
-
   it('should add <a> (tag) if it is an external link', () => {
+    const wrapper = mount(<ControlSidebarToggle href='http://example.com' />)
+
     expect(
-      mount(<ControlSidebarToggle href='http://example.com' />).find('a').length
+      wrapper.find('a').length
     ).toEqual(1)
+
+    expect(
+      wrapper.find('a').prop('href')
+    ).toEqual('http://example.com')
   })
 
   it('should add icon class name', () => {

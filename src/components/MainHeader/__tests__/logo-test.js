@@ -49,8 +49,8 @@ describe('Logo', () => {
     const wrapper = mount(<Logo href='/home-link' />)
 
     expect(
-      wrapper.find('Link').prop('to')
-    ).toEqual('/home-link')
+      wrapper.find('MyLink').find('a').prop('href')
+    ).toEqual('#')
   })
 
   it('should trigger onClick', () => {

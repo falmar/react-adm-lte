@@ -26,6 +26,8 @@ class Dropdown extends Component {
   }
 
   toggle (event) {
+    event.preventDefault()
+
     if (!this.props.open) {
       this.props.onToggle(true)
       setTimeout(() => {

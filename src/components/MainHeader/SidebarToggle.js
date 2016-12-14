@@ -3,12 +3,13 @@
 // License that can be found in the LICENSE file.
 
 import React, {PropTypes} from 'react'
+import Link from './../../utils/Link'
 
 const SiderbarToggle = ({onToggle, srOnly}) => {
   return (
-    <a href='#' className='sidebar-toggle' onClick={onToggle}>
+    <Link className='sidebar-toggle' onClick={onToggle}>
       <span className='sr-only'>{srOnly}</span>
-    </a>
+    </Link>
   )
 }
 
