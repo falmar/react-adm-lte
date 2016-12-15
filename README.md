@@ -10,7 +10,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 **Components**
 
-- [x] Link <a> tag or react-router's Link depending on url
+- [x] Link <a> tag for external url or onClick function
 - [x] Layout
 - [ ] MainHeader
   - [x] Logo
@@ -31,6 +31,9 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [x] UserPanel
   - [x] SearchForm
   - [ ] Menu
+    - [ ] Header
+    - [ ] Treeview
+    - [ ] Labels
 - [ ] Control sidebar
 - [ ] ...more...
 - Make Navbar menu closable on content items click or end of interaction
