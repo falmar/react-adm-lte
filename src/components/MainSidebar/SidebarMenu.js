@@ -54,15 +54,22 @@ Item.propTypes = {
 export {Item}
 
 // -------------------- MENU
-const Menu = ({isRoot, children}) => {
+const Menu = ({isRoot, active, children}) => {
+  const cn = {
+    'sidebar-menu': isRoot,
+    'treeview-menu': !isRoot,
+    active
+  }
+
   return (
-    <ul className={isRoot ? 'sidebar-menu' : 'treeview-menu'}>
+    <ul className={classnames(cn)}>
       {children}
     </ul>
   )
 }
 
 Menu.propTypes = {
+  active: PropTypes.bool,
   isRoot: PropTypes.bool,
   children: PropTypes.node
 }

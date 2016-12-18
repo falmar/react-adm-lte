@@ -25,6 +25,22 @@ describe('Sidebar.Menu', () => {
       wrapper.hasClass('sidebar-menu')
     ).toBeTruthy()
   })
+
+  it('should not have classnames active when prop is not provided', () => {
+    const wrapper = shallow(<Menu />)
+
+    expect(
+      wrapper.hasClass('active')
+    ).toBeFalsy()
+  })
+
+  it('should have classnames active when prop is provided', () => {
+    const wrapper = shallow(<Menu active />)
+
+    expect(
+      wrapper.hasClass('active')
+    ).toBeTruthy()
+  })
 })
 
 describe('Sidebar.Item', () => {
