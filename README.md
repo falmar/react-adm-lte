@@ -17,7 +17,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [ ] Navbar    
     - [x] Sidebar Toggle
     - [x] Control Sidebar Toggle
-    - [ ] Menu
+    - [x] Menu
       - [x] Messages
       - [x] Notifications
       - [x] Tasks
@@ -27,7 +27,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
         - [x] Header
         - [x] Body
         - [x] Footer
-- [ ] Sidebar
+- [x] Sidebar
   - [x] UserPanel
   - [x] SearchForm
   - [x] Menu
