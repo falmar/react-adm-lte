@@ -18,6 +18,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
     - [x] Sidebar Toggle
     - [x] Control Sidebar Toggle
     - [x] Menu
+      - [x] Make Navbar menu closable on items content click or end of interaction
       - [x] Messages
       - [x] Notifications
       - [x] Tasks
@@ -33,5 +34,6 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [x] Menu
   - [x] MenuItem
 - [ ] Control sidebar
+  - [ ] nav bar
+  - [ ] nav content
 - [ ] ...more...
-- Make Navbar menu closable on content items click or end of interaction
