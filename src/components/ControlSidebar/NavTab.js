@@ -4,6 +4,8 @@
 
 import React, {PropTypes} from 'react'
 
+import Link from './../../utils/Link'
+
 const NavTab = ({children}) => {
   return (
     <ul className='nav nav-tabs nav-justified control-sidebar-tabs'>
@@ -17,3 +19,20 @@ NavTab.propTypes = {
 }
 
 export {NavTab}
+
+const Tab = ({icon, onClick}) => {
+  return (
+    <li>
+      <Link onClick={onClick}>
+        <i className={icon} />
+      </Link>
+    </li>
+  )
+}
+
+Tab.propTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+}
+
+export {Tab}
