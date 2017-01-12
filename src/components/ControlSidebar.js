@@ -5,18 +5,21 @@
 import React, {PropTypes} from 'react'
 import classnames from 'classnames'
 
-const ControlSidebar = ({open}) => {
+const ControlSidebar = ({children, open}) => {
   const classes = {
     'control-sidebar-open': open
   }
 
   return (
-    <aside className={classnames('control-sidebar control-sidebar-dark', classes)} />
+    <aside className={classnames('control-sidebar control-sidebar-dark', classes)}>
+      {children}
+    </aside>
   )
 }
 
 ControlSidebar.propTypes = {
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  children: PropTypes.element
 }
 
 export {ControlSidebar}

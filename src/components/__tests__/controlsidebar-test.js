@@ -37,6 +37,18 @@ describe('ControlSidebar', () => {
       wrapper.hasClass('control-sidebar-open')
     ).toBeTruthy()
   })
+
+  it('should pass down children', () => {
+    const wrapper = shallow(
+      <ControlSidebar>
+        <span>children</span>
+      </ControlSidebar>
+    )
+
+    expect(
+      wrapper.contains(<span>children</span>)
+    ).toBeTruthy()
+  })
 })
 
 describe('ControlSidebar Background', () => {
