@@ -6,7 +6,6 @@ jest.unmock('./../Link')
 
 import React from 'react'
 import {mount} from 'enzyme'
-import sinon from 'sinon'
 
 import Link from './../Link'
 
@@ -52,8 +51,7 @@ describe('Link', () => {
 
   it('should have <a> tag with numeral for empty href', () => {
     const wrapper = mount(
-      <Link
-        href='' />
+      <Link href='' />
     )
 
     expect(
@@ -81,7 +79,7 @@ describe('Link', () => {
   })
 
   it('should preventDefault when href is numeral ', () => {
-    const preventDefault = sinon.spy()
+    const preventDefault = jest.fn()
     const wrapper = mount(
       <Link
         onClick={() => {}} />
@@ -94,12 +92,12 @@ describe('Link', () => {
     wrapper.simulate('click', {preventDefault})
 
     expect(
-      preventDefault.called
-    ).toBeTruthy()
+      preventDefault
+    ).toBeCalled()
   })
 
   it('should not preventDefault when href is not numeral ', () => {
-    const preventDefault = sinon.spy()
+    const preventDefault = jest.fn()
     const wrapper = mount(
       <Link
         href='http://example.com'
@@ -113,22 +111,18 @@ describe('Link', () => {
     wrapper.simulate('click', {preventDefault})
 
     expect(
-      preventDefault.called
-    ).toBeFalsy()
+      preventDefault
+    ).not.toBeCalled()
   })
 
   it('should have numeral href when onClick prop provided', () => {
-    const spy = sinon.spy()
     const wrapper = mount(
-      <Link
-        onClick={spy} />
+      <Link />
     )
 
     expect(
       wrapper.find('a').length
     ).toEqual(1)
-
-    wrapper.simulate('click')
 
     expect(
       wrapper.find('a').prop('href')
@@ -136,7 +130,7 @@ describe('Link', () => {
   })
 
   it('should trigger onClick function', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = mount(
       <Link
         onClick={spy} />
@@ -146,10 +140,10 @@ describe('Link', () => {
       wrapper.find('a').length
     ).toEqual(1)
 
-    wrapper.simulate('click')
+    wrapper.find('a').simulate('click')
 
     expect(
-      spy.callCount
-    ).toEqual(1)
+      spy
+    ).toBeCalled()
   })
 })

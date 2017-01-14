@@ -18,7 +18,7 @@ const MyLink = ({href, children, onClick, className}) => {
         event.preventDefault()
       }
 
-      if (onClick instanceof Function) {
+      if (typeof onClick === 'function') {
         onClick(event)
       }
     }
