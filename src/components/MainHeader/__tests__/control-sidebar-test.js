@@ -6,7 +6,6 @@ jest.unmock('./../ControlSidebarToggle')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import ControlSidebarToggle from './../ControlSidebarToggle'
 
@@ -40,7 +39,7 @@ describe('ControlSidebarToggle', () => {
   })
 
   it('should call onToggle function on click', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = mount(<ControlSidebarToggle onToggle={spy} />)
 
     expect(
@@ -50,7 +49,7 @@ describe('ControlSidebarToggle', () => {
     wrapper.find('MyLink').simulate('click')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toBeCalled()
   })
 })

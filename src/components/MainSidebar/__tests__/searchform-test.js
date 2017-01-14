@@ -6,7 +6,6 @@ jest.unmock('./../SearchForm')
 
 import React from 'react'
 import {shallow} from 'enzyme'
-import sinon from 'sinon'
 
 import SearchFormContainer, {SearchForm} from './../SearchForm'
 
@@ -28,25 +27,25 @@ describe('MainSidebar.SearchForm', () => {
   })
 
   it('should trigger onSubmit', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = shallow(<SearchForm onSubmit={spy} />)
 
     wrapper.simulate('submit')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toBeCalled()
   })
 
   it('should trigger onChange', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = shallow(<SearchForm onChange={spy} />)
 
     wrapper.find('input').simulate('change')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toBeCalled()
   })
 
   it('should have input-group', () => {
@@ -112,8 +111,8 @@ describe('MainSidebar.SearchForm', () => {
 
 describe('MainSidebar.SearchFormContainer', () => {
   it('should call onSubmit with input value', () => {
-    const submit = sinon.spy()
-    const prevent = sinon.spy()
+    const submit = jest.fn()
+    const prevent = jest.fn()
     const wrapper = shallow(
       <SearchFormContainer
         onSubmit={submit} />
@@ -123,23 +122,18 @@ describe('MainSidebar.SearchFormContainer', () => {
     wrapper.instance().onSubmit({preventDefault: prevent})
 
     expect(
-      prevent.called
-    ).toBeTruthy()
+      prevent
+    ).toBeCalled()
 
     expect(
-      submit.called
-    ).toBeTruthy()
-
-    expect(
-      submit.calledWith('some-value')
-    ).toBeTruthy()
+      submit
+    ).toBeCalledWith('some-value')
   })
 
   it('should update form state input onChange', () => {
-    const submit = sinon.spy()
     const wrapper = shallow(
       <SearchFormContainer
-        onSubmit={submit} />
+        onSubmit={() => {}} />
     )
 
     expect(
