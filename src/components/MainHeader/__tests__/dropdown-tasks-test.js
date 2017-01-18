@@ -7,7 +7,6 @@ jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import Tasks, {Task} from './../Tasks'
 
@@ -179,7 +178,7 @@ describe('Menu.Dropdown.Tasks.Task', () => {
   })
 
   it('should trigger onclick on li message click', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = shallow(
       <Task
         {...commonProps}
@@ -190,7 +189,7 @@ describe('Menu.Dropdown.Tasks.Task', () => {
     wrapper.find('MyLink').simulate('click')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toBeCalled()
   })
 })
