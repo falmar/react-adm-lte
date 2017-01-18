@@ -31,11 +31,11 @@ const Body = ({data, close}) => {
       <div className='row'>
         {data && data.map((item, index) => {
           const click = () => {
-            if (close instanceof Function) {
+            if (typeof close === 'function') {
               close()
             }
 
-            if (item.onClick instanceof Function) {
+            if (typeof item.onClick === 'function') {
               item.onClick()
             }
           }
@@ -64,11 +64,11 @@ Body.propTypes = {
 const Footer = ({data, close}) => {
   const getContainer = (side, item) => {
     const click = () => {
-      if (close instanceof Function) {
+      if (typeof close === 'function') {
         close()
       }
 
-      if (item.onClick instanceof Function) {
+      if (typeof item.onClick === 'function') {
         item.onClick()
       }
     }

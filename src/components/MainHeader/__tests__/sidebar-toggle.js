@@ -6,7 +6,6 @@ jest.unmock('./../Logo')
 
 import React from 'react'
 import {shallow} from 'enzyme'
-import sinon from 'sinon'
 
 import SidebarToggle from './../SidebarToggle'
 
@@ -26,24 +25,24 @@ describe('SidebarToggle', () => {
   })
 
   it('should not call click callback', () => {
-    const onClick = sinon.spy()
+    const onClick = jest.fn()
 
     shallow(<SidebarToggle onToggle={onClick} />)
 
     expect(
-      onClick.callCount
-    ).toEqual(0)
+      onClick
+    ).not.toHaveBeenCalled()
   })
 
   it('should call click callback on click', () => {
-    const onClick = sinon.spy()
+    const onClick = jest.fn()
 
     const wrapper = shallow(<SidebarToggle onToggle={onClick} />)
 
     wrapper.find('.sidebar-toggle').simulate('click')
 
     expect(
-      onClick.called
-    ).toBeTruthy()
+      onClick
+    ).toHaveBeenCalled()
   })
 })

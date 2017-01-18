@@ -6,7 +6,6 @@ jest.unmock('./../Logo')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import Logo, {LogoText} from './../Logo'
 
@@ -54,13 +53,13 @@ describe('Logo', () => {
   })
 
   it('should trigger onClick', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = mount(<Logo href='#' onClick={spy} />)
 
     wrapper.find('MyLink').simulate('click')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toHaveBeenCalled()
   })
 })

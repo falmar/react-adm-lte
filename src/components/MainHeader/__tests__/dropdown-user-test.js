@@ -7,7 +7,6 @@ jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import User from './../User'
 
@@ -200,10 +199,10 @@ describe('Dropdown.User.Body', () => {
   })
 
   it('should trigger onClick', () => {
-    const spy0 = sinon.spy()
-    const spy1 = sinon.spy()
-    const spy2 = sinon.spy()
-    const close = sinon.spy()
+    const spy0 = jest.fn()
+    const spy1 = jest.fn()
+    const spy2 = jest.fn()
+    const close = jest.fn()
     const data = [
       ...linksData
     ]
@@ -223,20 +222,20 @@ describe('Dropdown.User.Body', () => {
     container.find('MyLink').at(2).simulate('click')
 
     expect(
-      spy0.called
-    ).toBeTruthy()
+      spy0
+    ).toBeCalled()
 
     expect(
-      spy1.called
-    ).toBeTruthy()
+      spy1
+    ).toBeCalled()
 
     expect(
-      spy2.called
-    ).toBeTruthy()
+      spy2
+    ).toBeCalled()
 
     expect(
-      close.callCount
-    ).toEqual(3)
+      close
+    ).toHaveBeenCalledTimes(3)
   })
 })
 
@@ -302,9 +301,9 @@ describe('Dropdown.User.Footer', () => {
   })
 
   it('should trigger onClick', () => {
-    const leftSpy = sinon.spy()
-    const rightSpy = sinon.spy()
-    const close = sinon.spy()
+    const leftSpy = jest.fn()
+    const rightSpy = jest.fn()
+    const close = jest.fn()
     const data = {
       ...linksData,
       ...{
@@ -323,15 +322,15 @@ describe('Dropdown.User.Footer', () => {
     container.at(1).find('MyLink').simulate('click')
 
     expect(
-      leftSpy.called
-    ).toBeTruthy()
+      leftSpy
+    ).toBeCalled()
 
     expect(
-      rightSpy.called
-    ).toBeTruthy()
+      rightSpy
+    ).toBeCalled()
 
     expect(
-      close.callCount
-    ).toEqual(2)
+      close
+    ).toHaveBeenCalledTimes(2)
   })
 })
