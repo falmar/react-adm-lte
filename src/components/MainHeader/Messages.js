@@ -46,11 +46,11 @@ class Messages extends Component {
   getMessages () {
     const {data, onClick, onToggle} = this.props
     const click = (id) => {
-      if (onToggle instanceof Function) {
+      if (typeof onToggle === 'function') {
         onToggle(false)
       }
 
-      if (onClick instanceof Function) {
+      if (typeof onClick === 'function') {
         onClick(id)
       }
     }
@@ -81,20 +81,22 @@ class Messages extends Component {
   render () {
     const {open, onToggle, header, footer} = this.props
 
-    return <Dropdown
-      open={open}
-      cn={this.getClassNames()[0]}
-      header={this.getHeader()}
-      onToggle={onToggle}
-      >
-      <li className='header'>{header}</li>
-      <li>
-        <ul className='menu'>
-          {this.getMessages()}
-        </ul>
-      </li>
-      <li className='footer'><a href='#'>{footer}</a></li>
-    </Dropdown>
+    return (
+      <Dropdown
+        open={open}
+        cn={this.getClassNames()[0]}
+        header={this.getHeader()}
+        onToggle={onToggle}
+        >
+        <li className='header'>{header}</li>
+        <li>
+          <ul className='menu'>
+            {this.getMessages()}
+          </ul>
+        </li>
+        <li className='footer'><a href='#'>{footer}</a></li>
+      </Dropdown>
+    )
   }
 }
 
