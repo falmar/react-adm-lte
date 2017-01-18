@@ -7,7 +7,6 @@ jest.unmock('./../../../utils/Link')
 
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import Notifications, {Notification} from './../Notifications'
 
@@ -160,7 +159,7 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
   })
 
   it('should trigger onclick on li message click', () => {
-    const spy = sinon.spy()
+    const spy = jest.fn()
     const wrapper = mount(
       <Notification
         {...commonProps}
@@ -171,7 +170,7 @@ describe('Menu.Dropdown.Notifications.Notification', () => {
     wrapper.find('MyLink').simulate('click')
 
     expect(
-      spy.called
-    ).toBeTruthy()
+      spy
+    ).toBeCalled()
   })
 })

@@ -45,11 +45,11 @@ class Notifications extends Component {
   getNotifications () {
     const {data, onClick, onToggle} = this.props
     const click = (id) => {
-      if (onToggle instanceof Function) {
+      if (typeof onToggle === 'function') {
         onToggle()
       }
 
-      if (onClick instanceof Function) {
+      if (typeof onClick === 'function') {
         onClick(id)
       }
     }
