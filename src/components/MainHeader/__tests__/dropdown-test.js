@@ -4,23 +4,8 @@
 
 jest.unmock('./../Dropdown')
 
-var jsdom = require('jsdom').jsdom
-
-global.document = jsdom('<!doctype html><html><body></body></html>')
-global.window = document.defaultView
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    global[property] = document.defaultView[property]
-  }
-})
-
-global.navigator = {
-  userAgent: 'node.js'
-}
-
 import React from 'react'
 import {shallow, mount} from 'enzyme'
-import sinon from 'sinon'
 
 import {Dropdown} from './../Dropdown'
 
@@ -90,7 +75,7 @@ describe('Menu.Dropdown', () => {
   })
 
   it('should call toggle function on click', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <Dropdown
@@ -105,38 +90,38 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-toggle').simulate('click')
 
     expect(
-      onToggle.callCount
-    ).toEqual(1)
+      onToggle
+    ).toHaveBeenCalledTimes(1)
 
     expect(
-      onToggle.calledWith(true)
-    ).toBeTruthy()
+      onToggle
+    ).toHaveBeenCalledWith(true)
 
     wrapper.setProps({open: true})
 
     wrapper.find('.dropdown-toggle').simulate('click')
 
     expect(
-      onToggle.callCount
-    ).toEqual(2)
+      onToggle
+    ).toHaveBeenCalledTimes(2)
 
     expect(
-      onToggle.calledWith(false)
-    ).toBeTruthy()
+      onToggle
+    ).toHaveBeenCalledWith(false)
 
     wrapper.instance().close()
 
     expect(
-      onToggle.callCount
-    ).toEqual(3)
+      onToggle
+    ).toHaveBeenCalledTimes(3)
 
     expect(
-      onToggle.calledWith(false)
-    ).toBeTruthy()
+      onToggle
+    ).toHaveBeenCalledWith(false)
   })
 
   it('should call toggle preventDefault function on click', () => {
-    const preventDefault = sinon.spy()
+    const preventDefault = jest.fn()
 
     const wrapper = mount(
       <Dropdown
@@ -147,12 +132,12 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-toggle').simulate('click', {preventDefault})
 
     expect(
-        preventDefault.called
-      ).toBeTruthy()
+        preventDefault
+      ).toHaveBeenCalled()
   })
 
   it('should call focus method on focus (menu)', () => {
-    const onFocus = sinon.spy()
+    const onFocus = jest.fn()
 
     const wrapper = mount(
       <Dropdown
@@ -164,12 +149,12 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-menu').simulate('focus')
 
     expect(
-      onFocus.called
-    ).toBeTruthy()
+      onFocus
+    ).toHaveBeenCalled()
   })
 
   it('should call toggle function on blur', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -181,21 +166,23 @@ describe('Menu.Dropdown', () => {
 
     wrapper.find('.dropdown-menu').simulate('blur')
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       setTimeout(() => {
-        expect(
-          onToggle.called
-        ).toBeTruthy()
+        try {
+          expect(
+            onToggle
+          ).toHaveBeenCalledWith(false)
 
-        wrapper.unmount()
-
-        resolve(true)
+          resolve(true)
+        } catch (e) {
+          reject(e)
+        }
       })
     })
   })
 
   it('should call toggle function on blur argument false', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -210,8 +197,8 @@ describe('Menu.Dropdown', () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         expect(
-          onToggle.calledWith(false)
-        ).toBeTruthy()
+          onToggle
+        ).toHaveBeenCalledWith(false)
 
         wrapper.unmount()
 
@@ -221,7 +208,7 @@ describe('Menu.Dropdown', () => {
   })
 
   it('should not call onToggle function on unmount if closed', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -234,12 +221,12 @@ describe('Menu.Dropdown', () => {
     wrapper.unmount()
 
     expect(
-      onToggle.called
-    ).toBeFalsy()
+      onToggle
+    ).not.toHaveBeenCalled()
   })
 
   it('should call onToggle function on unmount if open', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -253,16 +240,12 @@ describe('Menu.Dropdown', () => {
     wrapper.unmount()
 
     expect(
-      onToggle.called
-    ).toBeTruthy()
-
-    expect(
-      onToggle.calledWith(false)
-    ).toBeTruthy()
+      onToggle
+    ).toHaveBeenCalledWith(false)
   })
 
   it('should not call toggle function on keydown (esc)', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -275,14 +258,14 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-menu').simulate('keyDown', {keyCode: 27})
 
     expect(
-      onToggle.called
-    ).toBeFalsy()
+      onToggle
+    ).not.toHaveBeenCalled()
 
     wrapper.unmount()
   })
 
   it('should not call toggle function on keydown (esc) if open', () => {
-    const onToggle = sinon.spy()
+    const onToggle = jest.fn()
 
     const wrapper = mount(
       <div>
@@ -296,12 +279,8 @@ describe('Menu.Dropdown', () => {
     wrapper.find('.dropdown-menu').simulate('keyDown', {keyCode: 27})
 
     expect(
-      onToggle.called
-    ).toBeTruthy()
-
-    expect(
-      onToggle.calledWith(false)
-    ).toBeTruthy()
+      onToggle
+    ).toHaveBeenCalledWith(false)
 
     wrapper.unmount()
   })
