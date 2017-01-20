@@ -5,6 +5,10 @@
 import React, {PropTypes} from 'react'
 import classnames from 'classnames'
 
+import {NavTab, Tab} from './ControlSidebar/NavTab'
+
+export {NavTab, Tab}
+
 const ControlSidebar = ({children, open}) => {
   const classes = {
     'control-sidebar-open': open

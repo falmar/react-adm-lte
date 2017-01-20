@@ -11,4 +11,6 @@ import * as MainHeader from './components/MainHeader'
 // Main Sidebar
 import * as MainSidebar from './components/MainSidebar'
 
-export {Layout, MainHeader, MainSidebar}
+import * as ControlSidebar from './components/ControlSidebar'
+
+export {Layout, MainHeader, MainSidebar, ControlSidebar}
