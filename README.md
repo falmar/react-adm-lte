@@ -5,7 +5,6 @@
 
 React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
-
 ### TODO List
 
 **Components**
@@ -17,25 +16,24 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [ ] Navbar    
     - [x] Sidebar Toggle
     - [x] Control Sidebar Toggle
-    - [x] Menu
-      - [x] Make Navbar menu closable on items content click or end of interaction
+    - [ ] Menu
       - [x] Messages
       - [x] Notifications
       - [x] Tasks
-      - [ ] Custom Menu
       - [x] User menu
         - [x] Base
         - [x] Header
         - [x] Body
         - [x] Footer
+      - [ ] ...
 - [x] Sidebar
   - [x] UserPanel
   - [x] SearchForm
   - [x] Menu
   - [x] MenuItem
-- [ ] Control sidebar
-  - [ ] navtabs
-    - [ ] tabs
+- [ ] ControlSidebar
+  - [ ] NavTab
+    - [ ] Tab
   - [ ] tab content
-    - tab pane
+    - [ ] tab pane
 - [ ] ...more...
