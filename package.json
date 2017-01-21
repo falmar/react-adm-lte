@@ -5,11 +5,10 @@
     "type": "git",
     "url": "git://github.com/falmar/react-adminlte"
   },
+  "author": "David Lavieri <daviddlavier@gmail.com> (http://dlavieri.com)",
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
-    "axios": "^0.15.2",
     "classnames": "^2.2.5",
-    "jest": "^17.0.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2"
   },
