@@ -5,17 +5,15 @@
 import React, {PropTypes} from 'react'
 import classnames from 'classnames'
 
-import {NavTab, Tab} from './ControlSidebar/NavTab'
-
-export {NavTab, Tab}
-
 const ControlSidebar = ({children, open}) => {
-  const classes = {
-    'control-sidebar-open': open
-  }
+  const classes = classnames(
+    'control-sidebar control-sidebar-dark', {
+      'control-sidebar-open': open
+    }
+  )
 
   return (
-    <aside className={classnames('control-sidebar control-sidebar-dark', classes)}>
+    <aside className={classes}>
       {children}
     </aside>
   )
@@ -26,17 +24,4 @@ ControlSidebar.propTypes = {
   children: PropTypes.element
 }
 
-export {ControlSidebar}
-
-const ControlSidebarBackground = () => {
-  const styles = {
-    position: 'fixed',
-    height: 'auto'
-  }
-
-  return (
-    <div className='control-sidebar-bg' style={styles} />
-  )
-}
-
-export {ControlSidebarBackground}
+export default ControlSidebar

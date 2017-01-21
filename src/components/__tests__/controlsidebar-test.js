@@ -7,7 +7,7 @@ jest.unmock('./../ControlSidebar')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import {ControlSidebar, ControlSidebarBackground} from './../ControlSidebar'
+import ControlSidebar from './../ControlSidebar'
 
 describe('ControlSidebar', () => {
   it('should have basic classnames', () => {
@@ -48,26 +48,5 @@ describe('ControlSidebar', () => {
     expect(
       wrapper.contains(<span>children</span>)
     ).toBeTruthy()
-  })
-})
-
-describe('ControlSidebar Background', () => {
-  it('should have basic classnames', () => {
-    const wrapper = shallow(<ControlSidebarBackground />)
-
-    expect(
-      wrapper.hasClass('control-sidebar-bg')
-    ).toBeTruthy()
-  })
-
-  it('should have basic styles', () => {
-    const wrapper = shallow(<ControlSidebarBackground />)
-
-    expect(
-      wrapper.prop('style')
-    ).toEqual({
-      position: 'fixed',
-      height: 'auto'
-    })
   })
 })
