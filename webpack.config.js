@@ -31,10 +31,10 @@ module.exports = {
     ]
   },
   output: {
-        // output path
-    path: path.join(__dirname, 'public'),
-        // output file
-    filename: 'app.min.js'
+    // output path
+    path: path.join(__dirname, 'build'),
+    // output file
+    filename: 'react-admin-lte.min.js'
   },
   plugins: debug
         ? [
