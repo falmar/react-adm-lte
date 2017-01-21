@@ -3,7 +3,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/falmar/react-adminlte"
+    "url": "git://github.com/falmar/react-adm-lte"
   },
   "author": "David Lavieri <daviddlavier@gmail.com> (http://dlavieri.com)",
   "license": "SEE LICENSE IN LICENSE",
@@ -60,6 +60,5 @@
     "prod": "NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest",
     "test-watch": "jest --watch --verbose"
-  },
-  "version": "0.0.1-alpha"
+  }
 }
