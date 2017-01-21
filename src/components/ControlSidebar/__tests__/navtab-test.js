@@ -7,45 +7,11 @@ jest.unmock('./../NavTab')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import {NavTab, Tab} from './../NavTab'
-
-describe('ControlSidebar.NavTab', () => {
-  it('should have basic classnames', () => {
-    const wrapper = shallow(<NavTab />)
-
-    expect(
-      wrapper.hasClass('nav')
-    ).toBeTruthy()
-
-    expect(
-      wrapper.hasClass('nav-tabs')
-    ).toBeTruthy()
-
-    expect(
-      wrapper.hasClass('nav-justified')
-    ).toBeTruthy()
-
-    expect(
-      wrapper.hasClass('control-sidebar-tabs')
-    ).toBeTruthy()
-  })
-
-  it('should pass down children', () => {
-    const wrapper = shallow(
-      <NavTab>
-        <span>children</span>
-      </NavTab>
-    )
-
-    expect(
-      wrapper.contains(<span>children</span>)
-    ).toBeTruthy()
-  })
-})
+import NavTab from './../NavTab'
 
 describe('ControlSidebar.NavTab.Tab', () => {
   it('should not have icon className if not provied', () => {
-    const wrapper = shallow(<Tab />)
+    const wrapper = shallow(<NavTab />)
 
     expect(
       wrapper.find('i').prop('className')
@@ -53,7 +19,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
   })
 
   it('should have icon className if provired', () => {
-    const wrapper = shallow(<Tab icon='fa fa-wrench' />)
+    const wrapper = shallow(<NavTab icon='fa fa-wrench' />)
 
     expect(
       wrapper.find('i').prop('className')
@@ -62,7 +28,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
 
   it('should not call onClick function when event is not fired', () => {
     const spy = jest.fn()
-    shallow(<Tab onClick={spy} />)
+    shallow(<NavTab onClick={spy} />)
 
     expect(
       spy
@@ -71,7 +37,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
 
   it('should call onClick function when event is not fired', () => {
     const spy = jest.fn()
-    const wrapper = shallow(<Tab onClick={spy} />)
+    const wrapper = shallow(<NavTab onClick={spy} />)
 
     wrapper.find('MyLink').simulate('click')
 
