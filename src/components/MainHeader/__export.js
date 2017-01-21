@@ -4,6 +4,7 @@
 
 import MainHeader from './MainHeader'
 import Logo from './Logo'
+import LogoText from './LogoText'
 import Navbar from './Navbar'
 import SidebarToggle from './SidebarToggle'
 import ControlSidebarToggle from './ControlSidebarToggle'
@@ -16,6 +17,7 @@ import User from './User'
 export default {
   MainHeader,
   Logo,
+  LogoText,
   Navbar,
   SidebarToggle,
   ControlSidebarToggle,
