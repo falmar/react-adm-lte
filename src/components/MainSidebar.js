@@ -4,10 +4,6 @@
 
 import React, {PropTypes} from 'react'
 
-import UserPanel from './MainSidebar/UserPanel'
-import SearchForm from './MainSidebar/SearchForm'
-import {Menu, Item} from './MainSidebar/SidebarMenu'
-
 const MainSidebar = ({children}) => {
   return (
     <aside className='main-sidebar'>
@@ -22,10 +18,4 @@ MainSidebar.propTypes = {
   children: PropTypes.array
 }
 
-export {
-  MainSidebar,
-  UserPanel,
-  SearchForm,
-  Menu,
-  Item
-}
+export default MainSidebar

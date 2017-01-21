@@ -7,7 +7,7 @@ jest.unmock('./../MainSidebar')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import {MainSidebar} from './../MainSidebar'
+import MainSidebar from './../MainSidebar'
 
 describe('MainSidebar', () => {
   it('should have classnames', () => {
