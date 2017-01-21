@@ -2,12 +2,12 @@
 // Use of this source code is governed by a MIT License
 // License that can be found in the LICENSE file.
 
-jest.unmock('./../SidebarMenu')
+jest.unmock('./../Menu')
 
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import Menu from './../SidebarMenu'
+import Menu from './../Menu'
 
 describe('MainSidebar.Menu', () => {
   it('should have classnames treeview-menu when isRoot prop is not provided', () => {

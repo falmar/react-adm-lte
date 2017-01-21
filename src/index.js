@@ -6,11 +6,18 @@
 import Layout from './components/Layout'
 
 // Main Header
-import * as MainHeader from './components/MainHeader'
+import MainHeaderComponents from './components/MainHeader/__export'
 
 // Main Sidebar
-import * as MainSidebar from './components/MainSidebar'
+import MainSidebarComponents from './components/MainSidebar/__export'
 
-import * as ControlSidebar from './components/ControlSidebar'
+// Control Sidebar
+import ControlSidebarComponents from './components/ControlSidebar/__export'
 
-export {Layout, MainHeader, MainSidebar, ControlSidebar}
+export {Layout}
+
+export {MainHeaderComponents}
+
+export {MainSidebarComponents}
+
+export {ControlSidebarComponents}

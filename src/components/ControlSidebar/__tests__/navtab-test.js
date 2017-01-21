@@ -9,40 +9,36 @@ import {shallow} from 'enzyme'
 
 import NavTab from './../NavTab'
 
-describe('ControlSidebar.NavTab.Tab', () => {
-  it('should not have icon className if not provied', () => {
+describe('ControlSidebar.NavTab', () => {
+  it('should have basic classnames', () => {
     const wrapper = shallow(<NavTab />)
 
     expect(
-      wrapper.find('i').prop('className')
-    ).toBeUndefined()
-  })
-
-  it('should have icon className if provired', () => {
-    const wrapper = shallow(<NavTab icon='fa fa-wrench' />)
+      wrapper.hasClass('nav')
+    ).toBeTruthy()
 
     expect(
-      wrapper.find('i').prop('className')
-    ).toEqual('fa fa-wrench')
-  })
-
-  it('should not call onClick function when event is not fired', () => {
-    const spy = jest.fn()
-    shallow(<NavTab onClick={spy} />)
+      wrapper.hasClass('nav-tabs')
+    ).toBeTruthy()
 
     expect(
-      spy
-    ).not.toHaveBeenCalled()
-  })
-
-  it('should call onClick function when event is not fired', () => {
-    const spy = jest.fn()
-    const wrapper = shallow(<NavTab onClick={spy} />)
-
-    wrapper.find('MyLink').simulate('click')
+      wrapper.hasClass('nav-justified')
+    ).toBeTruthy()
 
     expect(
-      spy
-    ).toHaveBeenCalled()
+      wrapper.hasClass('control-sidebar-tabs')
+    ).toBeTruthy()
+  })
+
+  it('should pass down children', () => {
+    const wrapper = shallow(
+      <NavTab>
+        <span>children</span>
+      </NavTab>
+    )
+
+    expect(
+      wrapper.contains(<span>children</span>)
+    ).toBeTruthy()
   })
 })
