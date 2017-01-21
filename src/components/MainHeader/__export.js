@@ -7,7 +7,7 @@ import Logo from './Logo'
 import Navbar from './Navbar'
 import SidebarToggle from './SidebarToggle'
 import ControlSidebarToggle from './ControlSidebarToggle'
-import MainHeaderMenu from './MainHeaderMenu'
+import Menu from './Menu'
 import Messages from './Messages'
 import Notifications from './Notifications'
 import Tasks from './Tasks'
@@ -19,7 +19,7 @@ export default {
   Navbar,
   SidebarToggle,
   ControlSidebarToggle,
-  MainHeaderMenu,
+  Menu,
   Messages,
   Notifications,
   Tasks,
