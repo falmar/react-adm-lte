@@ -94,7 +94,7 @@ class Notifications extends Component {
         <li className='header'>{header}</li>
         <li>
           <ul className='menu'>
-            {this.getNotifications(close)}
+            {this.getNotifications()}
           </ul>
         </li>
         <li className='footer'><a href='#'>{footer}</a></li>

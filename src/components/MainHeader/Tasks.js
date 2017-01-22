@@ -106,7 +106,7 @@ class Tasks extends Component {
         <li className='header'>{header}</li>
         <li>
           <ul className='menu'>
-            {this.getTasks(close)}
+            {this.getTasks()}
           </ul>
         </li>
         <li className='footer'><a href='#'>{footer}</a></li>
