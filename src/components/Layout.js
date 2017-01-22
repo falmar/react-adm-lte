@@ -5,7 +5,6 @@
 import React, {Component, PropTypes} from 'react'
 
 class Layout extends Component {
-
   componentDidMount () {
     this.toggleClasses(this.props)
 

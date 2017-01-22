@@ -2,7 +2,11 @@ var debug = process.env.NODE_ENV !== 'production'
 var webpack = require('webpack')
 var path = require('path')
 
+var suffix = debug ? '' : '.min'
+var filename = 'react-adm-lte' + suffix + '.js'
+
 module.exports = {
+  target: 'node',
   devtool: debug
         ? 'inline-sourcemap' : null,
   entry: path.join(__dirname, 'src', 'index.js'),
@@ -31,10 +35,12 @@ module.exports = {
     ]
   },
   output: {
+    // target
+    libraryTarget: 'commonjs',
     // output path
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'dist'),
     // output file
-    filename: 'react-admin-lte.min.js'
+    filename: filename
   },
   plugins: debug
         ? [
