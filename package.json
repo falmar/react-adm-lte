@@ -22,14 +22,10 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "enzyme": "^2.6.0",
-    "eslint": "^3.10.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.3.2",
-    "eslint-plugin-react": "^6.6.0",
-    "eslint-plugin-standard": "^2.0.1",
     "jest": "^17.0.3",
     "react-addons-test-utils": "^15.3.2",
     "react-test-renderer": "^15.3.2",
+    "standard": "^8.6.0",
     "webpack": "^1.13.3",
     "webpack-babel-jest": "^1.0.4",
     "webpack-dev-server": "^1.16.2"
@@ -49,9 +45,7 @@
     "unmockedModulePathPatterns": [
       "react",
       "react-dom",
-      "enzyme",
-      "sinon",
-      "jsdom"
+      "enzyme"
     ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
