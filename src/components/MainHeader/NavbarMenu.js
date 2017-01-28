@@ -4,16 +4,20 @@
 
 import React, {PropTypes} from 'react'
 
-const Navbar = ({children}) => {
+const NavbarMenu = ({children}) => {
   return (
     <nav className='navbar navbar-static-top'>
-      {children}
+      <div className='navbar-custom-menu'>
+        <ul className='navbar-nav nav'>
+          {children}
+        </ul>
+      </div>
     </nav>
   )
 }
 
-Navbar.propTypes = {
+NavbarMenu.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default Navbar
+export default NavbarMenu

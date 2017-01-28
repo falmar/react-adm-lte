@@ -2,16 +2,16 @@
 // Use of this source code is governed by a MIT License
 // License that can be found in the LICENSE file.
 
-jest.unmock('./../Navbar')
+jest.unmock('./../NavbarMenu')
 
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import Navbar from './../Navbar'
+import NavbarMenu from './../NavbarMenu'
 
-describe('Navbar', () => {
+describe('NavbarMenu', () => {
   it('should contain classNames', () => {
-    const wrapper = shallow(<Navbar><div /></Navbar>)
+    const wrapper = shallow(<NavbarMenu><div /></NavbarMenu>)
 
     expect(
       wrapper.hasClass('navbar')
@@ -22,8 +22,48 @@ describe('Navbar', () => {
     ).toBeTruthy()
   })
 
+  it('should contain one children ul', () => {
+    const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
+
+    expect(
+      wrapper.find('ul').length
+    ).toEqual(1)
+  })
+
+  it('should add classNames to ul', () => {
+    const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
+
+    expect(
+      wrapper.find('ul').prop('className').split(' ').length
+    ).toEqual(2)
+
+    expect(
+      wrapper.find('ul').hasClass('navbar-nav')
+    ).toBeTruthy()
+
+    expect(
+      wrapper.find('ul').hasClass('nav')
+    ).toBeTruthy()
+  })
+
+  it('should contain one children div', () => {
+    const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
+
+    expect(
+      wrapper.find('div').length
+    ).toEqual(1)
+  })
+
+  it('should add classNames to div', () => {
+    const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
+
+    expect(
+      wrapper.find('div').prop('className')
+    ).toBe('navbar-custom-menu')
+  })
+
   it('should pass down children', () => {
-    const wrapper = shallow(<Navbar><div>I'm a child</div></Navbar>)
+    const wrapper = shallow(<NavbarMenu><div>I'm a child</div></NavbarMenu>)
 
     expect(
       wrapper.contains(<div>I'm a child</div>)
