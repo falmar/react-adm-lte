@@ -8,7 +8,7 @@ jest.unmock('./../Dropdown')
 import React from 'react'
 import {shallow, mount} from 'enzyme'
 
-import {Dropdown} from './../Dropdown'
+import Dropdown from './../Dropdown'
 
 describe('MainHeader.NavbarMenu.Dropdown', () => {
   it('should have className dropdown by default', () => {

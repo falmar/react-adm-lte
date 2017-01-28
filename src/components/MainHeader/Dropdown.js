@@ -53,4 +53,4 @@ Dropdown.propTypes = {
   children: PropTypes.element
 }
 
-export {Dropdown}
+export default Dropdown
