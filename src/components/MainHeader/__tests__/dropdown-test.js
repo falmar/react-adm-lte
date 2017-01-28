@@ -10,7 +10,7 @@ import {shallow, mount} from 'enzyme'
 
 import {Dropdown} from './../Dropdown'
 
-describe('Menu.Dropdown', () => {
+describe('MainHeader.NavbarMenu.Dropdown', () => {
   it('should have className dropdown by default', () => {
     const wrapper = shallow(<Dropdown />)
 
