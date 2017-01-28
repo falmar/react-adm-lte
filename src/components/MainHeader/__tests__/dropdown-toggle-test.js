@@ -18,6 +18,14 @@ describe('MainHeader.NavbarMenu.Dropdown.DropdownToggle', () => {
     ).toBeTruthy()
   })
 
+  it('should a <MyLink> tag element', () => {
+    const wrapper = shallow(<DropdownToggle />)
+
+    expect(
+      wrapper.is('MyLink')
+    ).toBeTruthy()
+  })
+
   it('should call onToggle func when click event is fired', () => {
     const spy = jest.fn()
     const wrapper = shallow(<DropdownToggle onToggle={spy} />)
@@ -31,7 +39,7 @@ describe('MainHeader.NavbarMenu.Dropdown.DropdownToggle', () => {
 
   it('should not call onToggle func if click event is not fired', () => {
     const spy = jest.fn()
-    const wrapper = shallow(<DropdownToggle onToggle={spy} />)
+    shallow(<DropdownToggle onToggle={spy} />)
 
     expect(
       spy
