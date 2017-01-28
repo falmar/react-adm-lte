@@ -8,7 +8,7 @@ import Link from '../../utils/Link'
 
 const DropdownToggle = ({children, onToggle}) => {
   return (
-    <Link onClick={onToggle} className='dropdown-toggle'>
+    <Link href='#' onClick={onToggle} className='dropdown-toggle'>
       {children}
     </Link>
   )
