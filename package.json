@@ -57,5 +57,10 @@
     "test": "jest",
     "test:watch": "jest --watch --verbose"
   },
+  "standard": {
+    "env": {
+      "jest": true
+    }
+  },
   "version": "0.0.3"
 }
