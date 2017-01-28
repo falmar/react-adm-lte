@@ -9,10 +9,6 @@ import Navbar from './Navbar'
 import SidebarToggle from './SidebarToggle'
 import ControlSidebarToggle from './ControlSidebarToggle'
 import Menu from './Menu'
-import Messages from './Messages'
-import Notifications from './Notifications'
-import Tasks from './Tasks'
-import User from './User'
 
 export default {
   MainHeader,
@@ -21,9 +17,5 @@ export default {
   Navbar,
   SidebarToggle,
   ControlSidebarToggle,
-  Menu,
-  Messages,
-  Notifications,
-  Tasks,
-  User
+  Menu
 }
