@@ -1,0 +1,15 @@
+{
+    "env": {
+        "jest": true
+    },
+    "ignore": [
+      "/dist"
+    ],
+    "extends": ["standard", "standard-react"],
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "unix"
+        ]
+    }
+}
