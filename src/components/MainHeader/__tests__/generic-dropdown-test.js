@@ -10,6 +10,38 @@ import {shallow} from 'enzyme'
 import GenericDropdown from '../GenericDropdown'
 
 describe('MainHeader.NavbarMenu.GenericDropdown', () => {
+  it('should pass className prop to Dropdown empty by default', () => {
+    const wrapper = shallow(<GenericDropdown />)
+
+    expect(
+      wrapper.find('Dropdown').prop('className')
+    ).toBeUndefined()
+  })
+
+  it('should pass className prop to Dropdown "messages-menu"', () => {
+    const wrapper = shallow(<GenericDropdown className='messages-menu' />)
+
+    expect(
+      wrapper.find('Dropdown').prop('className')
+    ).toBe('messages-menu')
+  })
+
+  it('should pass prop open to Dropdown false by default', () => {
+    const wrapper = shallow(<GenericDropdown />)
+
+    expect(
+      wrapper.find('Dropdown').prop('open')
+    ).toBeFalsy()
+  })
+
+  it('should pass prop open to Dropdown true', () => {
+    const wrapper = shallow(<GenericDropdown open />)
+
+    expect(
+      wrapper.find('Dropdown').prop('open')
+    ).toBeTruthy()
+  })
+
   it('should have <i> tag element without className by default', () => {
     const wrapper = shallow(<GenericDropdown />)
     const i = wrapper.find('i')

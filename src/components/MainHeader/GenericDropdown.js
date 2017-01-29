@@ -10,12 +10,12 @@ import DropdownToggle from './DropdownToggle'
 import DropdownMenu from './DropdownMenu'
 
 const GenericDropdown = (props) => {
-  const {open, onToggle, children} = props
+  const {className, open, onToggle, children} = props
   const {iconClass, labelClass, label} = props
   const {header, footer, onClickFooter} = props
 
   return (
-    <Dropdown open={open} onToggle={onToggle}>
+    <Dropdown className={className} open={open} onToggle={onToggle}>
       <DropdownToggle onToggle={onToggle}>
         <i className={iconClass} />
         <span className={labelClass}>{label}</span>
@@ -36,6 +36,7 @@ const GenericDropdown = (props) => {
 }
 
 GenericDropdown.propTypes = {
+  className: PropTypes.string,
   open: PropTypes.bool,
   iconClass: PropTypes.string,
   labelClass: PropTypes.string,

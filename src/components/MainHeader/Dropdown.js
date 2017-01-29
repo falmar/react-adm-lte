@@ -50,7 +50,8 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
   onToggle: PropTypes.func.isRequired,
   open: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.element,
+  className: PropTypes.string
 }
 
 export default Dropdown
