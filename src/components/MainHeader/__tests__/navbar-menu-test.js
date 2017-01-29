@@ -10,18 +10,6 @@ import {shallow} from 'enzyme'
 import NavbarMenu from './../NavbarMenu'
 
 describe('NavbarMenu', () => {
-  it('should contain classNames', () => {
-    const wrapper = shallow(<NavbarMenu><div /></NavbarMenu>)
-
-    expect(
-      wrapper.hasClass('navbar')
-    ).toBeTruthy()
-
-    expect(
-      wrapper.hasClass('navbar-static-top')
-    ).toBeTruthy()
-  })
-
   it('should contain one children ul', () => {
     const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
 
