@@ -9,7 +9,7 @@ import {shallow, mount} from 'enzyme'
 
 import ControlSidebarToggle from './../ControlSidebarToggle'
 
-describe('ControlSidebarToggle', () => {
+describe('MainHeader.Navbar.NavbarMenu.ControlSidebarToggle', () => {
   it('should add <a> (tag) if it is an external link', () => {
     const wrapper = mount(<ControlSidebarToggle href='http://example.com' />)
 

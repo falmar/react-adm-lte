@@ -9,7 +9,7 @@ import {shallow} from 'enzyme'
 
 import GenericDropdown from '../GenericDropdown'
 
-describe('MainHeader.NavbarMenu.GenericDropdown', () => {
+describe('MainHeader.Navbar.NavbarMenu.GenericDropdown', () => {
   it('should pass className prop to Dropdown empty by default', () => {
     const wrapper = shallow(<GenericDropdown />)
 

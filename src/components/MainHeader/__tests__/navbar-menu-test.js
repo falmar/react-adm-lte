@@ -9,7 +9,7 @@ import {shallow} from 'enzyme'
 
 import NavbarMenu from './../NavbarMenu'
 
-describe('NavbarMenu', () => {
+describe('MainHeader.NavbarMenu', () => {
   it('should contain one children ul', () => {
     const wrapper = shallow(<NavbarMenu>anything</NavbarMenu>)
 

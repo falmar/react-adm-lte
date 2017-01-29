@@ -9,7 +9,7 @@ import {shallow} from 'enzyme'
 
 import DropdownMenu from '../DropdownMenu'
 
-describe('MainHeader.NavbarMenu.Dropdown.DropdownMenu', () => {
+describe('MainHeader.Navbar.NavbarMenu.Dropdown.DropdownMenu', () => {
   it('should have basic classNames', () => {
     const wrapper = shallow(<DropdownMenu />)
 
