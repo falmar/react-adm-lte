@@ -6,13 +6,13 @@ import React, {PropTypes} from 'react'
 
 import Link from '../../utils/Link'
 
-const UserBodyItem = ({href, onClick, label}) => {
+const UserBodyItem = ({href, onClick, children}) => {
   return (
     <div className='col-xs-4 text-center'>
       <Link
         href={href}
         onClick={onClick}>
-        {label}
+        {children}
       </Link>
     </div>
   )
@@ -21,7 +21,6 @@ const UserBodyItem = ({href, onClick, label}) => {
 UserBodyItem.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
-  label: PropTypes.string.isRequired,
   children: PropTypes.node
 }
 

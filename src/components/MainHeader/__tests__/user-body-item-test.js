@@ -9,13 +9,9 @@ import {shallow} from 'enzyme'
 
 import UserBodyItem from '../UserBodyItem'
 
-const props = {
-  label: ''
-}
-
 describe('MainHeader.Navbar.NavbarMenu.User.UserBody.Item', () => {
   it('should contain className "col-xs-4 text-center"', () => {
-    const wrapper = shallow(<UserBodyItem {...props} />)
+    const wrapper = shallow(<UserBodyItem />)
 
     expect(
       wrapper.hasClass('col-xs-4 text-center')
@@ -23,7 +19,7 @@ describe('MainHeader.Navbar.NavbarMenu.User.UserBody.Item', () => {
   })
 
   it('should pass prop href to <Link> component', () => {
-    const wrapper = shallow(<UserBodyItem {...props} href='http://example.com' />)
+    const wrapper = shallow(<UserBodyItem href='http://example.com' />)
 
     expect(
       wrapper.find('MyLink').prop('href')
@@ -32,15 +28,15 @@ describe('MainHeader.Navbar.NavbarMenu.User.UserBody.Item', () => {
 
   it('should pass prop onClick to <Link> component', () => {
     const spy = () => {}
-    const wrapper = shallow(<UserBodyItem {...props} onClick={spy} />)
+    const wrapper = shallow(<UserBodyItem onClick={spy} />)
 
     expect(
       wrapper.find('MyLink').prop('onClick')
     ).toBe(spy)
   })
 
-  it('should pass prop label to <Link> component as children', () => {
-    const wrapper = shallow(<UserBodyItem {...props} label='Profile' />)
+  it('should pass down children to <Link> component', () => {
+    const wrapper = shallow(<UserBodyItem>Profile</UserBodyItem>)
 
     expect(
       wrapper.find('MyLink').contains('Profile')

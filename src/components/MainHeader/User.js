@@ -7,7 +7,6 @@ import React, {Component, PropTypes} from 'react'
 import Dropdown from './Dropdown'
 import DropdownToggle from './DropdownToggle'
 import DropdownMenu from './DropdownMenu'
-import Link from '../../utils/Link'
 
 class User extends Component {
   render () {
@@ -18,10 +17,8 @@ class User extends Component {
     return (
       <Dropdown open={open} onToggle={onToggle} className='user user-menu'>
         <DropdownToggle onToggle={onToggle}>
-          <Link>
-            <img src={imageUrl} className='user-image' alt='User Image' />
-            <span className='hidden-xs'>{label}</span>
-          </Link>
+          <img src={imageUrl} className='user-image' alt='User Image' />
+          <span className='hidden-xs'>{label}</span>
         </DropdownToggle>
         <DropdownMenu>
           {children}
