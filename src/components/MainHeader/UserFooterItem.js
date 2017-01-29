@@ -29,6 +29,10 @@ const UserFooterItem = props => {
 }
 
 UserFooterItem.propTypes = {
+  left: PropTypes.bool,
+  right: PropTypes.bool,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   children: PropTypes.node
 }
 

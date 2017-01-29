@@ -28,7 +28,8 @@ Tasks.propTypes = {
   onToggle: PropTypes.func.isRequired,
   header: PropTypes.string.isRequired,
   footer: PropTypes.string.isRequired,
-  onClickFooter: PropTypes.func.isRequired
+  onClickFooter: PropTypes.func.isRequired,
+  children: PropTypes.node
 }
 
 export default Tasks
