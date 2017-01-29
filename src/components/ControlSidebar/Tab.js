@@ -6,9 +6,9 @@ import React, {PropTypes} from 'react'
 
 import Link from './../../utils/Link'
 
-const Tab = ({icon, onClick}) => {
+const Tab = ({active, icon, onClick}) => {
   return (
-    <li>
+    <li className={active ? 'active' : ''}>
       <Link onClick={onClick}>
         <i className={icon} />
       </Link>
@@ -17,6 +17,7 @@ const Tab = ({icon, onClick}) => {
 }
 
 Tab.propTypes = {
+  active: PropTypes.bool,
   icon: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 }
