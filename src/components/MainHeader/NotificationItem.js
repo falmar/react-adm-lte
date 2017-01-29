@@ -31,8 +31,8 @@ NotificationItem.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   iconClass: PropTypes.string,
-  href: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  href: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 export default NotificationItem

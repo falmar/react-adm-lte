@@ -11,6 +11,10 @@ import SidebarToggle from './SidebarToggle'
 import ControlSidebarToggle from './ControlSidebarToggle'
 import Messages from './Messages'
 import MessageItem from './MessageItem'
+import Notifications from './Notifications'
+import NotificationItem from './NotificationItem'
+import Tasks from './Tasks'
+import TaskItem from './TaskItem'
 
 export default {
   MainHeader,
@@ -21,5 +25,9 @@ export default {
   SidebarToggle,
   ControlSidebarToggle,
   Messages,
-  MessageItem
+  MessageItem,
+  Notifications,
+  NotificationItem,
+  Tasks,
+  TaskItem
 }

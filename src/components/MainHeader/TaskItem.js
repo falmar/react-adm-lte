@@ -44,8 +44,8 @@ TaskItem.propTypes = {
   title: PropTypes.string.isRequired,
   progress: stringOrNumber,
   progressClass: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
   completedText: PropTypes.string.isRequired
 }
 

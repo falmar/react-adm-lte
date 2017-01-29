@@ -6,7 +6,7 @@ import React, {PropTypes} from 'react'
 
 import GenericDropdown from './GenericDropdown'
 
-const Notifications = (props) => {
+const Notifications = props => {
   return (
     <GenericDropdown
       {...props}
