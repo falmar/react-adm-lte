@@ -9,6 +9,8 @@ import Navbar from './Navbar'
 import NavbarMenu from './NavbarMenu'
 import SidebarToggle from './SidebarToggle'
 import ControlSidebarToggle from './ControlSidebarToggle'
+import Messages from './Messages'
+import MessageItem from './MessageItem'
 
 export default {
   MainHeader,
@@ -17,5 +19,7 @@ export default {
   Navbar,
   NavbarMenu,
   SidebarToggle,
-  ControlSidebarToggle
+  ControlSidebarToggle,
+  Messages,
+  MessageItem
 }
