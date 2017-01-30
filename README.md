@@ -32,8 +32,8 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [x] Menu
   - [x] MenuItem
 - [ ] ControlSidebar
-  - [ ] NavTab
-    - [ ] Tab
+  - [x] NavTab
+    - [x] Tab
   - [ ] tab content
     - [ ] tab pane
 - [ ] ...more...
