@@ -21,10 +21,10 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
       - [x] Notifications
       - [x] Tasks
       - [x] User menu
-        - [ ] Base
-        - [ ] Header
-        - [ ] Body
-        - [ ] Footer
+        - [x] Base
+        - [x] Header
+        - [x] Body
+        - [x] Footer
       - [ ] ...
 - [x] Sidebar
   - [x] UserPanel
