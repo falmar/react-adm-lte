@@ -66,8 +66,8 @@ describe('MainSidebar.Menu.Item', () => {
     const wrapper = shallow(<Item name='Main Section' />)
 
     expect(
-      wrapper.contains('Main Section')
-    ).toBeTruthy()
+      wrapper.contains(<span>Main Section</span>)
+    ).toBeFalsy()
   })
 
   it('should have label with span when isTreeview provided', () => {
@@ -78,7 +78,7 @@ describe('MainSidebar.Menu.Item', () => {
     ).toBeTruthy()
   })
 
-  it('should not have arrow when children not passed', () => {
+  it('should not have arrow when isTreeview not provided', () => {
     const wrapper = shallow(<Item />)
 
     expect(
@@ -90,8 +90,8 @@ describe('MainSidebar.Menu.Item', () => {
     ).toEqual(0)
   })
 
-  it('should have arrow when children passed', () => {
-    const wrapper = shallow(<Item>anything</Item>)
+  it('should have arrow when isTreeview is provided', () => {
+    const wrapper = shallow(<Item isTreeview />)
 
     expect(
       wrapper.find('span.pull-right-container').length
@@ -102,7 +102,7 @@ describe('MainSidebar.Menu.Item', () => {
     ).toEqual(1)
   })
 
-  it('should have children', () => {
+  it('should pass down children', () => {
     const wrapper = shallow(
       <Item>
         <li />

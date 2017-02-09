@@ -18,18 +18,18 @@ const SidebarMenuItem = (props) => {
     return <li className='header'>{name}</li>
   }
 
-  const label = isTreeview ? <span>{name}</span> : name
-  const hasChildren = !(!children)
-
   return (
     <li className={classnames({treeview: isTreeview, active})}>
       <Link href={href} onClick={onClick}>
         <i className={classnames(iconClass)} />
-        {label}
-        {hasChildren &&
+        {isTreeview ? <span>{name}</span> : name}
+
+        {
+          isTreeview &&
           <span className='pull-right-container'>
             <i className='fa fa-angle-left pull-right' />
-          </span>}
+          </span>
+        }
       </Link>
       {children}
     </li>
