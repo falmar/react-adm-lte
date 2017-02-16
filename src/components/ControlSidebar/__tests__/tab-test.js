@@ -35,7 +35,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
   })
 
   it('should have icon className if provired', () => {
-    const wrapper = shallow(<Tab icon='fa fa-wrench' />)
+    const wrapper = shallow(<Tab iconClass='fa fa-wrench' />)
 
     expect(
       wrapper.find('i').prop('className')

@@ -40,7 +40,6 @@ const stringOrNumber = PropTypes.oneOfType([
 ]).isRequired
 
 TaskItem.propTypes = {
-  id: stringOrNumber,
   title: PropTypes.string.isRequired,
   progress: stringOrNumber,
   progressClass: PropTypes.string.isRequired,

@@ -24,10 +24,6 @@ const MessageItem = ({href, imageUrl, title, time, message, onClick}) => {
 }
 
 MessageItem.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
   imageUrl: PropTypes.string,
   title: PropTypes.string,
   time: PropTypes.string,

@@ -33,7 +33,7 @@ User.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onToggle: PropTypes.func.isRequired,
-  children: PropTypes.element
+  children: PropTypes.node
 }
 
 export default User

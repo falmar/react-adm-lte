@@ -43,7 +43,7 @@ describe('MainSidebar.Menu.Item', () => {
   })
 
   it('should be header if prop provided', () => {
-    const wrapper = shallow(<Item header name='Main Section' />)
+    const wrapper = shallow(<Item header title='Main Section' />)
 
     expect(
       wrapper.hasClass('header')
@@ -63,7 +63,7 @@ describe('MainSidebar.Menu.Item', () => {
   })
 
   it('should have label without span when isTreeview not provided', () => {
-    const wrapper = shallow(<Item name='Main Section' />)
+    const wrapper = shallow(<Item title='Main Section' />)
 
     expect(
       wrapper.contains(<span>Main Section</span>)
@@ -71,7 +71,7 @@ describe('MainSidebar.Menu.Item', () => {
   })
 
   it('should have label with span when isTreeview provided', () => {
-    const wrapper = shallow(<Item isTreeview name='Main Section' />)
+    const wrapper = shallow(<Item isTreeview title='Main Section' />)
 
     expect(
       wrapper.contains(<span>Main Section</span>)
