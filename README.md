@@ -38,5 +38,5 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
     - [x] tab pane
       - [x] header
       - [x] sub header
-      - [ ] menu
+      - [x] menu
 - [ ] ...more...
