@@ -7,7 +7,7 @@ jest.unmock('./../SearchForm')
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import SearchFormContainer, {SearchForm} from './../SearchForm'
+import SearchForm from './../SearchForm'
 
 describe('MainSidebar.SearchForm', () => {
   it('should have classnames', () => {
@@ -106,44 +106,5 @@ describe('MainSidebar.SearchForm', () => {
     expect(
       wrapper.find('i').hasClass('fa-search')
     ).toBeTruthy()
-  })
-})
-
-describe('MainSidebar.SearchFormContainer', () => {
-  it('should call onSubmit with input value', () => {
-    const submit = jest.fn()
-    const prevent = jest.fn()
-    const wrapper = shallow(
-      <SearchFormContainer
-        onSubmit={submit} />
-    )
-
-    wrapper.setState({query: 'some-value'})
-    wrapper.instance().onSubmit({preventDefault: prevent})
-
-    expect(
-      prevent
-    ).toBeCalled()
-
-    expect(
-      submit
-    ).toBeCalledWith('some-value')
-  })
-
-  it('should update form state input onChange', () => {
-    const wrapper = shallow(
-      <SearchFormContainer
-        onSubmit={() => {}} />
-    )
-
-    expect(
-      wrapper.state('query')
-    ).toEqual('')
-
-    wrapper.instance().onChange({currentTarget: {value: 'some-value'}})
-
-    expect(
-      wrapper.state('query')
-    ).toEqual('some-value')
   })
 })
