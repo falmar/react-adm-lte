@@ -15,6 +15,12 @@ import Notifications from './Notifications'
 import NotificationItem from './NotificationItem'
 import Tasks from './Tasks'
 import TaskItem from './TaskItem'
+import User from './User'
+import UserHeader from './UserHeader'
+import UserBody from './UserBody'
+import UserBodyItem from './UserBodyItem'
+import UserFooter from './UserFooter'
+import UserFooterItem from './UserFooterItem'
 
 export default {
   MainHeader,
@@ -29,5 +35,11 @@ export default {
   Notifications,
   NotificationItem,
   Tasks,
-  TaskItem
+  TaskItem,
+  User,
+  UserHeader,
+  UserBody,
+  UserBodyItem,
+  UserFooter,
+  UserFooterItem
 }

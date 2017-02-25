@@ -1,0 +1,12 @@
+{
+    "env": {
+        "jest": true
+    },
+    "extends": ["standard", "standard-react"],
+    "rules": {
+        "linebreak-style": [
+            "error",
+            "unix"
+        ]
+    }
+}

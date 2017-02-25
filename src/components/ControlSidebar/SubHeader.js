@@ -4,18 +4,14 @@
 
 import React, {PropTypes} from 'react'
 
-const MainSidebar = ({children}) => {
+const SubHeader = ({children}) => {
   return (
-    <aside className='main-sidebar'>
-      <section className='sidebar'>
-        {children}
-      </section>
-    </aside>
+    <h4 className='control-sidebar-subheading'>{children}</h4>
   )
 }
 
-MainSidebar.propTypes = {
+SubHeader.propTypes = {
   children: PropTypes.node
 }
 
-export default MainSidebar
+export default SubHeader

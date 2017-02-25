@@ -10,6 +10,22 @@ import {shallow} from 'enzyme'
 import Tab from './../Tab'
 
 describe('ControlSidebar.NavTab.Tab', () => {
+  it('should not have className "active" by default', () => {
+    const wrapper = shallow(<Tab />)
+
+    expect(
+      wrapper.hasClass('active')
+    ).toBeFalsy()
+  })
+
+  it('should have className "active" if prop provided', () => {
+    const wrapper = shallow(<Tab active />)
+
+    expect(
+      wrapper.hasClass('active')
+    ).toBeTruthy()
+  })
+
   it('should not have icon className if not provied', () => {
     const wrapper = shallow(<Tab />)
 
@@ -19,7 +35,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
   })
 
   it('should have icon className if provired', () => {
-    const wrapper = shallow(<Tab icon='fa fa-wrench' />)
+    const wrapper = shallow(<Tab iconClass='fa fa-wrench' />)
 
     expect(
       wrapper.find('i').prop('className')

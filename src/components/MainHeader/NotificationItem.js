@@ -25,10 +25,6 @@ const NotificationItem = ({title, iconClass, href, onClick}) => {
 }
 
 NotificationItem.propTypes = {
-  id: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]).isRequired,
   title: PropTypes.string.isRequired,
   iconClass: PropTypes.string,
   href: PropTypes.string,

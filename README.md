@@ -9,7 +9,7 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 
 **Components**
 
-- [x] Link <a> tag for external url or onClick function
+- [x] Link component for external url or onClick function
 - [x] Layout
 - [ ] MainHeader
   - [x] Logo
@@ -31,9 +31,12 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
   - [x] SearchForm
   - [x] Menu
   - [x] MenuItem
-- [ ] ControlSidebar
-  - [ ] NavTab
-    - [ ] Tab
-  - [ ] tab content
-    - [ ] tab pane
+- [x] ControlSidebar
+  - [x] NavTab
+    - [x] Tab
+  - [x] tab content
+    - [x] tab pane
+      - [x] header
+      - [x] sub header
+      - [x] menu
 - [ ] ...more...

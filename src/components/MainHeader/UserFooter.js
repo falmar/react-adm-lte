@@ -4,18 +4,16 @@
 
 import React, {PropTypes} from 'react'
 
-const MainSidebar = ({children}) => {
+const UserFooter = ({children}) => {
   return (
-    <aside className='main-sidebar'>
-      <section className='sidebar'>
-        {children}
-      </section>
-    </aside>
+    <li className='user-footer'>
+      {children}
+    </li>
   )
 }
 
-MainSidebar.propTypes = {
+UserFooter.propTypes = {
   children: PropTypes.node
 }
 
-export default MainSidebar
+export default UserFooter

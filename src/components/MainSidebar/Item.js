@@ -10,26 +10,26 @@ import Link from './../../utils/Link'
 // -------------------- ITEM
 const SidebarMenuItem = (props) => {
   const {isTreeview, header, active} = props
-  const {name, iconClass} = props
+  const {title, iconClass} = props
   const {href, onClick} = props
   const {children} = props
 
   if (header) {
-    return <li className='header'>{name}</li>
+    return <li className='header'>{title}</li>
   }
-
-  const label = isTreeview ? <span>{name}</span> : name
-  const hasChildren = !(!children)
 
   return (
     <li className={classnames({treeview: isTreeview, active})}>
       <Link href={href} onClick={onClick}>
         <i className={classnames(iconClass)} />
-        {label}
-        {hasChildren &&
+        {isTreeview ? <span>{title}</span> : title}
+
+        {
+          isTreeview &&
           <span className='pull-right-container'>
             <i className='fa fa-angle-left pull-right' />
-          </span>}
+          </span>
+        }
       </Link>
       {children}
     </li>
@@ -37,12 +37,8 @@ const SidebarMenuItem = (props) => {
 }
 
 SidebarMenuItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  iconClass: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-    PropTypes.string
-  ]),
+  title: PropTypes.string.isRequired,
+  iconClass: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
   active: PropTypes.bool,

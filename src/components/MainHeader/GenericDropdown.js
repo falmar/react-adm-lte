@@ -47,7 +47,8 @@ GenericDropdown.propTypes = {
   onToggle: PropTypes.func,
   header: PropTypes.string,
   footer: PropTypes.string,
-  onClickFooter: PropTypes.func
+  onClickFooter: PropTypes.func,
+  children: PropTypes.node
 }
 
 export default GenericDropdown
