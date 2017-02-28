@@ -8,6 +8,7 @@ const SidebarMenuItem = (props) => {
   const {isTreeview, header, active} = props
   const {title, iconClass} = props
   const {href, onClick} = props
+  const {label, labelClassName} = props
   const {children} = props
 
   if (header) {
@@ -21,9 +22,15 @@ const SidebarMenuItem = (props) => {
         {isTreeview ? <span>{title}</span> : title}
 
         {
-          isTreeview &&
+          (isTreeview || label) &&
           <span className='pull-right-container'>
-            <i className='fa fa-angle-left pull-right' />
+            {!label && <i className='fa fa-angle-left pull-right' />}
+            {
+              label &&
+              <span className={classnames('label pull-right', labelClassName)}>
+                {label}
+              </span>
+            }
           </span>
         }
       </Link>
@@ -40,7 +47,9 @@ SidebarMenuItem.propTypes = {
   active: PropTypes.bool,
   isTreeview: PropTypes.bool,
   header: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.element,
+  label: PropTypes.string,
+  labelClassName: PropTypes.string
 }
 
 export default SidebarMenuItem

@@ -128,4 +128,42 @@ describe('MainSidebar.Menu.Item', () => {
       wrapper.find('MyLink').prop('href')
     ).toEqual('http://example.com')
   })
+
+  it('should not have label if prop not provided', () => {
+    const wrapper = shallow(<Item isTreeview />)
+
+    expect(
+      wrapper.find('span.label').length
+    ).toEqual(0)
+  })
+
+  it('should have label if prop provided', () => {
+    const wrapper = shallow(<Item label='new' />)
+
+    const label = wrapper.find('span.label')
+
+    expect(
+      label.length
+    ).toEqual(1)
+
+    expect(
+      label.contains('new')
+    ).toBeTruthy()
+  })
+
+  it('should not give labelClassName to the label if prop not provided', () => {
+    const wrapper = shallow(<Item labelClassName='label-primary' />)
+
+    expect(
+      wrapper.find('label-primary').length
+    ).toEqual(0)
+  })
+
+  it('should give labelClassName to the label if provided', () => {
+    const wrapper = shallow(<Item label='new' labelClassName='label-primary' />)
+
+    expect(
+      wrapper.find('span.label').hasClass('label-primary')
+    ).toBeTruthy()
+  })
 })
