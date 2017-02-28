@@ -1,7 +1,3 @@
-// Copyright 2016 David Lavieri.  All rights reserved.
-// Use of this source code is governed by a MIT License
-// License that can be found in the LICENSE file.
-
 import MainSidebar from './MainSidebar'
 import UserPanel from './UserPanel'
 import SearchForm from './SearchForm'
