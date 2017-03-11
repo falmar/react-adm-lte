@@ -58,10 +58,5 @@
     "test": "eslint src && jest",
     "test:watch": "jest --watch --verbose"
   },
-  "standard": {
-    "env": {
-      "jest": true
-    }
-  },
   "version": "0.0.5"
 }
