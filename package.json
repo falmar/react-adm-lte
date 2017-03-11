@@ -1,6 +1,7 @@
 {
   "name": "react-adm-lte",
   "main": "dist/react-adm-lte.js",
+  "module": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/falmar/react-adm-lte"
@@ -53,9 +54,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "prod": "webpack -p --config webpack.config.dev.js",
-    "dev": "webpack --config webpack.config.dev.js",
-    "dev:watch": "NODE_ENV=development webpack --watch",
+    "build": "webpack -p",
     "test": "eslint src && jest",
     "test:watch": "jest --watch --verbose"
   },
