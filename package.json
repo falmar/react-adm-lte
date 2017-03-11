@@ -56,7 +56,9 @@
     "collectCoverage": true
   },
   "scripts": {
-    "build": "webpack -p",
+    "dev": "webpack",
+    "prod": "NODE_ENV=production webpack -p",
+    "build": "npm run dev && npm run prod",
     "test": "eslint src && jest",
     "test:watch": "jest --watch --verbose"
   },
