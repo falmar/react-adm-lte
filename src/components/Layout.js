@@ -15,27 +15,41 @@ class Layout extends Component {
   }
 
   componentWillUnmount () {
-    window.document.body.classList.remove(this.props.skin)
-    this.removeClasses(this.props)
+    const {skin, boxed, fixed} = this.props
+    const {topNavigation, sidebarCollapse, sidebarMini} = this.props
+
+    const classes = {
+      boxed,
+      fixed,
+      topNavigation,
+      sidebarCollapse,
+      sidebarMini
+    }
+
+    window.document.body.classList.remove(skin)
+
+    this.removeClasses(classes)
   }
 
   toggleClasses (props) {
     const clsList = this.getClasses(props)
+    const body = window.document.body
 
     Object.keys(clsList).forEach(cls => {
       if (clsList[cls] === true) {
-        window.document.body.classList.add(cls)
+        body.classList.add(cls)
       } else {
-        window.document.body.classList.remove(cls)
+        body.classList.remove(cls)
       }
     })
   }
 
   removeClasses (props) {
     const clsList = this.getClasses(props)
+    const body = window.document.body
 
     Object.keys(clsList).forEach(cls => {
-      window.document.body.classList.remove(cls, clsList[cls])
+      body.classList.remove(cls, clsList[cls])
     })
   }
 

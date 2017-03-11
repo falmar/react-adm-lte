@@ -3,14 +3,17 @@ import React, {PropTypes} from 'react'
 import GenericDropdown from './GenericDropdown'
 
 const Notifications = props => {
+  const {open, label, header, footer, children} = props
+  const {onToggle, onClickFooter} = props
+
   return (
     <GenericDropdown
-      {...props}
+      {...{open, label, onToggle, header, footer, onClickFooter}}
       iconClass='fa fa-bell-o'
       labelClass='label label-warning'
       className='notifications-menu'
       >
-      {props.children}
+      {children}
     </GenericDropdown>
   )
 }
