@@ -2,13 +2,13 @@
 import Layout from './components/Layout'
 
 // Main Header
-import MainHeaderComponents from './components/MainHeader/__export'
+import MainHeaderComponents from './components/MainHeader'
 
 // Main Sidebar
-import MainSidebarComponents from './components/MainSidebar/__export'
+import MainSidebarComponents from './components/MainSidebar'
 
 // Control Sidebar
-import ControlSidebarComponents from './components/ControlSidebar/__export'
+import ControlSidebarComponents from './components/ControlSidebar'
 
 export {Layout}
 

@@ -11,7 +11,7 @@ const DropdownToggle = ({children, onToggle}) => {
 }
 
 DropdownToggle.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node,
   onToggle: PropTypes.func.isRequired
 }
 

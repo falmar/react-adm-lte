@@ -355,7 +355,7 @@ var Dropdown = function (_Component) {
 Dropdown.propTypes = {
   onToggle: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired,
   open: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].bool,
-  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].element,
+  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].node,
   className: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].string
 };
 
@@ -381,7 +381,7 @@ var DropdownMenu = function DropdownMenu(_ref) {
 };
 
 DropdownMenu.propTypes = {
-  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].element
+  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].node
 };
 
 /* harmony default export */ __webpack_exports__["a"] = DropdownMenu;
@@ -410,7 +410,7 @@ var DropdownToggle = function DropdownToggle(_ref) {
 };
 
 DropdownToggle.propTypes = {
-  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].element,
+  children: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].node,
   onToggle: __WEBPACK_IMPORTED_MODULE_0_react__["PropTypes"].func.isRequired
 };
 
@@ -1841,13 +1841,13 @@ UserPanel.propTypes = {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Layout__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MainHeader_export__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MainSidebar_export__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ControlSidebar_export__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_MainHeader__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_MainSidebar__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ControlSidebar__ = __webpack_require__(7);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Layout", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Layout__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MainHeaderComponents", function() { return __WEBPACK_IMPORTED_MODULE_1__components_MainHeader_export__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MainSidebarComponents", function() { return __WEBPACK_IMPORTED_MODULE_2__components_MainSidebar_export__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ControlSidebarComponents", function() { return __WEBPACK_IMPORTED_MODULE_3__components_ControlSidebar_export__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MainHeaderComponents", function() { return __WEBPACK_IMPORTED_MODULE_1__components_MainHeader__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MainSidebarComponents", function() { return __WEBPACK_IMPORTED_MODULE_2__components_MainSidebar__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ControlSidebarComponents", function() { return __WEBPACK_IMPORTED_MODULE_3__components_ControlSidebar__["a"]; });
 // Layout
 
 
