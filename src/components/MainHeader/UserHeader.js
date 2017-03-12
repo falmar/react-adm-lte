@@ -15,8 +15,7 @@ const UserHeader = ({imageUrl, title, description}) => {
 UserHeader.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  children: PropTypes.element
+  description: PropTypes.string.isRequired
 }
 
 export default UserHeader

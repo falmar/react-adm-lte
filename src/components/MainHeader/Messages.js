@@ -3,14 +3,17 @@ import React, {PropTypes} from 'react'
 import GenericDropdown from './GenericDropdown'
 
 const Messages = props => {
+  const {open, label, header, footer, children} = props
+  const {onToggle, onClickFooter} = props
+
   return (
     <GenericDropdown
-      {...props}
+      {...{open, label, onToggle, header, footer, onClickFooter}}
       iconClass='fa fa-envelope-o'
       labelClass='label label-success'
       className='messages-menu'
       >
-      {props.children}
+      {children}
     </GenericDropdown>
   )
 }

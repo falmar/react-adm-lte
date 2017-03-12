@@ -26,13 +26,15 @@
     "babel-preset-stage-2": "^6.22.0",
     "enzyme": "^2.6.0",
     "eslint": "^3.8.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-config-standard-react": "^4.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-react": "^6.9.0",
-    "eslint-plugin-standard": "^2.0.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-config-standard-react": "^4.3.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.0",
+    "eslint-plugin-standard": "^2.1.1",
     "jest": "^19.0.2",
+    "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-test-renderer": "^15.4.2",
     "webpack": "^2.2.1"
   },
@@ -58,5 +60,5 @@
     "test": "eslint src && jest",
     "test:watch": "jest --watch --verbose"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
