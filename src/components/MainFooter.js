@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 
-const MainFooter = () => {
+const MainFooter = ({children}) => {
   return (
-    <div />
+    <footer className='main-footer'>
+      {children}
+    </footer>
   )
+}
+
+MainFooter.propTypes = {
+  children: PropTypes.node
 }
 
 export default MainFooter
