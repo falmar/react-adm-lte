@@ -38,43 +38,11 @@ $ npm test
 ```
 
 ## Contributions
-Contributions are welcome!
+Contributions are welcome! Any help will be appreciated!
+
+To know the current state please follow these links:
+- [Milestone v0.1.0](https://github.com/falmar/react-adm-lte/milestone/1)
+- [Project](https://github.com/falmar/react-adm-lte/projects/1)
 
 ## License
 MIT
-
-### TODO List
-
-**Components**
-
-- [x] Link component for external url or onClick function
-- [x] Layout
-- [ ] MainHeader
-  - [x] Logo
-  - [ ] Navbar    
-    - [x] Sidebar Toggle
-    - [x] Control Sidebar Toggle
-    - [ ] Menu
-      - [x] Messages
-      - [x] Notifications
-      - [x] Tasks
-      - [x] User menu
-        - [x] Base
-        - [x] Header
-        - [x] Body
-        - [x] Footer
-      - [ ] ...
-- [x] Sidebar
-  - [x] UserPanel
-  - [x] SearchForm
-  - [x] Menu
-  - [x] MenuItem
-- [x] ControlSidebar
-  - [x] NavTab
-    - [x] Tab
-  - [x] tab content
-    - [x] tab pane
-      - [x] header
-      - [x] sub header
-      - [x] menu
-- [ ] ...more...
