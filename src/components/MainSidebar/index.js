@@ -4,10 +4,9 @@ import SearchForm from './SearchForm'
 import Menu from './Menu'
 import Item from './Item'
 
-export default {
-  MainSidebar,
-  UserPanel,
-  SearchForm,
-  Menu,
-  Item
-}
+MainSidebar.UserPanel = UserPanel
+MainSidebar.SearchForm = SearchForm
+MainSidebar.Menu = Menu
+MainSidebar.Item = Item
+
+export default MainSidebar
