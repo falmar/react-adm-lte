@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-const Wrapper = ({children}) => {
+const ContentWrapper = ({children}) => {
   return (
     <div className='content-wrapper'>
       {children}
@@ -8,8 +8,8 @@ const Wrapper = ({children}) => {
   )
 }
 
-Wrapper.propTypes = {
+ContentWrapper.propTypes = {
   children: PropTypes.node
 }
 
-export default Wrapper
+export default ContentWrapper
