@@ -18,24 +18,24 @@ import UserBodyItem from './UserBodyItem'
 import UserFooter from './UserFooter'
 import UserFooterItem from './UserFooterItem'
 
-export default {
-  MainHeader,
-  Logo,
-  LogoText,
-  Navbar,
-  NavbarMenu,
-  SidebarToggle,
-  ControlSidebarToggle,
-  Messages,
-  MessageItem,
-  Notifications,
-  NotificationItem,
-  Tasks,
-  TaskItem,
-  User,
-  UserHeader,
-  UserBody,
-  UserBodyItem,
-  UserFooter,
-  UserFooterItem
-}
+MainHeader.MainHeader = MainHeader
+MainHeader.Logo = Logo
+MainHeader.LogoText = LogoText
+MainHeader.Navbar = Navbar
+MainHeader.NavbarMenu = NavbarMenu
+MainHeader.SidebarToggle = SidebarToggle
+MainHeader.ControlSidebarToggle = ControlSidebarToggle
+MainHeader.Messages = Messages
+MainHeader.MessageItem = MessageItem
+MainHeader.Notifications = Notifications
+MainHeader.NotificationItem = NotificationItem
+MainHeader.Tasks = Tasks
+MainHeader.TaskItem = TaskItem
+MainHeader.User = User
+MainHeader.UserHeader = UserHeader
+MainHeader.UserBody = UserBody
+MainHeader.UserBodyItem = UserBodyItem
+MainHeader.UserFooter = UserFooter
+MainHeader.UserFooterItem = UserFooterItem
+
+export default MainHeader
