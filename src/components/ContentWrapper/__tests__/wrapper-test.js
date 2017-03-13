@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import Wrapper from '../Wrapper'
+import Wrapper from '../ContentWrapper'
 
 describe('Content Wrapper', () => {
   it('should be a <div> element', () => {
