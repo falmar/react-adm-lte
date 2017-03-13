@@ -1,27 +1,27 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 
-import MainFooter from '../MainFooter'
+import Wrapper from '../Wrapper'
 
-describe('Main Footer', () => {
-  it('should be a <footer> element', () => {
-    const wrapper = shallow(<MainFooter />)
+describe('Content Wrapper', () => {
+  it('should be a <div> element', () => {
+    const wrapper = shallow(<Wrapper />)
 
     expect(
-      wrapper.is('footer')
+      wrapper.is('div')
     ).toBeTruthy()
   })
 
   it('should have basic classNames', () => {
-    const wrapper = shallow(<MainFooter />)
+    const wrapper = shallow(<Wrapper />)
 
     expect(
-      wrapper.hasClass('main-footer')
+      wrapper.hasClass('main-content')
     ).toBeTruthy()
   })
 
   it('should not have children by default', () => {
-    const wrapper = shallow(<MainFooter />)
+    const wrapper = shallow(<Wrapper />)
 
     expect(
       wrapper.children().exists()
@@ -30,9 +30,9 @@ describe('Main Footer', () => {
 
   it('should pass down children if provided', () => {
     const wrapper = shallow(
-      <MainFooter>
+      <Wrapper>
         <div>Children</div>
-      </MainFooter>
+      </Wrapper>
     )
 
     expect(
