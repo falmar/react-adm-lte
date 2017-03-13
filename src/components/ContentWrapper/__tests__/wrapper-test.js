@@ -16,7 +16,7 @@ describe('Content Wrapper', () => {
     const wrapper = shallow(<Wrapper />)
 
     expect(
-      wrapper.hasClass('main-content')
+      wrapper.hasClass('content-wrapper')
     ).toBeTruthy()
   })
 

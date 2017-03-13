@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 const Wrapper = ({children}) => {
   return (
-    <div className='main-content'>
+    <div className='content-wrapper'>
       {children}
     </div>
   )
