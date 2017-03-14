@@ -63,5 +63,5 @@
     "test": "eslint src && jest",
     "test:watch": "jest --watch --verbose"
   },
-  "version": "0.0.6"
+  "version": "0.0.7"
 }
