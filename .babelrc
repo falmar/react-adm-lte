@@ -1,16 +1,18 @@
 {
   "presets": [
     ["env", {"modules": false}],
-    "react",
-    "stage-2"
+    "stage-2",
+    "react"
   ],
   "env": {
     "test": {
       "plugins": ["transform-es2015-modules-commonjs"]
     },
-    "production": [
-      "transform-react-constant-elements",
-      "transform-react-inline-elements"
-    ]
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-inline-elements"
+      ]
+    }
   }
 }

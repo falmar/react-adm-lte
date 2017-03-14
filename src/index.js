@@ -1,19 +1,17 @@
 // Layout
-import Layout from './components/Layout'
+export {default as Layout} from './components/Layout'
 
 // Main Header
-import MainHeaderComponents from './components/MainHeader/__export'
+export {default as MainHeader} from './components/MainHeader'
 
 // Main Sidebar
-import MainSidebarComponents from './components/MainSidebar/__export'
+export {default as MainSidebar} from './components/MainSidebar'
+
+// Content Wrapper
+export {default as ContentWrapper} from './components/ContentWrapper'
+
+// Main Footer
+export {default as MainFooter} from './components/MainFooter'
 
 // Control Sidebar
-import ControlSidebarComponents from './components/ControlSidebar/__export'
-
-export {Layout}
-
-export {MainHeaderComponents}
-
-export {MainSidebarComponents}
-
-export {ControlSidebarComponents}
+export {default as ControlSidebar} from './components/ControlSidebar'
