@@ -1,7 +1,6 @@
 {
   "name": "react-adm-lte",
   "main": "dist/react-adm-lte.js",
-  "module": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/falmar/react-adm-lte"
