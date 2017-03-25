@@ -1,15 +1,17 @@
 import React, {PropTypes} from 'react'
 
-const TabContent = ({children}) => {
+import TabContent from '../NavTab/TabContent'
+
+const ControlSidebarTabContent = ({children}) => {
   return (
-    <div className='tab-content'>
+    <TabContent>
       {children}
-    </div>
+    </TabContent>
   )
 }
 
-TabContent.propTypes = {
+ControlSidebarTabContent.propTypes = {
   children: PropTypes.element
 }
 
-export default TabContent
+export default ControlSidebarTabContent

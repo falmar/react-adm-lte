@@ -1,21 +1,22 @@
 import React, {PropTypes} from 'react'
 
+import Tab from '../NavTab/Tab'
 import Link from './../../utils/Link'
 
-const Tab = ({active, iconClass, onClick}) => {
+const ControlSidebarTab = ({active, iconClass, onClick}) => {
   return (
-    <li className={active ? 'active' : ''}>
+    <Tab active={active}>
       <Link onClick={onClick}>
         <i className={iconClass} />
       </Link>
-    </li>
+    </Tab>
   )
 }
 
-Tab.propTypes = {
+ControlSidebarTab.propTypes = {
   active: PropTypes.bool,
   iconClass: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired
 }
 
-export default Tab
+export default ControlSidebarTab

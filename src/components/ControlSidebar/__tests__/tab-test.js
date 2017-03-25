@@ -6,32 +6,8 @@ import {shallow} from 'enzyme'
 import Tab from './../Tab'
 
 describe('ControlSidebar.NavTab.Tab', () => {
-  it('should not have className "active" by default', () => {
-    const wrapper = shallow(<Tab />)
-
-    expect(
-      wrapper.hasClass('active')
-    ).toBeFalsy()
-  })
-
-  it('should have className "active" if prop provided', () => {
-    const wrapper = shallow(<Tab active />)
-
-    expect(
-      wrapper.hasClass('active')
-    ).toBeTruthy()
-  })
-
-  it('should not have icon className if not provied', () => {
-    const wrapper = shallow(<Tab />)
-
-    expect(
-      wrapper.find('i').prop('className')
-    ).toBeUndefined()
-  })
-
-  it('should have icon className if provired', () => {
-    const wrapper = shallow(<Tab iconClass='fa fa-wrench' />)
+  it('should have icon className if provided', () => {
+    const wrapper = shallow(<Tab iconClass='fa fa-wrench' onClick={() => {}} />)
 
     expect(
       wrapper.find('i').prop('className')
@@ -40,7 +16,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
 
   it('should not call onClick function when event is not fired', () => {
     const spy = jest.fn()
-    shallow(<Tab onClick={spy} />)
+    shallow(<Tab onClick={spy} iconClass='' />)
 
     expect(
       spy
@@ -49,7 +25,7 @@ describe('ControlSidebar.NavTab.Tab', () => {
 
   it('should call onClick function when event is not fired', () => {
     const spy = jest.fn()
-    const wrapper = shallow(<Tab onClick={spy} />)
+    const wrapper = shallow(<Tab onClick={spy} iconClass='' />)
 
     wrapper.find('MyLink').simulate('click')
 
