@@ -28,6 +28,40 @@ describe('Box.Header', () => {
     ).toBeTruthy()
   })
 
+  it('should not have Box.Title if prop not provided', () => {
+    const wrapper = shallow(<Header />)
+    const h3 = wrapper.find('h3')
+
+    expect(
+      h3.length
+    ).toBe(0)
+  })
+
+  it('should not have Box.Title if prop provided', () => {
+    const wrapper = shallow(<Header title='Happy Title!' />)
+    const h3 = wrapper.find('h3')
+
+    expect(
+      h3.length
+    ).toBe(1)
+
+    expect(
+      h3.hasClass('box-title')
+    ).toBeTruthy()
+
+    expect(
+      h3.contains('Happy Title!')
+    ).toBeTruthy()
+  })
+
+  it('should render another node element passed as prop title', () => {
+    const wrapper = shallow(<Header title={<div>Children</div>} />)
+
+    expect(
+      wrapper.find('h3').contains(<div>Children</div>)
+    ).toBeTruthy()
+  })
+
   it('should pass down children', () => {
     const wrapper = shallow(
       <Header>
