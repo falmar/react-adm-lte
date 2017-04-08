@@ -1,10 +1,12 @@
 import React, {PropTypes} from 'react'
 import classnames from 'classnames'
 
+import Overlay from './Overlay'
+
 const Box = props => {
   const {solid, primary, info} = props
   const {warning, success, danger} = props
-  const {collapsed} = props
+  const {collapsed, overlay} = props
   const className = classnames('box', {
     'box-solid': solid,
     'box-primary': primary,
@@ -18,6 +20,7 @@ const Box = props => {
   return (
     <div className={className}>
       {props.children}
+      {overlay && <Overlay />}
     </div>
   )
 }
@@ -30,6 +33,7 @@ Box.propTypes = {
   success: PropTypes.bool,
   danger: PropTypes.bool,
   collapsed: PropTypes.bool,
+  overlay: PropTypes.bool,
   children: PropTypes.node
 }
 

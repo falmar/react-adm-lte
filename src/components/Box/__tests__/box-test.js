@@ -73,4 +73,20 @@ describe('Box', () => {
       wrapper.contains(<div>Children</div>)
     ).toBeTruthy()
   })
+
+  it('should not render Overlay Component if prop not provided', () => {
+    const wrapper = shallow(<Box />)
+
+    expect(
+      wrapper.find('Overlay').length
+    ).toBe(0)
+  })
+
+  it('should render Overlay Component if prop provided', () => {
+    const wrapper = shallow(<Box overlay />)
+
+    expect(
+      wrapper.find('Overlay').length
+    ).toBe(1)
+  })
 })
