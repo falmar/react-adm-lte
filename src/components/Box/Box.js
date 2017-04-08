@@ -5,7 +5,6 @@ const Box = props => {
   const {solid, primary, info} = props
   const {warning, success, danger} = props
   const {collapsed} = props
-  const {children} = props
   const className = classnames('box', {
     'box-solid': solid,
     'box-primary': primary,
@@ -18,7 +17,7 @@ const Box = props => {
 
   return (
     <div className={className}>
-      {children}
+      {props.children}
     </div>
   )
 }
