@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const MyLink = ({href, children, onClick, className}) => {
   let url = (typeof href === 'string' && href.length > 0) ? href : '#'
