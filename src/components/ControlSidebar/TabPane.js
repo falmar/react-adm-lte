@@ -1,19 +1,19 @@
-import React, {PropTypes} from 'react'
-import classnames from 'classnames'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const TabPane = ({children, active}) => {
-  const classNames = classnames('tab-pane', {active})
+import TabPane from '../NavTab/TabPane'
 
+const ControlSidebarTabPane = ({children, active}) => {
   return (
-    <div className={classNames}>
+    <TabPane active={active}>
       {children}
-    </div>
+    </TabPane>
   )
 }
 
-TabPane.propTypes = {
+ControlSidebarTabPane.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.node
 }
 
-export default TabPane
+export default ControlSidebarTabPane

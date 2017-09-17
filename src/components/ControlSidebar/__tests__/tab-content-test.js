@@ -5,23 +5,7 @@ import {shallow} from 'enzyme'
 
 import TabContent from './../TabContent'
 
-describe('ControlSidebar.TabContent', () => {
-  it('should be a <div> element', () => {
-    const wrapper = shallow(<TabContent />)
-
-    expect(
-      wrapper.is('div')
-    ).toBeTruthy()
-  })
-
-  it('should have basic className', () => {
-    const wrapper = shallow(<TabContent />)
-
-    expect(
-      wrapper.hasClass('tab-content')
-    ).toBeTruthy()
-  })
-
+describe('ControlSidebar.NavTab.TabContent', () => {
   it('should pass down children', () => {
     const wrapper = shallow(
       <TabContent>

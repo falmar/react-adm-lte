@@ -15,3 +15,6 @@ export {default as MainFooter} from './components/MainFooter'
 
 // Control Sidebar
 export {default as ControlSidebar} from './components/ControlSidebar'
+
+// Box
+export {default as Box} from './components/Box'

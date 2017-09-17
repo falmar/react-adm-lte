@@ -5,6 +5,8 @@ React Components for [AdminLTE](https://github.com/almasaeed2010/AdminLTE)
 [![](https://travis-ci.org/falmar/react-adm-lte.svg?branch=master)](https://travis-ci.org/falmar/react-adm-lte)
 [![](https://img.shields.io/codecov/c/github/falmar/react-adm-lte.svg)](https://codecov.io/gh/falmar/react-adm-lte)
 
+> NOTE: Sorry there have been no updates to this, currently busy on other projects (I got to eat too lol). However you can find examples of usage here as well [https://github.com/falmar/react-adm-lte-demo](react-adm-lte-demo). Hopefully will get involved again soon.
+
 ## Install
 
 `npm install --save react-adm-lte`

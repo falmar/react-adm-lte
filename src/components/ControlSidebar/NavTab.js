@@ -1,15 +1,18 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const NavTab = ({children}) => {
+import NavTab from '../NavTab'
+
+const ControlSidebarNavTab = ({children}) => {
   return (
-    <ul className='nav nav-tabs nav-justified control-sidebar-tabs'>
+    <NavTab className='nav-justified control-sidebar-tabs'>
       {children}
-    </ul>
+    </NavTab>
   )
 }
 
-NavTab.propTypes = {
+ControlSidebarNavTab.propTypes = {
   children: PropTypes.node
 }
 
-export default NavTab
+export default ControlSidebarNavTab
